@@ -1,10 +1,5 @@
-import { Button } from "ui";
+import Layout from "../components/layout";
 
-export default function Web() {
-  return (
-    <div>
-      <h1>Web</h1>
-      <Button />
-    </div>
-  );
+export default function Empathy() {
+  return <Layout />;
 }

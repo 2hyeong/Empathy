@@ -1,6 +1,6 @@
-# Turborepo starter
+# Empathy
 
-This is an official pnpm starter turborepo.
+A platform to emphathize with the personality of the people around you.
 
 ## What's inside?
 
@@ -8,13 +8,41 @@ This turborepo uses [pnpm](https://pnpm.io) as a package manager. It includes th
 
 ### Apps and Packages
 
-- `docs`: a [Next.js](https://nextjs.org) app
-- `web`: another [Next.js](https://nextjs.org) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
+- `storybook`: a storybook of empahty
+- `web`: empathy web
+- `ui`: a stub React component library shared by `web` and it's wrapped based on [MUI](https://mui.com/) components
 - `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
 - `tsconfig`: `tsconfig.json`s used throughout the monorepo
 
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+
+### Tech Stacks
+
+- [`nextjs`](https://nextjs.org/)
+- [`swr`](https://swr.vercel.app/ko)
+- [`recoil`](https://recoiljs.org/ko/)
+- [`vitest`](https://vitest.dev/)
+
+- [`openapi gen`](https://github.com/OpenAPITools/openapi-generator)
+
+- [`turborepo`](https://turborepo.org/)
+- [`pnpm`](https://pnpm.io/ko/)
+- [`vercel`](https://vercel.com/)
+- [`bitly`](https://bitly.com/pages/home/v2)
+
+- `firebase auth`
+- `firestore`
+- `firebase storage`
+- `firebase functions`
+- `firebase analytics`
+- `firebase hosting`
+- [`fireorm`](https://fireorm.js.org/#/)
+
+- [`amplitude`](https://amplitude.com/)
+- `gtm`
+- `facebook pixel`
+- `doppler`
+- `google optimize`
 
 ### Utilities
 
