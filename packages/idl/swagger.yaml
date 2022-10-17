@@ -1,0 +1,25 @@
+openapi: '3.0.2'
+info:
+  title: Empathy
+  version: '1.0'
+
+servers:
+  - url: http://localhost:3000/v1
+
+tags:
+  - name: users
+  - name: personality
+
+paths:
+  /users:
+    $ref: "./resources/users.yaml"
+  /users/{userId}:
+    $ref: "./resources/user.yaml"
+  /health:
+    get:
+      operationId: checkHealth
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: NOT FOUND

@@ -1,0 +1,147 @@
+openapi: 3.0.2
+info:
+  title: Empathy
+  version: "1.0"
+servers:
+- url: http://localhost:3000/v1
+tags:
+- name: users
+- name: personality
+paths:
+  /users:
+    get:
+      description: List all users
+      operationId: getUsers
+      parameters:
+      - description: How many items to return at one time (max 100)
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: A paged array of users
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unexpected error
+      summary: List
+      tags:
+      - users
+    post:
+      description: Create a user
+      operationId: createUsers
+      responses:
+        "201":
+          description: Empty response
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unexpected error
+      summary: Create
+      tags:
+      - users
+  /users/{userId}:
+    get:
+      description: Info for a specific user
+      operationId: getUser
+      parameters:
+      - description: The id of the user to retrieve
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Expected response to a valid request
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unexpected error
+      summary: Detail
+      tags:
+      - users
+  /health:
+    get:
+      operationId: checkHealth
+      responses:
+        "200":
+          description: OK
+        "404":
+          description: NOT FOUND
+components:
+  parameters:
+    limit:
+      description: How many items to return at one time (max 100)
+      in: query
+      name: limit
+      required: false
+      schema:
+        format: int32
+        type: integer
+    userId:
+      description: The id of the user to retrieve
+      in: path
+      name: userId
+      required: true
+      schema:
+        type: string
+  responses:
+    UnexpectedError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: unexpected error
+    EmptyResponse:
+      description: Empty response
+  schemas:
+    User:
+      example:
+        birthday: birthday
+        name: name
+        id: 0
+        tag: tag
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          type: string
+        birthday:
+          type: string
+        tag:
+          type: string
+      required:
+      - birthday
+      - id
+      - name
+      type: object
+    Error:
+      properties:
+        code:
+          format: int32
+          type: integer
+        message:
+          type: string
+      required:
+      - code
+      - message
+      type: object

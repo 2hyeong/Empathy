@@ -1,0 +1,17 @@
+get:
+  summary: Detail
+  operationId: getUser
+  description: Info for a specific user
+  tags:
+    - users
+  parameters:
+    - $ref: "../parameters/path/userId.yaml"
+  responses:
+    '200':
+      description: Expected response to a valid request
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/User.yaml'
+    default:
+      $ref: '../responses/UnexpectedError.yaml'
