@@ -9,12 +9,38 @@ This turborepo uses [pnpm](https://pnpm.io) as a package manager. It includes th
 ### Apps and Packages
 
 - `storybook`: a storybook of empahty
-- `web`: empathy web
-- `ui`: a stub React component library shared by `web` and it's wrapped based on [MUI](https://mui.com/) components
+- `storefront`: empathy storefront
+- `ui`: a stub React component library shared by `storefront` and it's wrapped based on [MUI](https://mui.com/) components
 - `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
 - `tsconfig`: `tsconfig.json`s used throughout the monorepo
 
+##### Run Apps
+
+- `doppler run -- pnpm run storybook`
+- `doppler run -- pnpm run storefront`
+
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+
+### Firebase emulator
+
+##### Requirements
+
+- [firebase cli](https://firebase.google.com/docs/cli?hl=ko)
+- Node.js >= 8.0
+- Java JDK >= 11
+  https://firebase.google.com/docs/emulator-suite/install_and_configure?hl=ko
+
+##### Run
+
+- pnpm run firebase:emulator
+
+##### Port
+
+- UI
+  - http://localhost:4000
+- Firestore
+  - Host: localhost:3001
+  - UI: http://localhost:4000/firestore
 
 ### Tech Stacks
 
@@ -28,6 +54,8 @@ Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 - [`turborepo`](https://turborepo.org/)
 - [`pnpm`](https://pnpm.io/ko/)
 - [`vercel`](https://vercel.com/)
+
+- `firebase extension - shorten URL using bitly`
 - [`bitly`](https://bitly.com/pages/home/v2)
 
 - `firebase auth`
@@ -35,14 +63,20 @@ Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 - `firebase storage`
 - `firebase functions`
 - `firebase analytics`
-- `firebase hosting`
+- `firebase performance`
+- `firebase a/b test`
 - [`fireorm`](https://fireorm.js.org/#/)
 
-- [`amplitude`](https://amplitude.com/)
 - `gtm`
 - `facebook pixel`
 - `doppler`
-- `google optimize`
+
+[firebase emulator](https://firebase.google.com/docs/rules/emulator-setup?hl=ko) must be used in local dev
+
+```
+firebase emulators:start --only firestore
+firebase emulators:start --only storage
+```
 
 ### Utilities
 
