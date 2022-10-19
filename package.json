@@ -10,7 +10,10 @@
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "storefront": "cd apps/storefront && doppler run -- pnpm run dev",
+    "storybook": "cd apps/storybook && doppler run -- pnpm run storybook",
+    "firebase:emulator": "firebase emulators:start"
   },
   "devDependencies": {
     "eslint-config-custom": "workspace:*",
