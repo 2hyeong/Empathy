@@ -5,7 +5,7 @@
 ```
 # tsconfig.json
 "compilerOptions": {
-    "baseUrl": "../web",
+    "baseUrl": "../storefront",
     "paths": {
       "components/*": ["components/*"]
     }

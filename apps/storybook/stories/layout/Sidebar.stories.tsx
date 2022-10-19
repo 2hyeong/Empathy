@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import SidebarComponent from "web/components/layout/Sidebar";
+import SidebarComponent from "storefront/components/layout/sidebar";
 
 export default {
   title: "Empathy/Layout",

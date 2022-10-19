@@ -3,10 +3,9 @@
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"],
   "compilerOptions": {
-    "baseUrl": "../",
+    "baseUrl": ".",
     "paths": {
-      "components/*": ["components/*"],
-      "storefront/*": ["storefront/*"]
+      "storefront/*": ["*"]
     }
   }
 }
