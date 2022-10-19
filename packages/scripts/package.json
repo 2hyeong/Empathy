@@ -1,0 +1,17 @@
+{
+  "name": "scripts",
+  "private": true,
+  "version": "0.0.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint *.ts*"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.45"
+  },
+  "dependencies": {
+    "firebase": "^9.12.1"
+  }
+}

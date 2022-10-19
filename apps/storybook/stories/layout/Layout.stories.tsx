@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import LayoutComponent from "web/components/layout";
+import LayoutComponent from "storefront/components/layout";
 
 export default {
   title: "Empathy/Layout",

@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import AlignListComponent from "web/components/list/AlignList";
+import AlignListComponent from "storefront/components/list/AlignList";
 
 export default {
   title: "Empathy/List",

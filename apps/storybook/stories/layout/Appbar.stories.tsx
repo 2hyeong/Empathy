@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import AppbarComponent from "web/components/layout/Appbar";
+import AppbarComponent from "storefront/components/layout/appbar";
 
 export default {
   title: "Empathy/Layout",

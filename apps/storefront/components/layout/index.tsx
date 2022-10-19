@@ -1,7 +1,7 @@
 import React from "react";
 import { ThemeProvider, theme, Box } from "ui";
-import Appbar from "web/components/layout/Appbar";
-import Sidebar from "web/components/layout/Sidebar";
+import Appbar from "storefront/components/layout/appbar";
+import Sidebar from "storefront/components/layout/sidebar";
 
 interface LayoutProps {
   children: React.ReactNode;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Drawer, SearchInput, styled, Typography } from "ui";
-import AlignList from "web/components/list/AlignList";
-import Nav from "web/components/layout/Nav";
+import AlignList from "storefront/components/list/AlignList";
+import Nav from "storefront/components/layout/Nav";
 
 const StickyBox = styled(Box)(({ theme }) => ({
   position: "sticky",

@@ -14,5 +14,6 @@ module.exports = {
     "react/no-unused-state": "warn",
     "react/jsx-key": "warn",
     "react/jsx-curly-brace-presence": "warn",
+    "turbo/no-undeclared-env-vars": "off",
   },
 };

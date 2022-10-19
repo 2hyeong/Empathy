@@ -1,10 +1,14 @@
+import { signOut, useSession } from "next-auth/react";
 import { Avatar, Box, Button, CheckCircleIcon, Typography } from "ui";
+import SignIn from "storefront/components/auth/signin";
 
 interface AppbarProps {
   sidebarWidth: number | string;
 }
 
 export default function Appbar({ sidebarWidth }: AppbarProps) {
+  const { data: session, status } = useSession();
+
   return (
     <>
       <Box
@@ -14,9 +18,11 @@ export default function Appbar({ sidebarWidth }: AppbarProps) {
         height={200}
       >
         <Box sx={{ padding: 2, display: "flex", justifyContent: "flex-end" }}>
-          <Button size="small" variant="contained" color="info">
-            카카오 로그인
-          </Button>
+          {status === "authenticated" ? (
+            <Button onClick={() => signOut()}>로그아웃</Button>
+          ) : (
+            <SignIn />
+          )}
         </Box>
       </Box>
 
