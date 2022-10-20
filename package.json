@@ -12,7 +12,7 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "storefront": "cd apps/storefront && doppler run -- pnpm run dev",
-    "storybook": "cd apps/storybook && doppler run -- pnpm run storybook",
+    "storybook": "cd apps/storybook && pnpm run storybook",
     "firebase:emulator": "firebase emulators:start"
   },
   "devDependencies": {
