@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import NavComponent from "storefront/components/layout/Nav";
+import NavComponent from "storefront/components/layout/nav";
 
 export default {
   title: "Empathy/Layout",
