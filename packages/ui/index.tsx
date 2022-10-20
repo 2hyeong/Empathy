@@ -16,11 +16,11 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItem from "@mui/material/ListItem";
 import Fab from "@mui/material/Fab";
 
-export * from "./Button";
-export * from "./SearchInput";
-export * from "./Theme";
-export * from "./Icons";
-export * from "./Card";
+export * from "./button";
+export * from "./searchInput";
+export * from "./theme";
+export * from "./icons";
+export * from "./card";
 
 export {
   CssBaseline,
