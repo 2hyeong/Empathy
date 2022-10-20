@@ -5,7 +5,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Typography from "@mui/material/Typography";
-import Card from "@mui/material/Card";
 import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";
 import Divider from "@mui/material/Divider";
@@ -21,6 +20,7 @@ export * from "./Button";
 export * from "./SearchInput";
 export * from "./Theme";
 export * from "./Icons";
+export * from "./Card";
 
 export {
   CssBaseline,
@@ -29,7 +29,6 @@ export {
   styled,
   Typography,
   ThemeProvider,
-  Card,
   Paper,
   Avatar,
   Divider,
