@@ -1,5 +1,25 @@
-import Layout from "../components/layout";
+import { AddIcon, Box, Fab } from "ui";
+import Layout from "storefront/components/layout";
+import PersonalityList from "storefront/components/personality/list";
 
 export default function Empathy() {
-  return <Layout />;
+  return (
+    <Layout>
+      <Box sx={{ padding: 2 }}>
+        <PersonalityList />
+      </Box>
+
+      <Fab
+        sx={{
+          position: "fixed",
+          bottom: 25,
+          right: 25,
+        }}
+        color="primary"
+        aria-label="add"
+      >
+        <AddIcon />
+      </Fab>
+    </Layout>
+  );
 }

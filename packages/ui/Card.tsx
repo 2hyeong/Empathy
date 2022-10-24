@@ -10,26 +10,24 @@ export const Card = (props: CardProps) => (
   <MuiCard {...props}>{props.children}</MuiCard>
 );
 
-export const ClickableCard = (props: CardProps) => {
-  const [isActive, setIsActive] = React.useState(false);
+export interface ClickableCardProps extends CardProps {
+  isActive: boolean;
+}
 
-  const handleClickCard = () => {
-    setIsActive(!isActive);
-  };
-
+export const ClickableCard = (props: ClickableCardProps) => {
   return (
-    <MuiCard
+    <Card
       {...props}
       sx={{
         ...props.sx,
-        "&:hover": {
-          backgroundColor: "rgba(255, 255, 255, 0.08)",
-        },
-        backgroundColor: isActive ? "rgba(255, 255, 255, 0.16)" : undefined,
+        backgroundColor: props.isActive
+          ? "rgba(255, 255, 255, 0.16)"
+          : undefined,
       }}
-      onClick={() => handleClickCard()}
     >
-      <CardActionArea sx={{ height: "100%" }}>{props.children}</CardActionArea>
-    </MuiCard>
+      <CardActionArea sx={{ height: "100%", padding: 2 }}>
+        {props.children}
+      </CardActionArea>
+    </Card>
   );
 };
