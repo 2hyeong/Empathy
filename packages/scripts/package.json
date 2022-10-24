@@ -6,10 +6,12 @@
   "types": "./index.ts",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint *.ts*"
+    "lint": "eslint *.ts*",
+    "test": "vitest"
   },
   "devDependencies": {
-    "@types/node": "^17.0.45"
+    "@types/node": "^17.0.45",
+    "vitest": "^0.24.3"
   },
   "dependencies": {
     "firebase": "^9.12.1"
