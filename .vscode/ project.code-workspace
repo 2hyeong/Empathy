@@ -1,0 +1,20 @@
+{
+  "folders": [
+    {
+      "name": "ROOT",
+      "path": "../"
+    },
+    {
+      "name": "storefront",
+      "path": "root/apps/storefront"
+    },
+    {
+      "name": "storybook",
+      "path": "root/apps/storybook"
+    },
+    {
+      "name": "ui",
+      "path": "root/packages/ui"
+    }
+  ]
+}
