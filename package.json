@@ -10,19 +10,31 @@
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
+    "test": "turbo run test",
+    "test:ui": "vitest --ui",
+    "test:watch": "turbo run test:watch",
+    "coverage": "vitest run --coverage",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "storefront": "cd apps/storefront && doppler run -- pnpm run dev",
     "storybook": "cd apps/storybook && pnpm run storybook",
     "firebase:emulator": "firebase emulators:start"
   },
   "devDependencies": {
+    "@testing-library/dom": "^8.19.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/testing-library__jest-dom": "^5.14.5",
+    "@vitejs/plugin-react": "^2.1.0",
     "eslint-config-custom": "workspace:*",
+    "extend-expect": "link:@testing-library/jest-dom/extend-expect",
+    "matchers": "link:@testing-library/jest-dom/matchers",
     "prettier": "latest",
-    "turbo": "latest"
+    "turbo": "latest",
+    "vitest": "^0.24.3"
   },
   "engines": {
     "node": ">=14.0.0"
   },
-  "dependencies": {},
   "packageManager": "pnpm@7.13.4"
 }
