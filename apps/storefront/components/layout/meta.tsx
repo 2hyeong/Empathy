@@ -7,12 +7,12 @@ export const defaultMetaProps = {
   ogUrl: "",
 };
 
-export interface MetaProps {
+export type MetaProps = {
   title: string;
   description: string;
   ogUrl: string;
   ogImage: string;
-}
+};
 
 export default function Meta({ props }: { props: MetaProps }) {
   return (

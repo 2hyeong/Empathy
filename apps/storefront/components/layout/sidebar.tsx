@@ -11,10 +11,10 @@ const StickyBox = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
 }));
 
-interface SidebarProps {
+type SidebarProps = {
   width?: number | string;
   anchor?: "right" | "left";
-}
+};
 
 export default function Sidebar({
   width = 384,

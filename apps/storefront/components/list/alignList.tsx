@@ -8,15 +8,15 @@ import {
   Box,
 } from "ui";
 
-interface AlignItem {
+type AlignItem = {
   src?: string;
   name: string;
   personality?: string;
-}
+};
 
-interface AlignListProps {
+type AlignListProps = {
   items: AlignItem[];
-}
+};
 
 export default function AlignList({ items }: AlignListProps) {
   return (

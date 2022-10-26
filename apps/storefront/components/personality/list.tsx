@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { CardContent, ClickableCard, Divider, Grid, Typography } from "ui";
 import {
   GetSelectedPersonality,
@@ -7,7 +7,7 @@ import {
 } from "storefront/components/personality/personality";
 
 export default function PersonalityList() {
-  const [selected, setSelected] = React.useState("____");
+  const [selected, setSelected] = useState("____");
 
   const handleClickableCardClicked = (personality: Personality) => {
     setSelected(GetSelectedPersonality(personality.key));
