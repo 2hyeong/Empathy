@@ -71,23 +71,30 @@ export const Personalities: Personality[] = [
 ];
 
 export const GetSelectedPersonality = (selectedKey: PersonalityKey) => {
-  const MBTI: { [key: number]: string } = "MBTI";
+  const updateSelectProp = (arr: Personality[], curr: Personality) => {
+    arr.forEach((p) => {
+      if (p.type === curr.type) p.selected = false;
+    });
+    curr.selected = true;
+  };
+
+  const getUpdatedPersonality = (prev: string, curr: Personality) => {
+    const MBTI: { [key: number]: string } = "MBTI";
+
+    for (let mbti in MBTI) {
+      if (curr.type === MBTI[Number(mbti)]) {
+        return replaceAt(prev, Number(mbti), curr.key);
+      }
+    }
+    return prev;
+  };
+
   return Personalities.reduce(
     (prev: string, curr: Personality, _, arr: Personality[]) => {
-      if (curr.key === selectedKey) {
-        arr.forEach((p) => {
-          if (p.type === curr.type) p.selected = false;
-        });
-        curr.selected = true;
-      }
+      const isSameKey = curr.key === selectedKey;
 
-      if (curr.selected) {
-        for (let mbti in MBTI) {
-          if (curr.type === MBTI[Number(mbti)]) {
-            return replaceAt(prev, Number(mbti), curr.key);
-          }
-        }
-      }
+      if (isSameKey) updateSelectProp(arr, curr);
+      if (curr.selected) return getUpdatedPersonality(prev, curr);
 
       return prev;
     },
