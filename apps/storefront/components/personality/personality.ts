@@ -3,13 +3,13 @@ import { replaceAt } from "scripts";
 export type PersonalityKey = "E" | "I" | "S" | "N" | "T" | "F" | "J" | "P";
 export type PersonalityType = "M" | "B" | "T" | "I";
 
-export interface Personality {
+export type Personality = {
   key: PersonalityKey;
   title: string;
   caption: string;
   type: PersonalityType;
   selected: boolean;
-}
+};
 
 export const Personalities: Personality[] = [
   {

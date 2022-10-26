@@ -2,9 +2,9 @@ import { signOut, useSession } from "next-auth/react";
 import { Avatar, Box, Button, CheckCircleIcon, Typography } from "ui";
 import SignIn from "storefront/components/auth/signin";
 
-interface AppbarProps {
+type AppbarProps = {
   sidebarWidth: number | string;
-}
+};
 
 export default function Appbar({ sidebarWidth }: AppbarProps) {
   const { data: session, status } = useSession();
@@ -34,7 +34,10 @@ export default function Appbar({ sidebarWidth }: AppbarProps) {
           marginLeft: `${sidebarWidth}px`,
         }}
       >
-        <Avatar sx={{ width: 128, height: 128 }}>아바타</Avatar>
+        <Avatar
+          sx={{ width: 128, height: 128 }}
+          src={session?.user?.image || undefined}
+        />
         <Box
           sx={{
             display: "flex",
@@ -43,7 +46,7 @@ export default function Appbar({ sidebarWidth }: AppbarProps) {
             paddingX: 2,
           }}
         >
-          <Typography variant="h5">홍길동</Typography>
+          <Typography variant="h5">{session?.user?.name}</Typography>
           <CheckCircleIcon sx={{ marginLeft: 1 }} />
         </Box>
       </Box>
