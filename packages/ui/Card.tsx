@@ -6,7 +6,9 @@ export type CardProps = {
   children: React.ReactNode;
 } & MuiCardProps;
 
-export const Card = (props: CardProps) => <MuiCard>{props.children}</MuiCard>;
+export const Card = (props: CardProps) => (
+  <MuiCard {...props}>{props.children}</MuiCard>
+);
 
 export type ClickableCardProps = {
   isActive: boolean;
