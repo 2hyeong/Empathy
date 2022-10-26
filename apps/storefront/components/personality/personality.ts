@@ -71,7 +71,7 @@ export const Personalities: Personality[] = [
 ];
 
 export const GetSelectedPersonality = (selectedKey: PersonalityKey) => {
-  const MBTI: { [key: number]: String } = "MBTI";
+  const MBTI: { [key: number]: string } = "MBTI";
   return Personalities.reduce(
     (prev: string, curr: Personality, _, arr: Personality[]) => {
       if (curr.key === selectedKey) {
