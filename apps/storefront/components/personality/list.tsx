@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { CardContent, ClickableCard, Divider, Grid, Typography } from "ui";
+import {
+  Box,
+  Button,
+  CardContent,
+  ClickableCard,
+  Divider,
+  Grid,
+  Typography,
+} from "ui";
 import {
   GetSelectedPersonality,
   Personalities,
@@ -13,15 +21,37 @@ export default function PersonalityList() {
     setSelected(GetSelectedPersonality(personality.key));
   };
 
+  const onClickSave = () => {
+    const selectedChar = selected.replace(/[^a-zA-Z]/g, "");
+    if (selectedChar.length !== 4) {
+      alert("성격유형을 모두 선택해주세요.");
+      return;
+    }
+  };
+
   return (
     <>
-      <Typography
-        variant="h5"
-        sx={{ marginY: 4 }}
-        data-testid="personality-selected-typography"
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
       >
-        성격 유형을 선택해주세요. {selected}
-      </Typography>
+        <Box sx={{ marginY: 4 }}>
+          <Typography
+            variant="h5"
+            data-testid="personality-selected-typography"
+          >
+            성격 유형을 선택해주세요. {selected}
+          </Typography>
+        </Box>
+        <Box>
+          <Button variant="outlined" color="info" onClick={() => onClickSave()}>
+            <Typography>저장하기</Typography>
+          </Button>
+        </Box>
+      </Box>
       <Grid container spacing={1} columns={8}>
         {Personalities.map((personality) => (
           <Grid
