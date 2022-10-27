@@ -9,7 +9,6 @@ export const theme = createTheme({
   },
   typography: {
     fontFamily: [
-      "Do Hyeon",
       "-apple-system",
       "BlinkMacSystemFont",
       '"Segoe UI"',

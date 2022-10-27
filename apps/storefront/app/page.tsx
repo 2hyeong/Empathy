@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import {
   Box,
@@ -14,7 +16,7 @@ import {
   Personality,
 } from "storefront/components/personality/personality";
 
-export default function PersonalityList() {
+export default function Page() {
   const [selected, setSelected] = useState("____");
 
   const handleClickableCardClicked = (personality: Personality) => {

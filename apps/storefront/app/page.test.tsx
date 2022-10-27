@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import PersonalityList from "./list";
+import PersonalityList from "./page";
 
 describe("should return clicked MBTI, on clicking personality-clickable-card", () => {
   test("should return 'ES__', if 0 and 2 index of personality-clickable-card is clicked", async () => {
