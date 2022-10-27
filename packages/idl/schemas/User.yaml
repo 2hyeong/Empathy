@@ -2,7 +2,6 @@ type: object
 required:
   - id
   - name
-  - birthday
 properties:
   id:
     type: integer
@@ -11,5 +10,11 @@ properties:
     type: string
   birthday:
     type: string
-  tag:
+  personality:
+    type: string
+  gender:
+    type: string
+  age_range:
+    type: string
+  profile_image:
     type: string

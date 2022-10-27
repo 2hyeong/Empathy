@@ -24,17 +24,23 @@ export interface components {
     /**
      * @example {
      *   "birthday": "birthday",
+     *   "age_range": "age_range",
+     *   "profile_image": "profile_image",
+     *   "personality": "personality",
+     *   "gender": "gender",
      *   "name": "name",
-     *   "id": 0,
-     *   "tag": "tag"
+     *   "id": 0
      * }
      */
     User: {
       /** Format: int64 */
       id: number;
       name: string;
-      birthday: string;
-      tag?: string;
+      birthday?: string;
+      personality?: string;
+      gender?: string;
+      age_range?: string;
+      profile_image?: string;
     };
     Error: {
       /** Format: int32 */
