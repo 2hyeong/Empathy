@@ -36,5 +36,9 @@
   "engines": {
     "node": ">=14.0.0"
   },
-  "packageManager": "pnpm@7.13.4"
+  "packageManager": "pnpm@7.13.4",
+  "dependencies": {
+    "firebase": "^9.12.1",
+    "firebase-admin": "^11.2.0"
+  }
 }
