@@ -1,5 +1,3 @@
-import Head from "next/head";
-
 export const defaultMetaProps = {
   title: "",
   description: "",
@@ -16,7 +14,7 @@ export type MetaProps = {
 
 export default function Meta({ props }: { props: MetaProps }) {
   return (
-    <Head>
+    <>
       <title>{props.title}</title>
       <link rel="icon" href="/favicon.ico" />
       <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -35,6 +33,6 @@ export default function Meta({ props }: { props: MetaProps }) {
       <meta property="og:url" content={props.ogUrl} />
       <meta property="og:image" content={props.ogImage} />
       <meta property="og:type" content="website" />
-    </Head>
+    </>
   );
 }
