@@ -1,4 +1,4 @@
-import { AddIcon, Box, Fab } from "ui";
+import { AddIcon, Box, Button, Fab } from "ui";
 import Layout from "storefront/components/layout";
 import PersonalityList from "storefront/components/personality/list";
 
@@ -9,7 +9,7 @@ export default function Empathy() {
         <PersonalityList />
       </Box>
 
-      <Fab
+      {/* <Fab
         sx={{
           position: "fixed",
           bottom: 25,
@@ -19,7 +19,7 @@ export default function Empathy() {
         aria-label="add"
       >
         <AddIcon />
-      </Fab>
+      </Fab> */}
     </Layout>
   );
 }
