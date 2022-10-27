@@ -15,5 +15,6 @@ module.exports = {
     "react/jsx-key": "warn",
     "react/jsx-curly-brace-presence": "warn",
     "turbo/no-undeclared-env-vars": "off",
+    "import/no-anonymous-default-export": [warn, { allowArrowFunction: true }],
   },
 };
