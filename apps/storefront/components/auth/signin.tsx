@@ -12,14 +12,15 @@ export default function SignIn() {
       >
         카카오 로그인
       </Button>
-      <Button
+      {/* 계정이 다르게 저장되는 문제로 추후 지원 */}
+      {/* <Button
         size="small"
         variant="contained"
         color="info"
         onClick={() => signIn("naver")}
       >
         네이버 로그인
-      </Button>
+      </Button> */}
     </Box>
   );
 }
