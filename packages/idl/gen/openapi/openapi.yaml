@@ -6,7 +6,6 @@ servers:
 - url: http://localhost:3000/v1
 tags:
 - name: users
-- name: personality
 paths:
   /users:
     get:
@@ -116,9 +115,12 @@ components:
     User:
       example:
         birthday: birthday
+        age_range: age_range
+        profile_image: profile_image
+        personality: personality
+        gender: gender
         name: name
         id: 0
-        tag: tag
       properties:
         id:
           format: int64
@@ -127,10 +129,15 @@ components:
           type: string
         birthday:
           type: string
-        tag:
+        personality:
+          type: string
+        gender:
+          type: string
+        age_range:
+          type: string
+        profile_image:
           type: string
       required:
-      - birthday
       - id
       - name
       type: object
