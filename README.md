@@ -58,7 +58,6 @@ Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 - `firebase extension - shorten URL using bitly`
 - [`bitly`](https://bitly.com/pages/home/v2)
 
-- `firebase auth`
 - `firestore`
 - `firebase storage`
 - `firebase functions`

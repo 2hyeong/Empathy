@@ -38,7 +38,10 @@
   },
   "packageManager": "pnpm@7.13.4",
   "dependencies": {
-    "firebase": "^9.12.1",
-    "firebase-admin": "^11.2.0"
+    "@google-cloud/firestore": "^6.4.1",
+    "@types/lodash": "^4.14.186",
+    "firebase": "9.13.0",
+    "firebase-admin": "^11.2.0",
+    "lodash": "^4.17.21"
   }
 }

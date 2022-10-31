@@ -1,3 +1,5 @@
+"use client";
+
 import { signOut, useSession } from "next-auth/react";
 import { Avatar, Box, Button, CheckCircleIcon, Typography } from "ui";
 import SignIn from "storefront/components/auth/signin";
