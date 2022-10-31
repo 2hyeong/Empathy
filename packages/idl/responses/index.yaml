@@ -2,3 +2,5 @@ UnexpectedError:
   $ref: "./UnexpectedError.yaml"
 EmptyResponse:
   $ref: "./EmptyResponse.yaml"
+Sucess:
+  $ref: "./Success.yaml"

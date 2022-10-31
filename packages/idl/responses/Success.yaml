@@ -1,0 +1,10 @@
+description: success
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - ok
+      properties:
+        ok:
+          type: boolean
