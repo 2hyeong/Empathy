@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import {
   Box,
@@ -15,6 +14,17 @@ import {
   Personalities,
   Personality,
 } from "storefront/components/personality/personality";
+import { usersApi } from "storefront/lib/typescript-fetch";
+
+async function getUser() {
+  const data = await usersApi.getUsers();
+  return data;
+}
+
+async function updateUser(personality: string) {
+  const data = await usersApi.updateUsers({ body: personality });
+  return data;
+}
 
 export default function Page() {
   const [selected, setSelected] = useState("____");
@@ -23,12 +33,14 @@ export default function Page() {
     setSelected(GetSelectedPersonality(personality.key));
   };
 
-  const onClickSave = () => {
+  const onClickSave = async () => {
     const selectedChar = selected.replace(/[^a-zA-Z]/g, "");
     if (selectedChar.length !== 4) {
       alert("성격유형을 모두 선택해주세요.");
       return;
     }
+    // await update({ personality });
+    console.log(selectedChar);
   };
 
   return (
