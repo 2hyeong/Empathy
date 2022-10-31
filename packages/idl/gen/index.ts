@@ -7,6 +7,8 @@ export interface paths {
   "/users": {
     /** List all users */
     get: operations["getUsers"];
+    /** Update a user */
+    put: operations["updateUsers"];
     /** Create a user */
     post: operations["createUsers"];
   };
@@ -29,12 +31,11 @@ export interface components {
      *   "personality": "personality",
      *   "gender": "gender",
      *   "name": "name",
-     *   "id": 0
+     *   "id": "id"
      * }
      */
     User: {
-      /** Format: int64 */
-      id: number;
+      id: string;
       name: string;
       birthday?: string;
       personality?: string;
@@ -47,12 +48,26 @@ export interface components {
       code: number;
       message: string;
     };
+    /**
+     * @example {
+     *   "ok": true
+     * }
+     */
+    updateUsers_200_response: {
+      ok: boolean;
+    };
   };
   responses: {
     /** unexpected error */
     UnexpectedError: {
       content: {
         "application/json": components["schemas"]["Error"];
+      };
+    };
+    /** success */
+    Success: {
+      content: {
+        "application/json": components["schemas"]["updateUsers_200_response"];
       };
     };
     /** Empty response */
@@ -79,9 +94,28 @@ export interface operations {
       /** A paged array of users */
       200: {
         content: {
-          "application/json": components["schemas"]["User"];
+          "application/json": components["schemas"]["User"][];
         };
       };
+      /** unexpected error */
+      default: {
+        content: {
+          "application/json": components["schemas"]["Error"];
+        };
+      };
+    };
+  };
+  /** Update a user */
+  updateUsers: {
+    responses: {
+      /** success */
+      200: {
+        content: {
+          "application/json": components["schemas"]["updateUsers_200_response"];
+        };
+      };
+      /** Empty response */
+      201: unknown;
       /** unexpected error */
       default: {
         content: {
@@ -93,6 +127,12 @@ export interface operations {
   /** Create a user */
   createUsers: {
     responses: {
+      /** success */
+      200: {
+        content: {
+          "application/json": components["schemas"]["updateUsers_200_response"];
+        };
+      };
       /** Empty response */
       201: unknown;
       /** unexpected error */

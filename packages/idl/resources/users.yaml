@@ -3,27 +3,44 @@ get:
   operationId: getUsers
   description: List all users
   tags:
-  - users
+    - users
   parameters:
     - $ref: "../parameters/query/limit.yaml"
   responses:
-    '200':
+    "200":
       description: A paged array of users
       content:
         application/json:
           schema:
-            $ref: "../schemas/User.yaml"
+            type: array
+            items: { $ref: "../schemas/User.yaml" }
     default:
       $ref: "../responses/UnexpectedError.yaml"
-      
+
 post:
   summary: Create
   operationId: createUsers
   description: Create a user
   tags:
-  - users
+    - users
   responses:
-    '201':
-        $ref : "../responses/EmptyResponse.yaml"
+    "200":
+      $ref: "../responses/Success.yaml"
+    "201":
+      $ref: "../responses/EmptyResponse.yaml"
     default:
-        $ref : "../responses/UnexpectedError.yaml"
+      $ref: "../responses/UnexpectedError.yaml"
+
+put:
+  summary: Update
+  operationId: updateUsers
+  description: Update a user
+  tags:
+    - users
+  responses:
+    "200":
+      $ref: "../responses/Success.yaml"
+    "201":
+      $ref: "../responses/EmptyResponse.yaml"
+    default:
+      $ref: "../responses/UnexpectedError.yaml"
