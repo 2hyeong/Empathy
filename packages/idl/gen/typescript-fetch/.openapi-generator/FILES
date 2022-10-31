@@ -1,0 +1,10 @@
+.openapi-generator-ignore
+apis/DefaultApi.ts
+apis/UsersApi.ts
+apis/index.ts
+index.ts
+models/ModelError.ts
+models/UpdateUsers200Response.ts
+models/User.ts
+models/index.ts
+runtime.ts
