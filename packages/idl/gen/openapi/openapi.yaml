@@ -24,7 +24,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                items:
+                  $ref: '#/components/schemas/User'
+                type: array
           description: A paged array of users
         default:
           content:
@@ -39,6 +41,12 @@ paths:
       description: Create a user
       operationId: createUsers
       responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateUsers_200_response'
+          description: success
         "201":
           description: Empty response
         default:
@@ -48,6 +56,27 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: unexpected error
       summary: Create
+      tags:
+      - users
+    put:
+      description: Update a user
+      operationId: updateUsers
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateUsers_200_response'
+          description: success
+        "201":
+          description: Empty response
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unexpected error
+      summary: Update
       tags:
       - users
   /users/{userId}:
@@ -109,6 +138,12 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
       description: unexpected error
+    Success:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/updateUsers_200_response'
+      description: success
     EmptyResponse:
       description: Empty response
   schemas:
@@ -120,11 +155,10 @@ components:
         personality: personality
         gender: gender
         name: name
-        id: 0
+        id: id
       properties:
         id:
-          format: int64
-          type: integer
+          type: string
         name:
           type: string
         birthday:
@@ -151,4 +185,13 @@ components:
       required:
       - code
       - message
+      type: object
+    updateUsers_200_response:
+      example:
+        ok: true
+      properties:
+        ok:
+          type: boolean
+      required:
+      - ok
       type: object
