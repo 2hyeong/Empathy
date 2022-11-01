@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { db, firestore, userConverter } from "scripts";
-import type { components, operations } from "idl";
+import { db, userConverter } from "scripts";
+import type { operations } from "idl";
 import { getSession } from "next-auth/react";
 
 export default async (
@@ -20,7 +20,11 @@ export default async (
 
   if (req.method === "PUT") {
     if (!session?.user?.id) return res.status(400).end();
-    const data = await db.update("users", req.body).where(session?.user?.id);
+    try {
+      await db.update("users", JSON.parse(req.body)).where(session?.user?.id);
+    } catch (e) {
+      console.error(e);
+    }
     return res.status(200).json({ ok: true });
   }
 

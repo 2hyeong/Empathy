@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -14,33 +15,47 @@ import {
   Personalities,
   Personality,
 } from "storefront/components/personality/personality";
-import { usersApi } from "storefront/lib/typescript-fetch";
-
-async function getUser() {
-  const data = await usersApi.getUsers();
-  return data;
-}
-
-async function updateUser(personality: string) {
-  const data = await usersApi.updateUsers({ body: personality });
-  return data;
-}
+import { getMe, updateUser } from "storefront/lib/api/useUser";
+import useSWR, { mutate } from "swr";
 
 export default function Page() {
   const [selected, setSelected] = useState("____");
+
+  const { data: me, error } = useSWR("api/me", getMe);
+  if (error) console.error(error);
+
+  useEffect(() => {
+    if (me?.personality) {
+      setSelected(me.personality);
+      activeDefaultClickableCard(me.personality);
+    }
+  }, [me?.personality]);
+
+  const activeDefaultClickableCard = (personality: string) => {
+    for (let key of personality) {
+      handleClickableCardClicked({ key } as Personality);
+    }
+  };
 
   const handleClickableCardClicked = (personality: Personality) => {
     setSelected(GetSelectedPersonality(personality.key));
   };
 
-  const onClickSave = async () => {
+  const onClickSave = () => {
     const selectedChar = selected.replace(/[^a-zA-Z]/g, "");
-    if (selectedChar.length !== 4) {
+    const isPersonalityFullySelected = selectedChar.length === 4;
+
+    if (!isPersonalityFullySelected) {
       alert("성격유형을 모두 선택해주세요.");
       return;
     }
-    // await update({ personality });
-    console.log(selectedChar);
+
+    mutate(
+      "api/me",
+      updateUser({
+        personality: selectedChar,
+      })
+    );
   };
 
   return (
@@ -76,7 +91,7 @@ export default function Page() {
             onClick={() => handleClickableCardClicked(personality)}
           >
             <ClickableCard
-              sx={{ textAlign: "center" }}
+              sx={{ textAlign: "center", height: "100%" }}
               isActive={personality.selected}
             >
               <CardContent sx={{ padding: 0 }}>
