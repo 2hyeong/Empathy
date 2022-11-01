@@ -1,16 +1,17 @@
-import { cert, getApps, initializeApp } from "firebase-admin/app";
+import { cert, getApp, getApps, initializeApp } from "firebase-admin/app";
 import { FirestoreDataConverter, getFirestore } from "firebase-admin/firestore";
 import { firebaseAdminConfig } from "../config";
 import _ from "lodash";
 
-const convertKeysToSnakeCase = (firebaseAdminConfig: {}) =>
+export const convertKeysToSnakeCase = (firebaseAdminConfig: {}) =>
   _.mapKeys(firebaseAdminConfig, (value, key) => _.snakeCase(key));
 
-!getApps().length &&
-  initializeApp({
-    credential: cert(convertKeysToSnakeCase(firebaseAdminConfig)),
-    databaseURL: firebaseAdminConfig.databaseURL,
-  });
+!getApps().length
+  ? initializeApp({
+      credential: cert(convertKeysToSnakeCase(firebaseAdminConfig)),
+      databaseURL: firebaseAdminConfig.databaseURL,
+    })
+  : getApp();
 
 export const firestore = getFirestore();
 
