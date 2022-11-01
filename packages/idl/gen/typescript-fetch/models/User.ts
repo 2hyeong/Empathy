@@ -24,13 +24,13 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    id: string;
+    id?: string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    name: string;
+    name?: string;
     /**
      * 
      * @type {string}
@@ -60,7 +60,7 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    profileImage?: string;
+    image?: string;
 }
 
 /**
@@ -68,8 +68,6 @@ export interface User {
  */
 export function instanceOfUser(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "name" in value;
 
     return isInstance;
 }
@@ -84,13 +82,13 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
     }
     return {
         
-        'id': json['id'],
-        'name': json['name'],
+        'id': !exists(json, 'id') ? undefined : json['id'],
+        'name': !exists(json, 'name') ? undefined : json['name'],
         'birthday': !exists(json, 'birthday') ? undefined : json['birthday'],
         'personality': !exists(json, 'personality') ? undefined : json['personality'],
         'gender': !exists(json, 'gender') ? undefined : json['gender'],
         'ageRange': !exists(json, 'age_range') ? undefined : json['age_range'],
-        'profileImage': !exists(json, 'profile_image') ? undefined : json['profile_image'],
+        'image': !exists(json, 'image') ? undefined : json['image'],
     };
 }
 
@@ -109,7 +107,7 @@ export function UserToJSON(value?: User | null): any {
         'personality': value.personality,
         'gender': value.gender,
         'age_range': value.ageRange,
-        'profile_image': value.profileImage,
+        'image': value.image,
     };
 }
 

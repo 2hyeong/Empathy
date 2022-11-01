@@ -4,7 +4,7 @@ info:
   version: "1.0"
 
 servers:
-  - url: http://localhost:3000/v1
+  - url: http://localhost:3000/api
 
 tags:
   - name: users
@@ -14,6 +14,8 @@ paths:
     $ref: "./resources/users.yaml"
   /users/{userId}:
     $ref: "./resources/user.yaml"
+  /me:
+    $ref: "./resources/me.yaml"
   /health:
     get:
       operationId: checkHealth

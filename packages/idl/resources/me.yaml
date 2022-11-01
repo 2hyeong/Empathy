@@ -1,11 +1,9 @@
 get:
-  summary: Detail
-  operationId: getUser
-  description: Info for a specific user
+  summary: Me
+  operationId: getMe
+  description: Get me
   tags:
-    - users
-  parameters:
-    - $ref: "../parameters/path/userId.yaml"
+    - user
   responses:
     "200":
       description: Expected response to a valid request

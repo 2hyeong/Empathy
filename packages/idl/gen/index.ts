@@ -16,6 +16,10 @@ export interface paths {
     /** Info for a specific user */
     get: operations["getUser"];
   };
+  "/me": {
+    /** Get me */
+    get: operations["getMe"];
+  };
   "/health": {
     get: operations["checkHealth"];
   };
@@ -27,7 +31,7 @@ export interface components {
      * @example {
      *   "birthday": "birthday",
      *   "age_range": "age_range",
-     *   "profile_image": "profile_image",
+     *   "image": "image",
      *   "personality": "personality",
      *   "gender": "gender",
      *   "name": "name",
@@ -35,13 +39,13 @@ export interface components {
      * }
      */
     User: {
-      id: string;
-      name: string;
+      id?: string;
+      name?: string;
       birthday?: string;
       personality?: string;
       gender?: string;
       age_range?: string;
-      profile_image?: string;
+      image?: string;
     };
     Error: {
       /** Format: int32 */
@@ -151,6 +155,23 @@ export interface operations {
         userId: string;
       };
     };
+    responses: {
+      /** Expected response to a valid request */
+      200: {
+        content: {
+          "application/json": components["schemas"]["User"];
+        };
+      };
+      /** unexpected error */
+      default: {
+        content: {
+          "application/json": components["schemas"]["Error"];
+        };
+      };
+    };
+  };
+  /** Get me */
+  getMe: {
     responses: {
       /** Expected response to a valid request */
       200: {
