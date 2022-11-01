@@ -3,7 +3,7 @@ info:
   title: Empathy
   version: "1.0"
 servers:
-- url: http://localhost:3000/v1
+- url: http://localhost:3000/api
 tags:
 - name: users
 paths:
@@ -106,6 +106,26 @@ paths:
       summary: Detail
       tags:
       - users
+  /me:
+    get:
+      description: Get me
+      operationId: getMe
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Expected response to a valid request
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unexpected error
+      summary: Me
+      tags:
+      - user
   /health:
     get:
       operationId: checkHealth
@@ -151,7 +171,7 @@ components:
       example:
         birthday: birthday
         age_range: age_range
-        profile_image: profile_image
+        image: image
         personality: personality
         gender: gender
         name: name
@@ -169,11 +189,8 @@ components:
           type: string
         age_range:
           type: string
-        profile_image:
+        image:
           type: string
-      required:
-      - id
-      - name
       type: object
     Error:
       properties:

@@ -1,7 +1,4 @@
 type: object
-required:
-  - id
-  - name
 properties:
   id:
     type: string
@@ -15,5 +12,5 @@ properties:
     type: string
   age_range:
     type: string
-  profile_image:
+  image:
     type: string

@@ -1,3 +1,5 @@
+rm -rf ./gen
+
 docker run --rm -v "${PWD}:/output" openapitools/openapi-generator-cli generate \
     -i output/swagger.yaml \
     -g openapi-yaml \
