@@ -17,16 +17,21 @@ import {
 } from "storefront/components/personality/personality";
 import { getMe, updateUser } from "storefront/lib/api/useUser";
 import useSWR, { mutate } from "swr";
+import useSnackbar from "storefront/lib/hooks/useSnackbar";
 
 export default function Page() {
   const [selected, setSelected] = useState("____");
+  const { show: showSuccess, Snackbar: SuccessSnackbar } = useSnackbar({
+    title: "성격이 등록되었습니다.",
+    severity: "success",
+    autoHideDuration: 3000,
+  });
 
   const { data: me, error } = useSWR("api/me", getMe);
   if (error) console.error(error);
 
   useEffect(() => {
     if (me?.personality) {
-      setSelected(me.personality);
       activeDefaultClickableCard(me.personality);
     }
   }, [me?.personality]);
@@ -41,7 +46,7 @@ export default function Page() {
     setSelected(GetSelectedPersonality(personality.key));
   };
 
-  const onClickSave = () => {
+  const handleClickSave = () => {
     const selectedChar = selected.replace(/[^a-zA-Z]/g, "");
     const isPersonalityFullySelected = selectedChar.length === 4;
 
@@ -54,8 +59,13 @@ export default function Page() {
       "api/me",
       updateUser({
         personality: selectedChar,
-      })
+      }),
+      {
+        revalidate: false,
+      }
     );
+
+    showSuccess();
   };
 
   return (
@@ -76,7 +86,11 @@ export default function Page() {
           </Typography>
         </Box>
         <Box>
-          <Button variant="outlined" color="info" onClick={() => onClickSave()}>
+          <Button
+            variant="outlined"
+            color="info"
+            onClick={() => handleClickSave()}
+          >
             <Typography>저장하기</Typography>
           </Button>
         </Box>
@@ -104,6 +118,7 @@ export default function Page() {
           </Grid>
         ))}
       </Grid>
+      <SuccessSnackbar />
     </>
   );
 }
