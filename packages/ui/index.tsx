@@ -18,6 +18,8 @@ import Fab from "@mui/material/Fab";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Grid from "@mui/material/Grid";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 export * from "./button";
 export * from "./searchInput";
@@ -45,4 +47,6 @@ export {
   CardContent,
   CardActions,
   Grid,
+  Snackbar,
+  Alert,
 };
