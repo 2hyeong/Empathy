@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Drawer, SearchInput, styled, Typography } from "ui";
 import AlignList from "storefront/components/list/alignList";
 import Nav from "storefront/components/layout/nav";
+import AddFriendDialog from "../dialog/add-friend";
 
 const StickyBox = styled(Box)(({ theme }) => ({
   position: "sticky",
@@ -55,6 +56,7 @@ export default function Sidebar({
         </StickyBox>
 
         <AlignList items={items} />
+        <AddFriendDialog />
       </Box>
     </Drawer>
   );
