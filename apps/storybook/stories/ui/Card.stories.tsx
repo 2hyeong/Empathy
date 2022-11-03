@@ -28,18 +28,15 @@ const ClickableCardTemplate: ComponentStory<typeof ClickableCard> = () => {
       </Typography>
       <Box sx={{ display: "flex" }}>
         <ClickableCard
+          isActive
           sx={{ width: 250, height: 150, marginRight: 2 }}
           data-testid="selected"
         >
-          <Box sx={{ width: "100%", height: "100%" }}>
-            <Typography>Selected</Typography>
-          </Box>
+          <Box sx={{ width: "100%", height: "100%" }}>Selected</Box>
         </ClickableCard>
 
         <ClickableCard sx={{ width: 250, height: 150 }}>
-          <Box sx={{ width: "100%", height: "100%" }}>
-            <Typography>Unselected(Normal)</Typography>
-          </Box>
+          <Box sx={{ width: "100%", height: "100%" }}>Unselected(Normal)</Box>
         </ClickableCard>
       </Box>
     </Box>
