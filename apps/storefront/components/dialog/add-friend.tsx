@@ -17,6 +17,7 @@ import {
 import { createFriend } from "storefront/lib/api/useUser";
 import { mutate } from "swr";
 import useSnackbar from "storefront/lib/hooks/useSnackbar";
+import { Friend } from "idl/gen/typescript-fetch";
 
 export default function AddFriendDialog() {
   const { show: showSuccess, Snackbar: SuccessSnackbar } = useSnackbar({
@@ -29,14 +30,17 @@ export default function AddFriendDialog() {
   const show = useCallback(() => setIsOpen(true), [setIsOpen]);
   const close = useCallback(() => setIsOpen(false), [setIsOpen]);
 
-  const handleSubmit = (e: Event) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const data = new FormData(e.currentTarget);
-    const joinData = {
-      name: data.get("name"),
-      personality: data.get("personality"),
+
+    const joinData: Friend = {
+      name: data.get("name") as Friend["name"],
+      personality: data.get("personality") as Friend["personality"],
     };
+
+    if (joinData.name === "" || joinData.personality === "") return;
 
     mutate(`/api/users/friends`, createFriend(joinData));
 
@@ -52,10 +56,10 @@ export default function AddFriendDialog() {
       >
         <AddIcon />
       </Fab>
-      <Dialog keepMounted open={isOpen} onClose={close}>
+      <Dialog open={isOpen} onClose={close}>
         <Box component="form" onSubmit={handleSubmit}>
           <DialogTitle>친구 추가</DialogTitle>
-          <FormControl fullWidth variant="standard">
+          <FormControl fullWidth required variant="standard">
             <DialogContent>
               <DialogContentText>
                 가입한 친구가 아니면 개인적으로 등록할 수 있어요. <br />
@@ -66,6 +70,7 @@ export default function AddFriendDialog() {
                 sx={{ marginY: 1 }}
                 autoFocus
                 fullWidth
+                required
                 name="name"
                 label="이름"
                 type="text"
@@ -79,6 +84,7 @@ export default function AddFriendDialog() {
                 renderInput={(params) => (
                   <TextField
                     {...params}
+                    required
                     label="성격유형"
                     name="personality"
                     type="text"
