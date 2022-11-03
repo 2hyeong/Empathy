@@ -21,7 +21,9 @@ export default function Appbar({ sidebarWidth }: AppbarProps) {
       >
         <Box sx={{ padding: 2, display: "flex", justifyContent: "flex-end" }}>
           {status === "authenticated" ? (
-            <Button onClick={() => signOut()}>로그아웃</Button>
+            <Button onClick={() => signOut()} color="secondary">
+              로그아웃
+            </Button>
           ) : (
             <SignIn />
           )}

@@ -56,7 +56,7 @@ export default function Page() {
     }
 
     mutate(
-      "api/me",
+      "/api/me",
       updateUser({
         personality: selectedChar,
       }),
@@ -86,12 +86,8 @@ export default function Page() {
           </Typography>
         </Box>
         <Box>
-          <Button
-            variant="outlined"
-            color="info"
-            onClick={() => handleClickSave()}
-          >
-            <Typography>저장하기</Typography>
+          <Button variant="outlined" onClick={() => handleClickSave()}>
+            저장하기
           </Button>
         </Box>
       </Box>
