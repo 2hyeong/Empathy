@@ -16,6 +16,14 @@ export interface paths {
     /** Info for a specific user */
     get: operations["getUser"];
   };
+  "/users/friends": {
+    /** List all friends in users */
+    get: operations["getFriends"];
+    /** Create a friend */
+    post: operations["createFriend"];
+    /** Delete a friend */
+    delete: operations["deleteFriend"];
+  };
   "/me": {
     /** Get me */
     get: operations["getMe"];
@@ -35,7 +43,17 @@ export interface components {
      *   "personality": "personality",
      *   "gender": "gender",
      *   "name": "name",
-     *   "id": "id"
+     *   "id": "id",
+     *   "friends": [
+     *     {
+     *       "personality": "personality",
+     *       "name": "name"
+     *     },
+     *     {
+     *       "personality": "personality",
+     *       "name": "name"
+     *     }
+     *   ]
      * }
      */
     User: {
@@ -46,11 +64,22 @@ export interface components {
       gender?: string;
       age_range?: string;
       image?: string;
+      friends?: components["schemas"]["Friend"][];
     };
     Error: {
       /** Format: int32 */
       code: number;
       message: string;
+    };
+    /**
+     * @example {
+     *   "personality": "personality",
+     *   "name": "name"
+     * }
+     */
+    Friend: {
+      name?: string;
+      personality?: string;
     };
     /**
      * @example {
@@ -162,6 +191,67 @@ export interface operations {
           "application/json": components["schemas"]["User"];
         };
       };
+      /** unexpected error */
+      default: {
+        content: {
+          "application/json": components["schemas"]["Error"];
+        };
+      };
+    };
+  };
+  /** List all friends in users */
+  getFriends: {
+    parameters: {
+      query: {
+        /** How many items to return at one time (max 100) */
+        limit?: number;
+      };
+    };
+    responses: {
+      /** A paged array of friends in users */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Friend"][];
+        };
+      };
+      /** unexpected error */
+      default: {
+        content: {
+          "application/json": components["schemas"]["Error"];
+        };
+      };
+    };
+  };
+  /** Create a friend */
+  createFriend: {
+    responses: {
+      /** success */
+      200: {
+        content: {
+          "application/json": components["schemas"]["updateUsers_200_response"];
+        };
+      };
+      /** Empty response */
+      201: unknown;
+      /** unexpected error */
+      default: {
+        content: {
+          "application/json": components["schemas"]["Error"];
+        };
+      };
+    };
+  };
+  /** Delete a friend */
+  deleteFriend: {
+    responses: {
+      /** success */
+      200: {
+        content: {
+          "application/json": components["schemas"]["updateUsers_200_response"];
+        };
+      };
+      /** Empty response */
+      201: unknown;
       /** unexpected error */
       default: {
         content: {

@@ -1,9 +1,11 @@
 .openapi-generator-ignore
 apis/DefaultApi.ts
+apis/FriendsApi.ts
 apis/UserApi.ts
 apis/UsersApi.ts
 apis/index.ts
 index.ts
+models/Friend.ts
 models/ModelError.ts
 models/UpdateUsers200Response.ts
 models/User.ts
