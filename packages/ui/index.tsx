@@ -19,7 +19,18 @@ import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Grid from "@mui/material/Grid";
 import Snackbar from "@mui/material/Snackbar";
+import type { SnackbarProps } from "@mui/material/Snackbar";
+
 import Alert from "@mui/material/Alert";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import Dialog from "@mui/material/Dialog";
+import type { DialogProps } from "@mui/material/Dialog";
+import TextField from "@mui/material/TextField";
+import AutoComplete from "@mui/material/AutoComplete";
+import FormControl from "@mui/material/FormControl";
 
 export * from "./button";
 export * from "./searchInput";
@@ -48,5 +59,15 @@ export {
   CardActions,
   Grid,
   Snackbar,
+  SnackbarProps,
   Alert,
+  Dialog,
+  DialogProps,
+  DialogTitle,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  TextField,
+  AutoComplete,
+  FormControl,
 };

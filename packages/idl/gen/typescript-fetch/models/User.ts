@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { Friend } from './Friend';
+import {
+    FriendFromJSON,
+    FriendFromJSONTyped,
+    FriendToJSON,
+} from './Friend';
+
 /**
  * 
  * @export
@@ -61,6 +68,12 @@ export interface User {
      * @memberof User
      */
     image?: string;
+    /**
+     * 
+     * @type {Array<Friend>}
+     * @memberof User
+     */
+    friends?: Array<Friend>;
 }
 
 /**
@@ -89,6 +102,7 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
         'gender': !exists(json, 'gender') ? undefined : json['gender'],
         'ageRange': !exists(json, 'age_range') ? undefined : json['age_range'],
         'image': !exists(json, 'image') ? undefined : json['image'],
+        'friends': !exists(json, 'friends') ? undefined : ((json['friends'] as Array<any>).map(FriendFromJSON)),
     };
 }
 
@@ -108,6 +122,7 @@ export function UserToJSON(value?: User | null): any {
         'gender': value.gender,
         'age_range': value.ageRange,
         'image': value.image,
+        'friends': value.friends === undefined ? undefined : ((value.friends as Array<any>).map(FriendToJSON)),
     };
 }
 

@@ -4,7 +4,10 @@ export const theme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#202020",
+      main: "#ffffff",
+    },
+    secondary: {
+      main: "#000000",
     },
   },
   typography: {

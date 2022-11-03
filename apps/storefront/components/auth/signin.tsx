@@ -7,6 +7,7 @@ export default function SignIn() {
       <Button
         size="small"
         variant="contained"
+        color="secondary"
         sx={{ marginBottom: 1 }}
         onClick={() => signIn("kakao")}
       >
