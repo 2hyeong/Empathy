@@ -78,8 +78,8 @@ export interface components {
      * }
      */
     Friend: {
-      name?: string;
-      personality?: string;
+      name: string;
+      personality: string;
     };
     /**
      * @example {

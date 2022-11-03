@@ -24,13 +24,13 @@ export interface Friend {
      * @type {string}
      * @memberof Friend
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {string}
      * @memberof Friend
      */
-    personality?: string;
+    personality: string;
 }
 
 /**
@@ -38,6 +38,8 @@ export interface Friend {
  */
 export function instanceOfFriend(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "personality" in value;
 
     return isInstance;
 }
@@ -52,8 +54,8 @@ export function FriendFromJSONTyped(json: any, ignoreDiscriminator: boolean): Fr
     }
     return {
         
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'personality': !exists(json, 'personality') ? undefined : json['personality'],
+        'name': json['name'],
+        'personality': json['personality'],
     };
 }
 

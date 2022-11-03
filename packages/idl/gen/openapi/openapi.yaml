@@ -294,6 +294,9 @@ components:
           type: string
         personality:
           type: string
+      required:
+      - name
+      - personality
       type: object
     updateUsers_200_response:
       example:
