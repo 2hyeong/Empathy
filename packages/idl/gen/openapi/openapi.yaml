@@ -6,6 +6,7 @@ servers:
 - url: http://localhost:3000/api
 tags:
 - name: users
+- name: friends
 paths:
   /users:
     get:
@@ -106,6 +107,78 @@ paths:
       summary: Detail
       tags:
       - users
+  /users/friends:
+    delete:
+      description: Delete a friend
+      operationId: deleteFriend
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateUsers_200_response'
+          description: success
+        "201":
+          description: Empty response
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unexpected error
+      summary: Delete
+      tags:
+      - friends
+    get:
+      description: List all friends in users
+      operationId: getFriends
+      parameters:
+      - description: How many items to return at one time (max 100)
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Friend'
+                type: array
+          description: A paged array of friends in users
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unexpected error
+      summary: List
+      tags:
+      - friends
+    post:
+      description: Create a friend
+      operationId: createFriend
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateUsers_200_response'
+          description: success
+        "201":
+          description: Empty response
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unexpected error
+      summary: Create
+      tags:
+      - friends
   /me:
     get:
       description: Get me
@@ -176,6 +249,11 @@ components:
         gender: gender
         name: name
         id: id
+        friends:
+        - personality: personality
+          name: name
+        - personality: personality
+          name: name
       properties:
         id:
           type: string
@@ -191,6 +269,10 @@ components:
           type: string
         image:
           type: string
+        friends:
+          items:
+            $ref: '#/components/schemas/Friend'
+          type: array
       type: object
     Error:
       properties:
@@ -202,6 +284,19 @@ components:
       required:
       - code
       - message
+      type: object
+    Friend:
+      example:
+        personality: personality
+        name: name
+      properties:
+        name:
+          type: string
+        personality:
+          type: string
+      required:
+      - name
+      - personality
       type: object
     updateUsers_200_response:
       example:

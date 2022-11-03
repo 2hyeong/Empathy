@@ -1,0 +1,9 @@
+type: object
+required:
+  - name
+  - personality
+properties:
+  name:
+    type: string
+  personality:
+    type: string

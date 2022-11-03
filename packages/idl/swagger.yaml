@@ -8,12 +8,15 @@ servers:
 
 tags:
   - name: users
+  - name: friends
 
 paths:
   /users:
     $ref: "./resources/users.yaml"
   /users/{userId}:
     $ref: "./resources/user.yaml"
+  /users/friends:
+    $ref: "./resources/friends.yaml"
   /me:
     $ref: "./resources/me.yaml"
   /health:

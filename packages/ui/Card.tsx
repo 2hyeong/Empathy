@@ -11,7 +11,7 @@ export const Card = (props: CardProps) => (
 );
 
 export type ClickableCardProps = {
-  isActive: boolean;
+  isActive?: boolean;
 } & CardProps;
 
 export const ClickableCard = ({
