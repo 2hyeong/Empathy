@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Box, Card, ClickableCard, Typography } from "ui";
-import { userEvent, within } from "@storybook/testing-library";
 
 export default {
   title: "empathy/Card",
@@ -21,6 +20,9 @@ const Template: ComponentStory<typeof Card> = (args) => {
 export const Base = Template.bind({});
 
 const ClickableCardTemplate: ComponentStory<typeof ClickableCard> = () => {
+  const [isActive1, isSetActive1] = useState(true);
+  const [isActive2, isSetActive2] = useState(false);
+
   return (
     <Box sx={{ padding: 2 }}>
       <Typography sx={{ paddingBottom: 2 }}>
@@ -28,14 +30,19 @@ const ClickableCardTemplate: ComponentStory<typeof ClickableCard> = () => {
       </Typography>
       <Box sx={{ display: "flex" }}>
         <ClickableCard
-          isActive
+          isActive={isActive1}
+          onClick={() => isSetActive1(!isActive1)}
           sx={{ width: 250, height: 150, marginRight: 2 }}
           data-testid="selected"
         >
           <Box sx={{ width: "100%", height: "100%" }}>Selected</Box>
         </ClickableCard>
 
-        <ClickableCard sx={{ width: 250, height: 150 }}>
+        <ClickableCard
+          sx={{ width: 250, height: 150 }}
+          isActive={isActive2}
+          onClick={() => isSetActive2(!isActive2)}
+        >
           <Box sx={{ width: "100%", height: "100%" }}>Unselected(Normal)</Box>
         </ClickableCard>
       </Box>
@@ -44,7 +51,3 @@ const ClickableCardTemplate: ComponentStory<typeof ClickableCard> = () => {
 };
 
 export const Clickable = ClickableCardTemplate.bind({});
-Clickable.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await userEvent.click(await canvas.findByTestId("selected"));
-};

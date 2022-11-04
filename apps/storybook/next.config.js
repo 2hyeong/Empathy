@@ -1,5 +1,20 @@
-const withTM = require("next-transpile-modules")(["ui"]);
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  swcMinify: true,
+  experimental: {
+    // Required:
+    appDir: true,
+    transpilePackages: ["ui", "scripts", "idl"],
+  },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback.fs = false;
+      config.resolve.fallback.tls = false;
+      config.resolve.fallback.net = false;
+      config.resolve.fallback.child_process = false;
+    }
+    return config;
+  },
+};
 
-module.exports = withTM({
-  reactStrictMode: true,
-});
+module.exports = nextConfig;
