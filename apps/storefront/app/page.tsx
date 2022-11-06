@@ -18,6 +18,7 @@ import {
 import { getMe, updateUser } from "storefront/lib/api/useUser";
 import useSWR, { mutate } from "swr";
 import useSnackbar from "storefront/lib/hooks/useSnackbar";
+import { useSession } from "next-auth/react";
 
 export default function Page() {
   const [selected, setSelected] = useState("____");
@@ -27,14 +28,31 @@ export default function Page() {
     autoHideDuration: 3000,
   });
 
-  const { data: me, error } = useSWR("api/me", getMe);
+  const { data: me, error } = useSWR("api/me", getMe, {
+    shouldRetryOnError: false,
+    revalidateOnFocus: false,
+  });
   if (error) console.error(error);
+
+  const { data: session } = useSession();
 
   useEffect(() => {
     if (me?.personality) {
       activeDefaultClickableCard(me.personality);
     }
   }, [me?.personality]);
+
+  const updateUserProfile = () => {
+    const body = {};
+    if (!me.gender) body.gender = me.gender;
+    if (!me.birthday) body.birthday = me.birthday;
+    if (!me.ageRange) body.ageRange = me.ageRange;
+    mutate("/api/me", updateUser(body));
+  };
+
+  useEffect(() => {
+    if (me && session) updateUserProfile();
+  }, [me, session]);
 
   const activeDefaultClickableCard = (personality: string) => {
     for (let key of personality) {
