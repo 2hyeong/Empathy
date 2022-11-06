@@ -3,6 +3,8 @@ import { Box, Drawer, SearchInput, styled, Typography } from "ui";
 import AlignList from "storefront/components/list/alignList";
 import Nav from "storefront/components/layout/nav";
 import AddFriendDialog from "../dialog/add-friend";
+import useSWR from "swr";
+import { getFriends } from "storefront/lib/api/useUser";
 
 const StickyBox = styled(Box)(({ theme }) => ({
   position: "sticky",
@@ -21,7 +23,8 @@ export default function Sidebar({
   width = 384,
   anchor = "left",
 }: SidebarProps) {
-  const [items, setItems] = React.useState([]);
+  const { data: friends, error } = useSWR("/api/users/friends", getFriends);
+  if (error) console.error(error);
 
   return (
     <Drawer
@@ -48,14 +51,14 @@ export default function Sidebar({
             </Typography>
 
             <Typography variant="subtitle2" color="gray" sx={{ marginTop: 1 }}>
-              친구의 이름 또는 성격 유형을 검색하세요
+              친구의 이름을 검색하세요
             </Typography>
 
             <SearchInput />
           </Box>
         </StickyBox>
 
-        <AlignList items={items} />
+        <AlignList items={friends || []} />
         <AddFriendDialog />
       </Box>
     </Drawer>

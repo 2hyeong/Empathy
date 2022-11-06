@@ -12,14 +12,27 @@ export default async (
   >
 ) => {
   const session = await getSession({ req });
+  const userId = session?.user.id;
+
+  if (req.method === "GET") {
+    if (!userId) return res.status(400).end();
+
+    const user = await db.get("users").where(userId, userConverter);
+
+    // to be added
+    // const friends = await db.get("friends").where(userId, userConverter);
+    // user + friends
+
+    return res.status(200).json(user.friends);
+  }
 
   if (req.method === "POST") {
-    if (!session?.user?.id) return res.status(400).end();
+    if (!userId) return res.status(400).end();
     try {
       let body = JSON.parse(req.body);
       const friends = FieldValue.arrayUnion(body);
 
-      await db.update("users", { friends }).where(session?.user?.id);
+      await db.update("users", { friends }).where(userId);
     } catch (e) {
       console.error(e);
     }
@@ -27,12 +40,12 @@ export default async (
   }
 
   if (req.method === "DELETE") {
-    if (!session?.user?.id) return res.status(400).end();
+    if (!userId) return res.status(400).end();
     try {
       let body = JSON.parse(req.body);
       const friends = FieldValue.arrayUnion(body);
 
-      await db.update("users", { friends }).where(session?.user?.id);
+      await db.update("users", { friends }).where(userId);
     } catch (e) {
       console.error(e);
     }
