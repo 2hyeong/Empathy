@@ -42,7 +42,7 @@ export default function AddFriendDialog() {
 
     if (joinData.name === "" || joinData.personality === "") return;
 
-    mutate(`/api/users/friends`, createFriend(joinData));
+    mutate("/api/users/friends", createFriend(joinData));
 
     showSuccess();
     close();
@@ -80,6 +80,7 @@ export default function AddFriendDialog() {
                 id="personality"
                 sx={{ marginY: 1 }}
                 autoHighlight
+                autoComplete
                 options={personalities16}
                 renderInput={(params) => (
                   <TextField

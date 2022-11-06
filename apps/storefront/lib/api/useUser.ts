@@ -11,5 +11,6 @@ export const getMe = () => userApi.getMe();
 export const updateUser = (body: User) =>
   usersApi.updateUsers({ body: UserToJSON(body) });
 
+export const getFriends = () => friendsApi.getFriends();
 export const createFriend = (body: Friend) =>
   friendsApi.createFriend({ body: FriendToJSON(body) });
