@@ -51,6 +51,7 @@ export default function AddFriendDialog() {
   return (
     <>
       <Fab
+        data-testid="add-friend-btn"
         sx={{ position: "absolute", bottom: "25px", right: "25px" }}
         onClick={() => show()}
       >
@@ -75,6 +76,9 @@ export default function AddFriendDialog() {
                 label="이름"
                 type="text"
                 variant="standard"
+                inputProps={{
+                  "data-testid": "add-friend-name",
+                }}
               />
               <AutoComplete
                 id="personality"
@@ -90,6 +94,7 @@ export default function AddFriendDialog() {
                     name="personality"
                     type="text"
                     variant="standard"
+                    inputProps={{ "data-testid": "add-friend-personality" }}
                   />
                 )}
               />
@@ -97,7 +102,11 @@ export default function AddFriendDialog() {
 
             <DialogActions>
               <Button onClick={close}>취소</Button>
-              <Button type="submit" color="success">
+              <Button
+                type="submit"
+                color="success"
+                data-testid="add-friend-submit-btn"
+              >
                 추가
               </Button>
             </DialogActions>
