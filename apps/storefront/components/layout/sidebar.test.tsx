@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { getFriends } from "storefront/mocks/handlers/users";
 import { describe } from "vitest";
 import Sidebar from "./sidebar";
@@ -45,9 +45,13 @@ describe("friends should be rendered", () => {
     const addFriendName = await screen.findByTestId("add-friend-name");
     fireEvent.change(addFriendName, { target: { value: "John" } });
 
-    const addFriendPersonality = await screen.findByTestId(
-      "add-friend-personality"
-    );
+    const addFriendPersonality = await within(
+      await screen.findByTestId("add-friend-personality")
+    ).findByRole("combobox");
+
+    addFriendPersonality.click();
+    addFriendPersonality.focus();
+
     fireEvent.change(addFriendPersonality, { target: { value: "ENTJ" } });
 
     // SUBMIT THE FORM

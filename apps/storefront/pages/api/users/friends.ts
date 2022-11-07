@@ -23,7 +23,7 @@ export default async (
     // const friends = await db.get("friends").where(userId, userConverter);
     // user + friends
 
-    return res.status(200).json(user.friends);
+    return res.status(200).json(user?.friends || []);
   }
 
   if (req.method === "POST") {

@@ -1,7 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { useMockSession } from "storefront/mocks/session";
+import { vi } from "vitest";
 
 import PersonalityList from "./page";
+
+vi.mock("next-auth/react", () => useMockSession());
 
 describe("should return clicked MBTI, on clicking personality-clickable-card", () => {
   test("should return 'ES__', if 0 and 2 index of personality-clickable-card is clicked", async () => {
