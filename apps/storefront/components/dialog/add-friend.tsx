@@ -86,6 +86,7 @@ export default function AddFriendDialog() {
                 autoHighlight
                 autoComplete
                 options={personalities16}
+                data-testid="add-friend-personality"
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -94,7 +95,6 @@ export default function AddFriendDialog() {
                     name="personality"
                     type="text"
                     variant="standard"
-                    inputProps={{ "data-testid": "add-friend-personality" }}
                   />
                 )}
               />
