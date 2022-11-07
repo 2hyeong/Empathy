@@ -20,10 +20,13 @@ type AlignListProps = {
 
 export default function AlignList({ items }: AlignListProps) {
   return (
-    <List sx={{ width: "100%", maxWidth: 360, paddingY: 1, paddingX: 2 }}>
+    <List
+      sx={{ width: "100%", maxWidth: 360, paddingY: 1, paddingX: 2 }}
+      data-testid="align-list"
+    >
       {items.length > 0 &&
         items.map((item, key) => (
-          <Box key={`${key}${item.name}`}>
+          <Box data-testid="align-item" key={`${key}${item.name}`}>
             <ListItem
               alignItems="flex-start"
               sx={{

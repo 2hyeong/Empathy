@@ -19,6 +19,7 @@ import { getMe, updateUser } from "storefront/lib/api/useUser";
 import useSWR, { mutate } from "swr";
 import useSnackbar from "storefront/lib/hooks/useSnackbar";
 import { useSession } from "next-auth/react";
+import { User } from "idl/gen/typescript-fetch";
 
 export default function Page() {
   const [selected, setSelected] = useState("____");
@@ -28,7 +29,7 @@ export default function Page() {
     autoHideDuration: 3000,
   });
 
-  const { data: me, error } = useSWR("api/me", getMe, {
+  const { data: me, error } = useSWR<User, Error>("api/me", getMe, {
     shouldRetryOnError: false,
     revalidateOnFocus: false,
   });
@@ -43,10 +44,12 @@ export default function Page() {
   }, [me?.personality]);
 
   const updateUserProfile = () => {
-    const body = {};
-    if (!me.gender) body.gender = me.gender;
-    if (!me.birthday) body.birthday = me.birthday;
-    if (!me.ageRange) body.ageRange = me.ageRange;
+    const body: User = {};
+    if (me) {
+      if (!me.gender) body.gender = me.gender;
+      if (!me.birthday) body.birthday = me.birthday;
+      if (!me.ageRange) body.ageRange = me.ageRange;
+    }
     mutate("/api/me", updateUser(body));
   };
 
