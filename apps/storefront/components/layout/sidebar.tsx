@@ -23,7 +23,10 @@ export default function Sidebar({
   width = 384,
   anchor = "left",
 }: SidebarProps) {
-  const { data: friends, error } = useSWR("/api/users/friends", getFriends);
+  const { data: friends, error } = useSWR("/api/users/friends", getFriends, {
+    shouldRetryOnError: false,
+    revalidateOnFocus: false,
+  });
   if (error) console.error(error);
 
   return (
