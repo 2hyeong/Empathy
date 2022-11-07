@@ -17,7 +17,7 @@ if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
   startMock();
 }
 
-export default function RootLayout({ children, params }: PageProps) {
+export default function RootLayout({ children }: PageProps) {
   const [sidebarWidth, setSidebarWidth] = useState(384);
   return (
     <html>
@@ -32,7 +32,7 @@ export default function RootLayout({ children, params }: PageProps) {
         />
       </head>
       <body>
-        <SessionProvider session={params.session} refetchInterval={5 * 60}>
+        <SessionProvider refetchInterval={5 * 60}>
           <ThemeProvider theme={theme}>
             <Box component="aside">
               <Sidebar width={sidebarWidth} />
