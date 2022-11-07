@@ -6,11 +6,16 @@ import Appbar from "storefront/components/layout/appbar";
 import Meta from "storefront/components/layout/meta";
 import Sidebar from "storefront/components/layout/sidebar";
 import { useState } from "react";
+import { startMock } from "storefront/mocks";
 
 type PageProps = {
   children?: React.ReactNode;
   params?: any;
 };
+
+if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
+  startMock();
+}
 
 export default function RootLayout({ children, params }: PageProps) {
   const [sidebarWidth, setSidebarWidth] = useState(384);
