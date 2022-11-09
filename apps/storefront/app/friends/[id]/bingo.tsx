@@ -71,7 +71,7 @@ export default function Bingo() {
   );
 
   const setFriendPersonality = (friends: Friend[]) => {
-    const label = friends[slug].personality;
+    const label = friends[slug]?.personality;
     const friendPersonality = personalities16.filter(
       (p) => p.label === label
     )[0];
