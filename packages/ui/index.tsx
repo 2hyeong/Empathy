@@ -31,6 +31,9 @@ import type { DialogProps } from "@mui/material/Dialog";
 import TextField from "@mui/material/TextField";
 import AutoComplete from "@mui/material/AutoComplete";
 import FormControl from "@mui/material/FormControl";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import type { ButtonProps } from "@mui/material/Button";
 
 export * from "./button";
 export * from "./searchInput";
@@ -70,4 +73,7 @@ export {
   TextField,
   AutoComplete,
   FormControl,
+  Tabs,
+  Tab,
+  ButtonProps,
 };
