@@ -32,7 +32,7 @@ describe("friends should be rendered", () => {
     expect(personality).toBeInTheDocument();
   });
 
-  test("should be found by text, if mockData 'John', 'ENTJ' is given", async () => {
+  test("should be in the document, if mockData 'John', 'ENTJ' is entered in the form", async () => {
     // ARRANGE
     render(<Sidebar />);
 
