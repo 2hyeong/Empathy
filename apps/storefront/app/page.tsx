@@ -107,7 +107,7 @@ export default function Page() {
           </Typography>
         </Box>
         <Box>
-          <Button variant="outlined" onClick={() => handleClickSave()}>
+          <Button variant="outlined" onClick={handleClickSave}>
             저장하기
           </Button>
         </Box>

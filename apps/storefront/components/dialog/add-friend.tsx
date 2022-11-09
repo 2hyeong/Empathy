@@ -57,11 +57,11 @@ export default function AddFriendDialog() {
       <Fab
         data-testid="add-friend-btn"
         sx={{ position: "absolute", bottom: "25px", right: "25px" }}
-        onClick={() => show()}
+        onClick={show}
       >
         <AddIcon />
       </Fab>
-      <Dialog open={isOpen} onClose={close}>
+      <Dialog open={isOpen} onClose={close} data-testid="add-friend-dialog">
         <Box component="form" onSubmit={handleSubmit}>
           <DialogTitle>친구 추가</DialogTitle>
           <FormControl fullWidth required variant="standard">
