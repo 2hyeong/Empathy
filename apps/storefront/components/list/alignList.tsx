@@ -19,7 +19,12 @@ type AlignListProps = {
 export default function AlignList({ items }: AlignListProps) {
   return (
     <List
-      sx={{ width: "100%", maxWidth: 360, paddingY: 1, paddingX: 2 }}
+      sx={{
+        width: "100%",
+        maxWidth: 360,
+        paddingY: 1,
+        paddingX: 2,
+      }}
       data-testid="align-list"
     >
       {items.length > 0 &&
@@ -29,7 +34,10 @@ export default function AlignList({ items }: AlignListProps) {
               href={`/friends/${item.id}`}
               style={{ textDecoration: "none", color: "currentColor" }}
             >
-              <ListItem alignItems="flex-start">
+              <ListItem
+                alignItems="flex-start"
+                sx={{ "&:hover": { backgroundColor: "blueviolet" } }}
+              >
                 <ListItemAvatar>
                   <Avatar alt={item.name} />
                 </ListItemAvatar>
