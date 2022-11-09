@@ -252,8 +252,10 @@ components:
         friends:
         - personality: personality
           name: name
+          id: id
         - personality: personality
           name: name
+          id: id
       properties:
         id:
           type: string
@@ -289,12 +291,16 @@ components:
       example:
         personality: personality
         name: name
+        id: id
       properties:
+        id:
+          type: string
         name:
           type: string
         personality:
           type: string
       required:
+      - id
       - name
       - personality
       type: object
