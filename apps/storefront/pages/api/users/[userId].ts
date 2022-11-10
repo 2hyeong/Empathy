@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { db, firestore, userConverter } from "scripts";
+import { db, userConverter } from "scripts";
 import { operations } from "idl";
 
 export default async (

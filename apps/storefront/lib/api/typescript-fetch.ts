@@ -3,6 +3,7 @@ import {
   UsersApi,
   UserApi,
   FriendsApi,
+  FriendApi,
 } from "idl/gen/typescript-fetch";
 
 const configuration = new Configuration({
@@ -12,3 +13,4 @@ const configuration = new Configuration({
 export const usersApi = new UsersApi(configuration);
 export const userApi = new UserApi(configuration);
 export const friendsApi = new FriendsApi(configuration);
+export const friendApi = new FriendApi(configuration);
