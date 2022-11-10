@@ -52,30 +52,28 @@ const NavButton = ({
 };
 
 export default function Bingo() {
-  const [personality, setPersonality] = useState<TPersonalities16>();
+  const [bingoList, setBingoList] = useState<TPersonalities16["bingo"]>([]);
   const [index, setIndex] = useState<number>(0);
 
   const pathname = usePathname();
-  const slug = Number(pathname.split("/").pop());
+  const slug = pathname.split("/").pop();
 
   const { data: friends, error } = useSWR<
     operations["getFriends"]["responses"]["200"]["content"]["application/json"],
     operations["getFriends"]["responses"]["default"]["content"]["application/json"]
   >("/api/users/friends", getFriends);
+  if (error) console.error(error);
 
   const isMaxIndex = useMemo(
-    () =>
-      personality?.bingo &&
-      index === Math.floor(personality?.bingo?.length / 9),
+    () => index === Math.floor(bingoList.length / 9),
     [index]
   );
 
   const setFriendPersonality = (friends: Friend[]) => {
-    const label = friends[slug]?.personality;
-    const friendPersonality = personalities16.filter(
-      (p) => p.label === label
-    )[0];
-    setPersonality(friendPersonality);
+    const label = friends[Number(slug)]?.personality;
+    const friendBingo =
+      personalities16.filter((p) => p.label === label)[0]?.bingo || [];
+    setBingoList(friendBingo);
   };
 
   useEffect(() => {
@@ -97,9 +95,14 @@ export default function Bingo() {
         이전
       </NavButton>
 
-      <Grid container spacing={1.5} sx={{ maxWidth: 800, paddingX: 4 }}>
-        {personality?.bingo.slice(index * 9, (index + 1) * 9).map((bingo) => (
-          <Grid item xs={4}>
+      <Grid
+        container
+        spacing={1.5}
+        sx={{ maxWidth: 800, paddingX: 4 }}
+        data-testid="bingo-grid-container"
+      >
+        {bingoList.slice(index * 9, (index + 1) * 9).map((bingo) => (
+          <Grid item xs={4} data-test-id="bingo-grid-item">
             <Item>{bingo}</Item>
           </Grid>
         ))}
