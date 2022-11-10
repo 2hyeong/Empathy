@@ -38,10 +38,9 @@ export const getUsers = () =>
 export const getMe = () =>
   rest.get("/api/me", (req, res, ctx) => res(ctx.status(200), ctx.json(me)));
 
-export const getFriends = (mockData?: Friend[]) =>
+export const getFriends = (overrideData?: Friend[]) =>
   rest.get("/api/users/friends", (req, res, ctx) => {
-    if (mockData) return res(ctx.status(200), ctx.json(mockData));
-
+    if (overrideData) return res(ctx.status(200), ctx.json(overrideData));
     return res(ctx.status(200), ctx.json(friends));
   });
 
