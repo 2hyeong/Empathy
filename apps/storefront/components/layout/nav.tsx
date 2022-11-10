@@ -1,8 +1,9 @@
+import { MouseEvent } from "react";
 import { Diversity1Icon, List, ListItemButton, ListItemIcon } from "ui";
 
 export default function Nav() {
   const handleListItemClick = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    event: MouseEvent<HTMLDivElement, globalThis.MouseEvent>,
     index: number
   ) => {};
 
