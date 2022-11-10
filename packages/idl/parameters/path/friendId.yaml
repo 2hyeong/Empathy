@@ -1,0 +1,6 @@
+name: friendId
+in: path
+required: true
+description: The id of the friend to retrieve
+schema:
+  type: string

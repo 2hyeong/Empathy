@@ -4,7 +4,6 @@ import {
   personalities16,
   TPersonalities16,
 } from "storefront/constants/personality";
-import { getFriends } from "storefront/lib/api/useUser";
 import useSWR from "swr";
 import {
   Box,
@@ -20,6 +19,7 @@ import { usePathname } from "next/navigation";
 import React, { ReactNode, useEffect, useMemo, useState } from "react";
 import { operations } from "idl/gen";
 import { Friend } from "idl/gen/typescript-fetch";
+import { getFriend } from "storefront/lib/api/useFriend";
 
 const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
@@ -60,10 +60,10 @@ export default function Bingo() {
   const pathname = usePathname();
   const slug = pathname.split("/").pop();
 
-  const { data: friends, error } = useSWR<
-    operations["getFriends"]["responses"]["200"]["content"]["application/json"],
-    operations["getFriends"]["responses"]["default"]["content"]["application/json"]
-  >("/api/users/friends", getFriends);
+  const { data: friend, error } = useSWR<
+    operations["getFriend"]["responses"]["200"]["content"]["application/json"],
+    operations["getFriend"]["responses"]["default"]["content"]["application/json"]
+  >(`/api/users/friends/${slug}`, () => getFriend(slug as string));
   if (error) console.error(error);
 
   const isMaxIndex = useMemo(
@@ -71,16 +71,16 @@ export default function Bingo() {
     [index, bingoList]
   );
 
-  const setFriendPersonality = (friends: Friend[]) => {
-    const label = friends[Number(slug)]?.personality;
+  const setFriendPersonality = (friend: Friend) => {
+    const label = friend.personality;
     const friendBingo =
       personalities16.filter((p) => p.label === label)[0]?.bingo || [];
     setBingoList(friendBingo);
   };
 
   useEffect(() => {
-    if (friends) setFriendPersonality(friends);
-  }, [friends, setFriendPersonality]);
+    if (friend) setFriendPersonality(friend);
+  }, [friend, setFriendPersonality]);
 
   const handleClickBefore = () => {
     setIndex(index - 1);

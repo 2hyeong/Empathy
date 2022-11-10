@@ -106,29 +106,8 @@ paths:
           description: unexpected error
       summary: Detail
       tags:
-      - users
+      - user
   /users/friends:
-    delete:
-      description: Delete a friend
-      operationId: deleteFriend
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/updateUsers_200_response'
-          description: success
-        "201":
-          description: Empty response
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unexpected error
-      summary: Delete
-      tags:
-      - friends
     get:
       description: List all friends in users
       operationId: getFriends
@@ -179,6 +158,61 @@ paths:
       summary: Create
       tags:
       - friends
+  /users/friends/{friendId}:
+    delete:
+      description: Delete a friend
+      operationId: deleteFriend
+      parameters:
+      - description: The id of the friend to retrieve
+        in: path
+        name: friendId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateUsers_200_response'
+          description: success
+        "201":
+          description: Empty response
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unexpected error
+      summary: Delete
+      tags:
+      - friends
+    get:
+      description: Info for a specific friend
+      operationId: getFriend
+      parameters:
+      - description: The id of the friend to retrieve
+        in: path
+        name: friendId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Friend'
+          description: Expected response to a valid request
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unexpected error
+      summary: Get
+      tags:
+      - friend
   /me:
     get:
       description: Get me
@@ -221,6 +255,13 @@ components:
       description: The id of the user to retrieve
       in: path
       name: userId
+      required: true
+      schema:
+        type: string
+    friendId:
+      description: The id of the friend to retrieve
+      in: path
+      name: friendId
       required: true
       schema:
         type: string

@@ -7,6 +7,7 @@ export default async (
   req: NextApiRequest,
   res: NextApiResponse<
     | operations["getUsers"]["responses"]["200"]["content"]["application/json"]
+    | operations["getUsers"]["responses"]["default"]["content"]["application/json"]
     | operations["updateUsers"]["responses"]["200"]["content"]["application/json"]
     | operations["updateUsers"]["responses"]["default"]["content"]["application/json"]
   >

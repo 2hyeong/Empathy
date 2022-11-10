@@ -3,29 +3,66 @@
  * Do not make direct changes to the file.
  */
 
+
+/** Type helpers */
+type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
+type XOR<T, U> = (T | U) extends object ? (Without<T, U> & U) | (Without<U, T> & T) : T | U;
+type OneOf<T extends any[]> = T extends [infer Only] ? Only : T extends [infer A, infer B, ...infer Rest] ? OneOf<[XOR<A, B>, ...Rest]> : never;
+
 export interface paths {
   "/users": {
-    /** List all users */
+    /**
+     * List 
+     * @description List all users
+     */
     get: operations["getUsers"];
-    /** Update a user */
+    /**
+     * Update 
+     * @description Update a user
+     */
     put: operations["updateUsers"];
-    /** Create a user */
+    /**
+     * Create 
+     * @description Create a user
+     */
     post: operations["createUsers"];
   };
   "/users/{userId}": {
-    /** Info for a specific user */
+    /**
+     * Detail 
+     * @description Info for a specific user
+     */
     get: operations["getUser"];
   };
   "/users/friends": {
-    /** List all friends in users */
+    /**
+     * List 
+     * @description List all friends in users
+     */
     get: operations["getFriends"];
-    /** Create a friend */
+    /**
+     * Create 
+     * @description Create a friend
+     */
     post: operations["createFriend"];
-    /** Delete a friend */
+  };
+  "/users/friends/{friendId}": {
+    /**
+     * Get 
+     * @description Info for a specific friend
+     */
+    get: operations["getFriend"];
+    /**
+     * Delete 
+     * @description Delete a friend
+     */
     delete: operations["deleteFriend"];
   };
   "/me": {
-    /** Get me */
+    /**
+     * Me 
+     * @description Get me
+     */
     get: operations["getMe"];
   };
   "/health": {
@@ -66,7 +103,7 @@ export interface components {
       gender?: string;
       age_range?: string;
       image?: string;
-      friends?: components["schemas"]["Friend"][];
+      friends?: (components["schemas"]["Friend"])[];
     };
     Error: {
       /** Format: int32 */
@@ -95,46 +132,57 @@ export interface components {
     };
   };
   responses: {
-    /** unexpected error */
+    /** @description unexpected error */
     UnexpectedError: {
       content: {
         "application/json": components["schemas"]["Error"];
       };
     };
-    /** success */
+    /** @description success */
     Success: {
       content: {
         "application/json": components["schemas"]["updateUsers_200_response"];
       };
     };
-    /** Empty response */
-    EmptyResponse: unknown;
+    /** @description Empty response */
+    EmptyResponse: never;
   };
   parameters: {
     /** @description How many items to return at one time (max 100) */
     limit: number;
     /** @description The id of the user to retrieve */
     userId: string;
+    /** @description The id of the friend to retrieve */
+    friendId: string;
   };
+  requestBodies: never;
+  headers: never;
+  pathItems: never;
 }
 
+export type external = Record<string, never>;
+
 export interface operations {
-  /** List all users */
+
   getUsers: {
-    parameters: {
-      query: {
-        /** How many items to return at one time (max 100) */
+    /**
+     * List 
+     * @description List all users
+     */
+    parameters?: {
+        /** @description How many items to return at one time (max 100) */
+      query?: {
         limit?: number;
       };
     };
     responses: {
-      /** A paged array of users */
+      /** @description A paged array of users */
       200: {
         content: {
-          "application/json": components["schemas"]["User"][];
+          "application/json": (components["schemas"]["User"])[];
         };
       };
-      /** unexpected error */
+      /** @description unexpected error */
       default: {
         content: {
           "application/json": components["schemas"]["Error"];
@@ -142,18 +190,21 @@ export interface operations {
       };
     };
   };
-  /** Update a user */
   updateUsers: {
+    /**
+     * Update 
+     * @description Update a user
+     */
     responses: {
-      /** success */
+      /** @description success */
       200: {
         content: {
           "application/json": components["schemas"]["updateUsers_200_response"];
         };
       };
-      /** Empty response */
-      201: unknown;
-      /** unexpected error */
+      /** @description Empty response */
+      201: never;
+      /** @description unexpected error */
       default: {
         content: {
           "application/json": components["schemas"]["Error"];
@@ -161,18 +212,21 @@ export interface operations {
       };
     };
   };
-  /** Create a user */
   createUsers: {
+    /**
+     * Create 
+     * @description Create a user
+     */
     responses: {
-      /** success */
+      /** @description success */
       200: {
         content: {
           "application/json": components["schemas"]["updateUsers_200_response"];
         };
       };
-      /** Empty response */
-      201: unknown;
-      /** unexpected error */
+      /** @description Empty response */
+      201: never;
+      /** @description unexpected error */
       default: {
         content: {
           "application/json": components["schemas"]["Error"];
@@ -180,22 +234,25 @@ export interface operations {
       };
     };
   };
-  /** Info for a specific user */
   getUser: {
+    /**
+     * Detail 
+     * @description Info for a specific user
+     */
     parameters: {
+        /** @description The id of the user to retrieve */
       path: {
-        /** The id of the user to retrieve */
         userId: string;
       };
     };
     responses: {
-      /** Expected response to a valid request */
+      /** @description Expected response to a valid request */
       200: {
         content: {
           "application/json": components["schemas"]["User"];
         };
       };
-      /** unexpected error */
+      /** @description unexpected error */
       default: {
         content: {
           "application/json": components["schemas"]["Error"];
@@ -203,22 +260,25 @@ export interface operations {
       };
     };
   };
-  /** List all friends in users */
   getFriends: {
-    parameters: {
-      query: {
-        /** How many items to return at one time (max 100) */
+    /**
+     * List 
+     * @description List all friends in users
+     */
+    parameters?: {
+        /** @description How many items to return at one time (max 100) */
+      query?: {
         limit?: number;
       };
     };
     responses: {
-      /** A paged array of friends in users */
+      /** @description A paged array of friends in users */
       200: {
         content: {
-          "application/json": components["schemas"]["Friend"][];
+          "application/json": (components["schemas"]["Friend"])[];
         };
       };
-      /** unexpected error */
+      /** @description unexpected error */
       default: {
         content: {
           "application/json": components["schemas"]["Error"];
@@ -226,18 +286,21 @@ export interface operations {
       };
     };
   };
-  /** Create a friend */
   createFriend: {
+    /**
+     * Create 
+     * @description Create a friend
+     */
     responses: {
-      /** success */
+      /** @description success */
       200: {
         content: {
           "application/json": components["schemas"]["updateUsers_200_response"];
         };
       };
-      /** Empty response */
-      201: unknown;
-      /** unexpected error */
+      /** @description Empty response */
+      201: never;
+      /** @description unexpected error */
       default: {
         content: {
           "application/json": components["schemas"]["Error"];
@@ -245,18 +308,53 @@ export interface operations {
       };
     };
   };
-  /** Delete a friend */
+  getFriend: {
+    /**
+     * Get 
+     * @description Info for a specific friend
+     */
+    parameters: {
+        /** @description The id of the friend to retrieve */
+      path: {
+        friendId: string;
+      };
+    };
+    responses: {
+      /** @description Expected response to a valid request */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Friend"];
+        };
+      };
+      /** @description unexpected error */
+      default: {
+        content: {
+          "application/json": components["schemas"]["Error"];
+        };
+      };
+    };
+  };
   deleteFriend: {
+    /**
+     * Delete 
+     * @description Delete a friend
+     */
+    parameters: {
+        /** @description The id of the friend to retrieve */
+      path: {
+        friendId: string;
+      };
+    };
     responses: {
-      /** success */
+      /** @description success */
       200: {
         content: {
           "application/json": components["schemas"]["updateUsers_200_response"];
         };
       };
-      /** Empty response */
-      201: unknown;
-      /** unexpected error */
+      /** @description Empty response */
+      201: never;
+      /** @description unexpected error */
       default: {
         content: {
           "application/json": components["schemas"]["Error"];
@@ -264,16 +362,19 @@ export interface operations {
       };
     };
   };
-  /** Get me */
   getMe: {
+    /**
+     * Me 
+     * @description Get me
+     */
     responses: {
-      /** Expected response to a valid request */
+      /** @description Expected response to a valid request */
       200: {
         content: {
           "application/json": components["schemas"]["User"];
         };
       };
-      /** unexpected error */
+      /** @description unexpected error */
       default: {
         content: {
           "application/json": components["schemas"]["Error"];
@@ -283,12 +384,10 @@ export interface operations {
   };
   checkHealth: {
     responses: {
-      /** OK */
-      200: unknown;
-      /** NOT FOUND */
-      404: unknown;
+      /** @description OK */
+      200: never;
+      /** @description NOT FOUND */
+      404: never;
     };
   };
 }
-
-export interface external {}

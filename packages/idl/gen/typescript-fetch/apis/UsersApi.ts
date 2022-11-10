@@ -25,10 +25,6 @@ import {
     UserToJSON,
 } from '../models';
 
-export interface GetUserRequest {
-    userId: string;
-}
-
 export interface GetUsersRequest {
     limit?: number;
 }
@@ -63,38 +59,6 @@ export class UsersApi extends runtime.BaseAPI {
      */
     async createUsers(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateUsers200Response> {
         const response = await this.createUsersRaw(initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Info for a specific user
-     * Detail
-     */
-    async getUserRaw(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getUser.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/users/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserFromJSON(jsonValue));
-    }
-
-    /**
-     * Info for a specific user
-     * Detail
-     */
-    async getUser(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<User> {
-        const response = await this.getUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
