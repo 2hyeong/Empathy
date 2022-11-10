@@ -12,3 +12,11 @@ export const userConverter: FirestoreDataConverter<any> = {
   fromFirestore: (snap: FirebaseFirestore.QueryDocumentSnapshot) =>
     snap.data() as components["schemas"]["User"],
 };
+
+export const friendConverter: FirestoreDataConverter<any> = {
+  toFirestore: (
+    friend: WithFieldValue<components["schemas"]["Friend"]>
+  ): DocumentData => friend,
+  fromFirestore: (snap: FirebaseFirestore.QueryDocumentSnapshot) =>
+    snap.data() as components["schemas"]["Friend"],
+};
