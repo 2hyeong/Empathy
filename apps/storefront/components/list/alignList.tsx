@@ -9,14 +9,34 @@ import {
   ListItemText,
   ListItemAvatar,
   Box,
+  styled,
+  Button,
+  DeleteIcon,
 } from "ui";
 import Link from "next/link";
+import { mutate } from "swr";
+import { deleteFriend } from "storefront/lib/api/useFriend";
+import { useRouter } from "next/navigation";
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: currentColor;
+  width: 100%;
+`;
 
 type AlignListProps = {
   items: Friend[];
 };
 
 export default function AlignList({ items }: AlignListProps) {
+  const router = useRouter();
+
+  const handleClickDeleteItem = (id: Friend["id"]) => {
+    if (confirm("삭제하시겠습니까?")) {
+      mutate("/api/users/friends", () => deleteFriend(id));
+    }
+  };
+
   return (
     <List
       sx={{
@@ -30,23 +50,29 @@ export default function AlignList({ items }: AlignListProps) {
       {items.length > 0 &&
         items.map((item, key) => (
           <Box data-testid="align-item" key={`${key}${item.name}`}>
-            <Link
-              href={`/friends/${item.id}`}
-              style={{ textDecoration: "none", color: "currentColor" }}
-            >
-              <ListItem
-                alignItems="flex-start"
-                sx={{ "&:hover": { backgroundColor: "blueviolet" } }}
-              >
-                <ListItemAvatar>
-                  <Avatar alt={item.name} />
-                </ListItemAvatar>
-                <ListItemText
-                  primary={item.name}
-                  secondary={`@${item.personality}`}
-                />
-              </ListItem>
-            </Link>
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <StyledLink href={`/friends/${item.id}`}>
+                <ListItem
+                  alignItems="flex-start"
+                  sx={{
+                    display: "flex",
+                    "&:hover": { backgroundColor: "blueviolet" },
+                  }}
+                >
+                  <ListItemAvatar>
+                    <Avatar alt={item.name} />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={item.name}
+                    secondary={`@${item.personality}`}
+                  />
+                </ListItem>
+              </StyledLink>
+
+              <Button onClick={() => handleClickDeleteItem(item.id)}>
+                <DeleteIcon />
+              </Button>
+            </Box>
 
             <Divider variant="inset" component="li" />
           </Box>
