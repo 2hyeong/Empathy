@@ -43,14 +43,16 @@ export default function Page() {
     }
   }, [me?.personality]);
 
+  // TODO: TEST & REFACTOR
   const updateUserProfile = () => {
-    const body: User = {};
     if (me) {
+      const body: User = {};
       if (!me.gender) body.gender = me.gender;
       if (!me.birthday) body.birthday = me.birthday;
       if (!me.ageRange) body.ageRange = me.ageRange;
+      if (!body.gender && !body.birthday && !body.ageRange) return;
+      mutate("/api/me", updateUser(body));
     }
-    mutate("/api/me", updateUser(body));
   };
 
   useEffect(() => {
