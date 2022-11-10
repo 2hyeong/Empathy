@@ -1,3 +1,5 @@
+"use client";
+
 import {
   personalities16,
   TPersonalities16,
@@ -66,7 +68,7 @@ export default function Bingo() {
 
   const isMaxIndex = useMemo(
     () => index === Math.floor(bingoList.length / 9),
-    [index]
+    [index, bingoList]
   );
 
   const setFriendPersonality = (friends: Friend[]) => {
@@ -90,7 +92,11 @@ export default function Bingo() {
 
   return (
     <Box sx={{ display: "flex", justifyItems: "center" }}>
-      <NavButton onClick={handleClickBefore} disabled={index === 0}>
+      <NavButton
+        onClick={handleClickBefore}
+        disabled={index === 0}
+        data-testid="bingo-prev-btn"
+      >
         <KeyboardArrowLeft />
         이전
       </NavButton>
@@ -101,13 +107,17 @@ export default function Bingo() {
         sx={{ maxWidth: 800, paddingX: 4 }}
         data-testid="bingo-grid-container"
       >
-        {bingoList.slice(index * 9, (index + 1) * 9).map((bingo) => (
-          <Grid item xs={4} data-test-id="bingo-grid-item">
+        {bingoList.slice(index * 9, (index + 1) * 9).map((bingo, key) => (
+          <Grid key={key} item xs={4} data-testid="bingo-grid-item">
             <Item>{bingo}</Item>
           </Grid>
         ))}
       </Grid>
-      <NavButton onClick={handleClickNext} disabled={isMaxIndex}>
+      <NavButton
+        onClick={handleClickNext}
+        disabled={isMaxIndex}
+        data-testid="bingo-next-btn"
+      >
         더보기
         <KeyboardArrowRight />
       </NavButton>
