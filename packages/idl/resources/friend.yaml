@@ -1,0 +1,33 @@
+get:
+  summary: Get
+  operationId: getFriend
+  description: Info for a specific friend
+  tags:
+    - friend
+  parameters:
+    - $ref: "../parameters/path/friendId.yaml"
+  responses:
+    "200":
+      description: Expected response to a valid request
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/Friend.yaml"
+    default:
+      $ref: "../responses/UnexpectedError.yaml"
+
+delete:
+  summary: Delete
+  operationId: deleteFriend
+  description: Delete a friend
+  tags:
+    - friends
+  parameters:
+    - $ref: "../parameters/path/friendId.yaml"
+  responses:
+    "200":
+      $ref: "../responses/Success.yaml"
+    "201":
+      $ref: "../responses/EmptyResponse.yaml"
+    default:
+      $ref: "../responses/UnexpectedError.yaml"

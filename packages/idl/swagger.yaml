@@ -17,6 +17,8 @@ paths:
     $ref: "./resources/user.yaml"
   /users/friends:
     $ref: "./resources/friends.yaml"
+  /users/friends/{friendId}:
+    $ref: "./resources/friend.yaml"
   /me:
     $ref: "./resources/me.yaml"
   /health:

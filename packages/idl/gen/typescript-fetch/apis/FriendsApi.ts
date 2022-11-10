@@ -25,6 +25,10 @@ import {
     UpdateUsers200ResponseToJSON,
 } from '../models';
 
+export interface DeleteFriendRequest {
+    friendId: string;
+}
+
 export interface GetFriendsRequest {
     limit?: number;
 }
@@ -66,13 +70,17 @@ export class FriendsApi extends runtime.BaseAPI {
      * Delete a friend
      * Delete
      */
-    async deleteFriendRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateUsers200Response>> {
+    async deleteFriendRaw(requestParameters: DeleteFriendRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateUsers200Response>> {
+        if (requestParameters.friendId === null || requestParameters.friendId === undefined) {
+            throw new runtime.RequiredError('friendId','Required parameter requestParameters.friendId was null or undefined when calling deleteFriend.');
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/users/friends`,
+            path: `/users/friends/{friendId}`.replace(`{${"friendId"}}`, encodeURIComponent(String(requestParameters.friendId))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -85,8 +93,8 @@ export class FriendsApi extends runtime.BaseAPI {
      * Delete a friend
      * Delete
      */
-    async deleteFriend(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateUsers200Response> {
-        const response = await this.deleteFriendRaw(initOverrides);
+    async deleteFriend(requestParameters: DeleteFriendRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateUsers200Response> {
+        const response = await this.deleteFriendRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

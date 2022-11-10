@@ -3,7 +3,7 @@ get:
   operationId: getUser
   description: Info for a specific user
   tags:
-    - users
+    - user
   parameters:
     - $ref: "../parameters/path/userId.yaml"
   responses:

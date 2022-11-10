@@ -1,5 +1,6 @@
 .openapi-generator-ignore
 apis/DefaultApi.ts
+apis/FriendApi.ts
 apis/FriendsApi.ts
 apis/UserApi.ts
 apis/UsersApi.ts
