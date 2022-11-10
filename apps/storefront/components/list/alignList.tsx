@@ -1,3 +1,6 @@
+"use client";
+
+import { Friend } from "idl/gen/typescript-fetch";
 import {
   List,
   Avatar,
@@ -7,42 +10,43 @@ import {
   ListItemAvatar,
   Box,
 } from "ui";
-
-type AlignItem = {
-  src?: string;
-  name: string;
-  personality?: string;
-};
+import Link from "next/link";
 
 type AlignListProps = {
-  items: AlignItem[];
+  items: Friend[];
 };
 
 export default function AlignList({ items }: AlignListProps) {
   return (
     <List
-      sx={{ width: "100%", maxWidth: 360, paddingY: 1, paddingX: 2 }}
+      sx={{
+        width: "100%",
+        maxWidth: 360,
+        paddingY: 1,
+        paddingX: 2,
+      }}
       data-testid="align-list"
     >
       {items.length > 0 &&
         items.map((item, key) => (
           <Box data-testid="align-item" key={`${key}${item.name}`}>
-            <ListItem
-              alignItems="flex-start"
-              sx={{
-                "&:hover": {
-                  cursor: "pointer",
-                },
-              }}
+            <Link
+              href={`/friends/${item.id}`}
+              style={{ textDecoration: "none", color: "currentColor" }}
             >
-              <ListItemAvatar>
-                <Avatar alt={item.name} src={item.src} />
-              </ListItemAvatar>
-              <ListItemText
-                primary={item.name}
-                secondary={`@${item.personality}`}
-              />
-            </ListItem>
+              <ListItem
+                alignItems="flex-start"
+                sx={{ "&:hover": { backgroundColor: "blueviolet" } }}
+              >
+                <ListItemAvatar>
+                  <Avatar alt={item.name} />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={item.name}
+                  secondary={`@${item.personality}`}
+                />
+              </ListItem>
+            </Link>
 
             <Divider variant="inset" component="li" />
           </Box>

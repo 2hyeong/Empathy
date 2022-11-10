@@ -14,7 +14,7 @@ describe("should return clicked MBTI, on clicking personality-clickable-card", (
 
     // ASSERT
     expect(
-      screen.getByTestId("personality-selected-typography")
+      await screen.findByTestId("personality-selected-typography")
     ).toHaveTextContent("____");
 
     // ACT
@@ -27,7 +27,7 @@ describe("should return clicked MBTI, on clicking personality-clickable-card", (
 
     // ASSERT
     expect(
-      screen.getByTestId("personality-selected-typography")
+      await screen.findByTestId("personality-selected-typography")
     ).toHaveTextContent("ES__");
   });
 

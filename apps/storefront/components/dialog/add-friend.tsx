@@ -35,14 +35,18 @@ export default function AddFriendDialog() {
 
     const data = new FormData(e.currentTarget);
 
-    const joinData: Friend = {
-      name: data.get("name") as Friend["name"],
-      personality: data.get("personality") as Friend["personality"],
+    const joinData = {
+      name: data.get("name"),
+      personality: data.get("personality"),
     };
 
-    if (joinData.name === "" || joinData.personality === "") return;
+    const isInPersonality16 =
+      personalities16.filter((p) => p.label === joinData.personality).length !==
+      0;
 
-    mutate("/api/users/friends", createFriend(joinData));
+    if (joinData.name === "" || !isInPersonality16) return;
+
+    mutate("/api/users/friends", createFriend(joinData as Friend));
 
     showSuccess();
     close();
@@ -53,11 +57,11 @@ export default function AddFriendDialog() {
       <Fab
         data-testid="add-friend-btn"
         sx={{ position: "absolute", bottom: "25px", right: "25px" }}
-        onClick={() => show()}
+        onClick={show}
       >
         <AddIcon />
       </Fab>
-      <Dialog open={isOpen} onClose={close}>
+      <Dialog open={isOpen} onClose={close} data-testid="add-friend-dialog">
         <Box component="form" onSubmit={handleSubmit}>
           <DialogTitle>친구 추가</DialogTitle>
           <FormControl fullWidth required variant="standard">

@@ -17,7 +17,7 @@ export default function Appbar({ sidebarWidth }: AppbarProps) {
         sx={{
           background: "linear-gradient(90deg, #c7d2fe 25%, #fecaca 40%)",
         }}
-        height={200}
+        height={75}
       >
         <Box sx={{ padding: 2, display: "flex", justifyContent: "flex-end" }}>
           {status === "authenticated" ? (

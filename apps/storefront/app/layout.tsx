@@ -32,6 +32,16 @@ export default function RootLayout({ children }: PageProps) {
         />
       </head>
       <body>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin=""
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap"
+          rel="stylesheet"
+        />
         <SessionProvider refetchInterval={5 * 60}>
           <ThemeProvider theme={theme}>
             <Box component="aside">

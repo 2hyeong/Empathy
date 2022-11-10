@@ -47,11 +47,13 @@ export interface components {
      *   "friends": [
      *     {
      *       "personality": "personality",
-     *       "name": "name"
+     *       "name": "name",
+     *       "id": "id"
      *     },
      *     {
      *       "personality": "personality",
-     *       "name": "name"
+     *       "name": "name",
+     *       "id": "id"
      *     }
      *   ]
      * }
@@ -74,10 +76,12 @@ export interface components {
     /**
      * @example {
      *   "personality": "personality",
-     *   "name": "name"
+     *   "name": "name",
+     *   "id": "id"
      * }
      */
     Friend: {
+      id: string;
       name: string;
       personality: string;
     };

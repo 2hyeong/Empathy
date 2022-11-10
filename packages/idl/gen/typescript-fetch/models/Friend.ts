@@ -24,6 +24,12 @@ export interface Friend {
      * @type {string}
      * @memberof Friend
      */
+    id: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Friend
+     */
     name: string;
     /**
      * 
@@ -38,6 +44,7 @@ export interface Friend {
  */
 export function instanceOfFriend(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "id" in value;
     isInstance = isInstance && "name" in value;
     isInstance = isInstance && "personality" in value;
 
@@ -54,6 +61,7 @@ export function FriendFromJSONTyped(json: any, ignoreDiscriminator: boolean): Fr
     }
     return {
         
+        'id': json['id'],
         'name': json['name'],
         'personality': json['personality'],
     };
@@ -68,6 +76,7 @@ export function FriendToJSON(value?: Friend | null): any {
     }
     return {
         
+        'id': value.id,
         'name': value.name,
         'personality': value.personality,
     };
