@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import AddFriendDialog from "./add-friend";
 
 describe("test add friend dialog", () => {
@@ -16,14 +16,14 @@ describe("test add friend dialog", () => {
     // FILL FORM
     const addFriendName = await screen.findByTestId("add-friend-name");
     fireEvent.change(addFriendName, { target: { value: "John" } });
-
     const addFriendPersonality = await within(
       await screen.findByTestId("add-friend-personality")
     ).findByRole("combobox");
 
-    addFriendPersonality.click();
-    addFriendPersonality.focus();
-
+    act(() => {
+      addFriendPersonality.click();
+      addFriendPersonality.focus();
+    });
     fireEvent.change(addFriendPersonality, { target: { value: "ENTJ" } });
 
     // SUBMIT THE FORM
@@ -53,8 +53,11 @@ describe("test add friend dialog", () => {
     const addFriendPersonality = await within(
       await screen.findByTestId("add-friend-personality")
     ).findByRole("combobox");
-    addFriendPersonality.click();
-    addFriendPersonality.focus();
+
+    act(() => {
+      addFriendPersonality.click();
+      addFriendPersonality.focus();
+    });
     fireEvent.change(addFriendPersonality, { target: { value: "XXXX" } });
 
     // SUBMIT THE FORM
