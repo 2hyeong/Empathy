@@ -37,15 +37,15 @@ describe("friends should be rendered", () => {
     render(<Sidebar />);
 
     // OPEN THE DIALOG
-    const addFriendBtn = await screen.findByTestId("add-friend-btn");
+    const addFriendBtn = screen.getByTestId("add-friend-btn");
     expect(addFriendBtn).toBeInTheDocument();
     fireEvent.click(addFriendBtn);
 
     // FILL FORM
-    const addFriendName = await screen.findByTestId("add-friend-name");
+    const addFriendName = screen.getByTestId("add-friend-name");
     fireEvent.change(addFriendName, { target: { value: "John" } });
     const addFriendPersonality = await within(
-      await screen.findByTestId("add-friend-personality")
+      screen.getByTestId("add-friend-personality")
     ).findByRole("combobox");
 
     act(() => {
@@ -56,9 +56,7 @@ describe("friends should be rendered", () => {
     fireEvent.change(addFriendPersonality, { target: { value: "ENTJ" } });
 
     // SUBMIT THE FORM
-    const addFriendSubmitBtn = await screen.findByTestId(
-      "add-friend-submit-btn"
-    );
+    const addFriendSubmitBtn = screen.getByTestId("add-friend-submit-btn");
     fireEvent.submit(addFriendSubmitBtn);
 
     // ASSERT
