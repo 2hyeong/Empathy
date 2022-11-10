@@ -4,7 +4,7 @@ import AlignList from "storefront/components/list/alignList";
 import Nav from "storefront/components/layout/nav";
 import AddFriendDialog from "../dialog/add-friend";
 import useSWR from "swr";
-import { getFriends } from "storefront/lib/api/useUser";
+import { getFriends } from "storefront/lib/api/useFriend";
 
 const StickyBox = styled(Box)(({ theme }) => ({
   position: "sticky",
@@ -23,10 +23,7 @@ export default function Sidebar({
   width = 384,
   anchor = "left",
 }: SidebarProps) {
-  const { data: friends, error } = useSWR("/api/users/friends", getFriends, {
-    shouldRetryOnError: false,
-    revalidateOnFocus: false,
-  });
+  const { data: friends, error } = useSWR("/api/users/friends", getFriends);
   if (error) console.error(error);
 
   return (

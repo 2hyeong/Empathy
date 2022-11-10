@@ -14,7 +14,7 @@ import {
   FormControl,
   TextField,
 } from "ui";
-import { createFriend } from "storefront/lib/api/useUser";
+import { createFriend } from "storefront/lib/api/useFriend";
 import { mutate } from "swr";
 import useSnackbar from "storefront/lib/hooks/useSnackbar";
 import { Friend } from "idl/gen/typescript-fetch";
@@ -46,7 +46,7 @@ export default function AddFriendDialog() {
 
     if (joinData.name === "" || !isInPersonality16) return;
 
-    mutate("/api/users/friends", createFriend(joinData as Friend));
+    mutate("/api/users/friends", () => createFriend(joinData as Friend));
 
     showSuccess();
     close();
