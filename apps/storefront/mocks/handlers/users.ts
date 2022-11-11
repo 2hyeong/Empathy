@@ -1,13 +1,4 @@
 import { rest } from "msw";
-import { Friend } from "idl/gen/typescript-fetch";
-
-const friends = [
-  {
-    id: "0",
-    name: "홍길동",
-    personality: "ISTP",
-  },
-];
 
 const users = [
   {
@@ -21,7 +12,10 @@ const users = [
     name: "이두형",
     email: "doohl2@kakao.com",
     personality: "INTP",
-    friends: [{ name: "홍길동", personality: "INTP" }],
+    friends: [
+      { id: "558RsS1UiFlM4Oulrh6z", personality: "ESTP", name: "atest" },
+      { id: "6rImCTGbnaerDHisd8dY", personality: "INFJ", name: "asfd" },
+    ],
   },
 ];
 
@@ -38,23 +32,9 @@ export const getUsers = () =>
 export const getMe = () =>
   rest.get("/api/me", (req, res, ctx) => res(ctx.status(200), ctx.json(me)));
 
-export const getFriends = (overrideData?: Friend[]) =>
-  rest.get("/api/users/friends", (req, res, ctx) => {
-    if (overrideData) return res(ctx.status(200), ctx.json(overrideData));
-    return res(ctx.status(200), ctx.json(friends));
-  });
-
-export const addFriends = () =>
-  rest.post("/api/users/friends", async (req, res, ctx) => {
-    const body = await req.json();
-    const newFriends = friends;
-    newFriends.push(body);
-    return res(ctx.status(200), ctx.json(newFriends));
-  });
-
 export const updateUsers = () =>
   rest.put("/api/users", (req, res, ctx) =>
     res(ctx.status(200), ctx.json({ ok: true }))
   );
 
-export default [getFriends(), addFriends(), getUsers(), getMe(), updateUsers()];
+export default [getUsers(), getMe(), updateUsers()];
