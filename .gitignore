@@ -98,3 +98,6 @@ node_modules/
 
 # dotenv environment variables file
 .env
+
+# storybook build
+apps/storybook/storybook-static
