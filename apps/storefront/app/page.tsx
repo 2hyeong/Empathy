@@ -29,10 +29,7 @@ export default function Page() {
     autoHideDuration: 3000,
   });
 
-  const { data: me, error } = useSWR<User, Error>("api/me", getMe, {
-    shouldRetryOnError: false,
-    revalidateOnFocus: false,
-  });
+  const { data: me, error } = useSWR<User, Error>("api/me", getMe);
   if (error) console.error(error);
 
   const { data: session } = useSession();
