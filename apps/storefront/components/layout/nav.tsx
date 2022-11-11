@@ -1,25 +1,17 @@
-import { MouseEvent } from "react";
-import { Diversity1Icon, List, ListItemButton, ListItemIcon } from "ui";
+import Link from "next/link";
+import { Typography } from "ui";
 
 export default function Nav() {
-  const handleListItemClick = (
-    event: MouseEvent<HTMLDivElement, globalThis.MouseEvent>,
-    index: number
-  ) => {};
-
   return (
-    <List component="nav" sx={{ display: "flex" }}>
-      <ListItemButton
-        sx={{
-          padding: 0,
-          maxWidth: "fit-content",
-        }}
-        onClick={(event) => handleListItemClick(event, 0)}
-      >
-        <ListItemIcon sx={{ minWidth: "32px" }}>
-          <Diversity1Icon />
-        </ListItemIcon>
-      </ListItemButton>
-    </List>
+    <Link
+      style={{
+        color: "currentcolor",
+      }}
+      href="/"
+    >
+      <Typography variant="h3" fontWeight="bold">
+        공감해
+      </Typography>
+    </Link>
   );
 }

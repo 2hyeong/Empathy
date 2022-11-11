@@ -3,6 +3,10 @@
 import { signOut, useSession } from "next-auth/react";
 import { Avatar, Box, Button, CheckCircleIcon, Typography } from "ui";
 import SignIn from "storefront/components/auth/signin";
+import useSWR from "swr";
+import { getFriend } from "storefront/lib/api/useFriend";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 type AppbarProps = {
   sidebarWidth: number | string;
@@ -10,6 +14,29 @@ type AppbarProps = {
 
 export default function Appbar({ sidebarWidth }: AppbarProps) {
   const { data: session, status } = useSession();
+  const [image, setImage] = useState("");
+  const [name, setName] = useState("");
+
+  const pathname = usePathname();
+  const slug = pathname.split("/").pop();
+
+  const { data: friend } = useSWR(`/api/users/friends/${slug}`, () =>
+    getFriend(slug as string)
+  );
+
+  if (slug) {
+    useEffect(() => {
+      if (friend) {
+        setImage("");
+        setName(friend.name);
+      }
+    }, [friend]);
+  } else {
+    useEffect(() => {
+      setImage(session?.user?.image as string);
+      setName(session?.user?.name as string);
+    }, [session]);
+  }
 
   return (
     <>
@@ -38,10 +65,7 @@ export default function Appbar({ sidebarWidth }: AppbarProps) {
           marginLeft: `${sidebarWidth}px`,
         }}
       >
-        <Avatar
-          sx={{ width: 128, height: 128 }}
-          src={session?.user?.image || undefined}
-        />
+        <Avatar sx={{ width: 128, height: 128 }} src={image || undefined} />
         <Box
           sx={{
             display: "flex",
@@ -50,7 +74,7 @@ export default function Appbar({ sidebarWidth }: AppbarProps) {
             paddingX: 2,
           }}
         >
-          <Typography variant="h5">{session?.user?.name}</Typography>
+          <Typography variant="h5">{name}</Typography>
           <CheckCircleIcon sx={{ marginLeft: 1 }} />
         </Box>
       </Box>
