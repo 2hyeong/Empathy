@@ -1,17 +1,20 @@
-import { render, screen, waitFor, within } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Bingo from "./bingo";
 import { vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { personalities16 } from "storefront/constants/personality";
+import { mockfriends } from "storefront/mocks/handlers/friends";
+
+const { id, personality } = mockfriends[0];
 
 vi.mock("next/navigation", () => ({
   usePathname() {
-    return "/friends/0";
+    return `/friends/${id}`;
   },
 }));
 
 describe("test bingo render", () => {
-  const mockedBingo = personalities16.filter((p) => p.label === "ISTP")[0]
+  const mockedBingo = personalities16.filter((p) => p.label === personality)[0]
     .bingo;
   test("nine of personalities paper should be rendered", async () => {
     // ARRANGE
@@ -45,7 +48,7 @@ describe("test bingo render", () => {
     const prevBtn = await screen.findByTestId("bingo-prev-btn");
     const nextBtn = await screen.findByTestId("bingo-next-btn");
 
-    // first element in ISTP(mock value) bingo
+    // first element in (mock value) bingo
     expect(item[0].textContent).toBe(mockedBingo[0]);
 
     // ACT

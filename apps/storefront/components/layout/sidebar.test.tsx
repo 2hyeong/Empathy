@@ -1,7 +1,13 @@
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
-import { getFriends } from "storefront/mocks/handlers/users";
+import { getFriends, mockfriends } from "storefront/mocks/handlers/friends";
 import { describe } from "vitest";
 import Sidebar from "./sidebar";
+
+const {
+  id: mockId,
+  name: mockName,
+  personality: mockPersonality,
+} = mockfriends[0];
 
 describe("friends should be rendered", () => {
   test(`testid 'align-list' childElementCount should be 0
@@ -22,8 +28,8 @@ describe("friends should be rendered", () => {
   if mockData '홍길동', 'ISTP' is given`, async () => {
     // ARRANGE
     render(<Sidebar />);
-    const name = await screen.findByText("홍길동");
-    const personality = await screen.findByText("@ISTP");
+    const name = await screen.findByText(mockName);
+    const personality = await screen.findByText(`@${mockPersonality}`);
     const alignList = await screen.findByTestId("align-list");
 
     // ASSERT
