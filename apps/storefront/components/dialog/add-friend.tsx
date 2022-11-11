@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { personalities16 } from "storefront/constants/personality";
 import {
   AddIcon,
-  AutoComplete,
+  Autocomplete,
   Box,
   Button,
   Dialog,
@@ -84,7 +84,7 @@ export default function AddFriendDialog() {
                   "data-testid": "add-friend-name",
                 }}
               />
-              <AutoComplete
+              <Autocomplete
                 id="personality"
                 sx={{ marginY: 1 }}
                 autoHighlight

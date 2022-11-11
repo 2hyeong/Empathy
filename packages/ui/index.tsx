@@ -29,7 +29,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import Dialog from "@mui/material/Dialog";
 import type { DialogProps } from "@mui/material/Dialog";
 import TextField from "@mui/material/TextField";
-import AutoComplete from "@mui/material/AutoComplete";
+import Autocomplete from "@mui/material/Autocomplete";
 import FormControl from "@mui/material/FormControl";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -71,7 +71,7 @@ export {
   DialogContent,
   DialogContentText,
   TextField,
-  AutoComplete,
+  Autocomplete,
   FormControl,
   Tabs,
   Tab,
