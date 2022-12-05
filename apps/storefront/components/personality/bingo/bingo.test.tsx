@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Bingo from "./bingo";
+import Bingo from ".";
 import { vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { personalities16 } from "storefront/constants/personality";

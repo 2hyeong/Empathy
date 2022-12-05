@@ -1,7 +1,11 @@
 import { useCallback, useState } from "react";
+import { mutate } from "swr";
+
+// const
 import { personalities16 } from "storefront/constants/personality";
+
+// ui
 import {
-  AddIcon,
   Autocomplete,
   Box,
   Button,
@@ -14,10 +18,15 @@ import {
   FormControl,
   TextField,
 } from "ui";
-import { createFriend } from "storefront/lib/api/useFriend";
-import { mutate } from "swr";
-import useSnackbar from "storefront/lib/hooks/useSnackbar";
+
+import { AddIcon } from "ui/icons";
+
+// idl
 import { Friend } from "idl/gen/typescript-fetch";
+// api
+import { createFriend } from "storefront/lib/api/useFriend";
+// hooks
+import useSnackbar from "storefront/lib/hooks/useSnackbar";
 
 export default function AddFriendDialog() {
   const { show: showSuccess, Snackbar: SuccessSnackbar } = useSnackbar({

@@ -69,6 +69,7 @@ Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 - `gtm`
 - `facebook pixel`
 - `doppler`
+- logger: [`pino`](https://www.npmjs.com/package/pino)
 
 [firebase emulator](https://firebase.google.com/docs/rules/emulator-setup?hl=ko) must be used in local dev
 

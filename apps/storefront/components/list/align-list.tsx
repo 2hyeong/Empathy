@@ -18,15 +18,17 @@ import { mutate } from "swr";
 import { deleteFriend } from "storefront/lib/api/useFriend";
 import { useRouter } from "next/navigation";
 
+// ----------------------------------------------------------------------
+
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: currentColor;
   width: 100%;
 `;
 
-type AlignListProps = {
+interface AlignListProps {
   items: Friend[];
-};
+}
 
 export default function AlignList({ items }: AlignListProps) {
   const router = useRouter();

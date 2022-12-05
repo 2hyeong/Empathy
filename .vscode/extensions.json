@@ -1,3 +1,7 @@
 {
-  "recommendations": ["42crunch.vscode-openapi", "kingwl.vscode-vitest-runner"]
+  "recommendations": [
+    "42crunch.vscode-openapi",
+    "kingwl.vscode-vitest-runner",
+    "github.copilot"
+  ]
 }
