@@ -1,11 +1,11 @@
-import React from "react";
+import { ReactNode } from "react";
 import { Box } from "ui";
 import Appbar from "storefront/components/layout/appbar";
 import Sidebar from "storefront/components/layout/sidebar";
 
-type LayoutProps = {
-  children: React.ReactNode;
-};
+interface LayoutProps {
+  children: ReactNode;
+}
 
 export default function Layout({ children }: LayoutProps) {
   const [sidebarWidth, setSidebarWidth] = React.useState(384);

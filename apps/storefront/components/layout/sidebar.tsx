@@ -1,11 +1,20 @@
 import React from "react";
-import { Box, Drawer, SearchInput, styled, Typography } from "ui";
-import AlignList from "storefront/components/list/alignList";
-import Nav from "storefront/components/layout/nav";
-import AddFriendDialog from "../dialog/add-friend";
 import useSWR from "swr";
+
+// ui
+import { Box, Drawer, styled, Typography } from "ui";
+import { SearchInput } from "ui/components";
+
+// components
+import AlignList from "storefront/components/list/align-list";
+import Nav from "storefront/components/layout/nav";
+
+import AddFriendDialog from "../dialog/add-friend";
+
+// hooks
 import { getFriends } from "storefront/lib/api/useFriend";
 
+// ----------------------------------------------------------------------
 const StickyBox = styled(Box)(({ theme }) => ({
   position: "sticky",
   zIndex: theme.zIndex.appBar,
@@ -14,10 +23,11 @@ const StickyBox = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
 }));
 
-type SidebarProps = {
-  width?: number | string;
+type Size = string | number;
+interface SidebarProps {
+  width?: Size;
   anchor?: "right" | "left";
-};
+}
 
 export default function Sidebar({
   width = 384,

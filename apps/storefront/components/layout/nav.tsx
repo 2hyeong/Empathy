@@ -6,10 +6,11 @@ export default function Nav() {
     <Link
       style={{
         color: "currentcolor",
+        textDecoration: "none",
       }}
       href="/"
     >
-      <Typography variant="h3" fontWeight="bold">
+      <Typography variant="body1" fontWeight="bold">
         공감해
       </Typography>
     </Link>

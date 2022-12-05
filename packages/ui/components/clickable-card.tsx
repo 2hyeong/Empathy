@@ -1,36 +1,30 @@
 import React from "react";
+
 import { CardActionArea } from "@mui/material";
 import MuiCard, { CardProps as MuiCardProps } from "@mui/material/Card";
 
-export type CardProps = {
+export type ClickableCardProps = {
+  isActive?: boolean;
   children: React.ReactNode;
 } & MuiCardProps;
 
-export const Card = (props: CardProps) => (
-  <MuiCard {...props}>{props.children}</MuiCard>
-);
-
-export type ClickableCardProps = {
-  isActive?: boolean;
-} & CardProps;
-
-export const ClickableCard = ({
+export default function ClickableCard({
   isActive,
   children,
   sx,
   ...rest
-}: ClickableCardProps) => {
+}: ClickableCardProps) {
   return (
-    <Card
+    <MuiCard
       {...rest}
       sx={{
         ...sx,
-        backgroundColor: isActive ? "rgba(255, 255, 255, 0.16)" : undefined,
+        opacity: isActive ? 1 : 0.75,
       }}
     >
       <CardActionArea sx={{ height: "100%", padding: 2 }}>
         {children}
       </CardActionArea>
-    </Card>
+    </MuiCard>
   );
-};
+}

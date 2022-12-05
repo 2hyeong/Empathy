@@ -1,0 +1,11 @@
+export { default as Diversity1Icon } from "@mui/icons-material/Diversity1";
+export { default as CheckCircleIcon } from "@mui/icons-material/CheckCircle";
+export { default as AddIcon } from "@mui/icons-material/Add";
+export { default as DeleteIcon } from "@mui/icons-material/Delete";
+export { default as KeyboardArrowLeft } from "@mui/icons-material/KeyboardArrowLeft";
+export { default as KeyboardArrowRight } from "@mui/icons-material/KeyboardArrowRight";
+export { default as MenuIcon } from "@mui/icons-material/Menu";
+export { default as SearchIcon } from "@mui/icons-material/Search";
+export { default as OpenInNewIcon } from "@mui/icons-material/OpenInNew";
+export { default as ThumbUpAltIcon } from "@mui/icons-material/ThumbUpAlt";
+export { default as ThumbUpOffAltIcon } from "@mui/icons-material/ThumbUpOffAlt";

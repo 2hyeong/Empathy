@@ -1,4 +1,4 @@
-export type TPersonalities16 = {
+export interface TPersonalities16 {
   label: string;
   bingo: string[];
   relationship: {
@@ -8,7 +8,7 @@ export type TPersonalities16 = {
     bad: string[];
     worst: string[];
   };
-};
+}
 
 export const personalities16 = [
   {

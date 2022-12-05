@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { useMockSession } from "storefront/mocks/session";
 import { vi } from "vitest";
 
-import PersonalityList from "./page";
+import PersonalityList from "./_page";
 
 vi.mock("next-auth/react", () => useMockSession());
 

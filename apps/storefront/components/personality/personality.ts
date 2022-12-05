@@ -3,13 +3,14 @@ import { replaceAt } from "scripts";
 export type PersonalityKey = "E" | "I" | "S" | "N" | "T" | "F" | "J" | "P";
 export type PersonalityType = "M" | "B" | "T" | "I";
 
-export type Personality = {
+export interface Personality {
   key: PersonalityKey;
   title: string;
   caption: string;
   type: PersonalityType;
+  color: string;
   selected: boolean;
-};
+}
 
 export const Personalities: Personality[] = [
   {
@@ -17,6 +18,7 @@ export const Personalities: Personality[] = [
     title: "외향형",
     caption: "사교적이며 활동적인",
     type: "M",
+    color: "primary",
     selected: false,
   },
   {
@@ -24,13 +26,15 @@ export const Personalities: Personality[] = [
     title: "내향형",
     caption: "깊이있는 대인관계",
     type: "M",
+    color: "primary",
     selected: false,
   },
   {
     key: "S",
     title: "감각형",
-    caption: "오감에 의존하지만 철저한",
+    caption: "오감에 의존하나 철저한",
     type: "B",
+    color: "error",
     selected: false,
   },
   {
@@ -38,6 +42,7 @@ export const Personalities: Personality[] = [
     title: "직관형",
     caption: "영감에 의존하며 신속한",
     type: "B",
+    color: "error",
     selected: false,
   },
   {
@@ -45,6 +50,7 @@ export const Personalities: Personality[] = [
     title: "사고형",
     caption: "분석적이며 논리적인",
     type: "T",
+    color: "warning",
     selected: false,
   },
   {
@@ -52,6 +58,7 @@ export const Personalities: Personality[] = [
     title: "감정형",
     caption: "사람관계에 관심 갖는",
     type: "T",
+    color: "warning",
     selected: false,
   },
   {
@@ -59,6 +66,7 @@ export const Personalities: Personality[] = [
     title: "판단형",
     caption: "철저하고 계획적인",
     type: "I",
+    color: "secondary",
     selected: false,
   },
   {
@@ -66,6 +74,7 @@ export const Personalities: Personality[] = [
     title: "인식형",
     caption: "자율적이고 융통성 있는",
     type: "I",
+    color: "secondary",
     selected: false,
   },
 ];
