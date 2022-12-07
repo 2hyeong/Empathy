@@ -5,10 +5,10 @@ import { Grid } from "ui";
 import {
   GetMbtiByKey,
   Personalities,
-  Personality,
-  PersonalityKey,
 } from "storefront/components/personality/scripts/personality";
 import PersonalityCard from "./PersonalityCard";
+// types
+import type { Personality } from "../types/personality";
 
 // ----------------------------------------------------------------------
 interface PersonalityCardListProps {

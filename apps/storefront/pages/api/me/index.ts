@@ -1,9 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { db, userConverter } from "scripts";
 import type { operations } from "idl";
-import { getSession } from "next-auth/react";
-import { unstable_getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]";
 import { getToken } from "next-auth/jwt";
 
 export default async (
