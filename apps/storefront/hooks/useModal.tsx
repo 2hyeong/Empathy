@@ -2,7 +2,6 @@
 import { useState, useCallback } from "react";
 
 // ----------------------------------------------------------------------
-
 export interface UseModalConfig {
   defaultVisible: boolean;
 }
