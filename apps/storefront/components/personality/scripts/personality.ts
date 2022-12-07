@@ -79,7 +79,7 @@ export const Personalities: Personality[] = [
   },
 ];
 
-export const GetSelectedPersonality = (selectedKey: PersonalityKey) => {
+export const GetMbtiByKey = (key: PersonalityKey) => {
   const updateSelectProp = (arr: Personality[], curr: Personality) => {
     arr.forEach((p) => {
       if (p.type === curr.type) p.selected = false;
@@ -100,7 +100,7 @@ export const GetSelectedPersonality = (selectedKey: PersonalityKey) => {
 
   return Personalities.reduce(
     (prev: string, curr: Personality, _, arr: Personality[]) => {
-      const isSameKey = curr.key === selectedKey;
+      const isSameKey = curr.key === key;
 
       if (isSameKey) updateSelectProp(arr, curr);
       if (curr.selected) return getUpdatedPersonality(prev, curr);

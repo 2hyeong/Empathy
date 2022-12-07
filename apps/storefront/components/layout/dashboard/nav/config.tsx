@@ -10,12 +10,12 @@ const icon = (name: string) => (
 const navConfig = [
   {
     title: "내 성격",
-    path: "/dashboard/app",
+    path: "/my",
     icon: icon("ic_me.png"),
   },
   {
     title: "친구",
-    path: "/dashboard/app",
+    path: "/friends",
     icon: icon("ic_friend.png"),
   },
 ];

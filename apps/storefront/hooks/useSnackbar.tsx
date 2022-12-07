@@ -1,5 +1,7 @@
 import { useState, useCallback } from "react";
-import { Alert, Snackbar as MuiSnackbar, SnackbarProps } from "ui";
+import { Alert, Snackbar as MuiSnackbar } from "ui";
+
+// ----------------------------------------------------------------------
 
 type UseSnackbarProps = {
   title: string;
@@ -7,7 +9,7 @@ type UseSnackbarProps = {
   autoHideDuration?: number;
 };
 
-function useSnackbar(props: UseSnackbarProps & SnackbarProps) {
+function useSnackbar(props: UseSnackbarProps) {
   const { title, severity, autoHideDuration, ...rest } = props;
   const [isOpen, setIsOpen] = useState(false);
 
@@ -20,6 +22,7 @@ function useSnackbar(props: UseSnackbarProps & SnackbarProps) {
       open={isOpen}
       onClose={handleClose}
       autoHideDuration={autoHideDuration}
+      sx={{ position: "fixed" }}
     >
       <Alert onClose={handleClose} severity={severity} sx={{ width: "100%" }}>
         {title}

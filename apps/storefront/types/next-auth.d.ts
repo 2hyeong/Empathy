@@ -13,6 +13,7 @@ declare module "next-auth" {
       gender: string;
       birthday: string;
       ageRange: string;
+      email: string;
     };
   }
   interface User {
@@ -22,6 +23,7 @@ declare module "next-auth" {
     gender?: string;
     birthday?: string;
     ageRange?: string;
+    email?: string;
   }
   interface Profile {
     kakao_account: {

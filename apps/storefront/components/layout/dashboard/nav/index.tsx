@@ -15,14 +15,14 @@ import {
   Stack,
 } from "ui";
 // hooks
-import useResponsive from "storefront/lib/hooks/useResponsive";
+import useResponsive from "storefront/hooks/useResponsive";
 // components
 import Scrollbar from "ui/components/scrollbar";
 import Logo from "storefront/components/logo";
 import NavSection from "storefront/components/nav-section";
 import navConfig from "./config";
 //mock
-import account from "storefront/lib/_mock/account";
+import account from "storefront/mocks/_mock/account";
 
 // ----------------------------------------------------------------------
 

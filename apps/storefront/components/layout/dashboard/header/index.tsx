@@ -7,8 +7,8 @@ import { SearchInput } from "ui/components";
 import { MenuIcon } from "ui/icons";
 import { Theme } from "ui/types";
 
-//
-import AccountPopover from "./account-popover";
+// components
+import Auth from "storefront/components/auth";
 
 // ----------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ export default function Header({ onOpenNav }: HeaderProps) {
             sm: 1,
           }}
         >
-          <AccountPopover />
+          <Auth />
         </Stack>
       </StyledToolbar>
     </StyledRoot>

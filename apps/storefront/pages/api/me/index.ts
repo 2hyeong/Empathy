@@ -11,11 +11,12 @@ export default async (
   >
 ) => {
   const session = await getSession({ req });
-
-  if (!session?.user?.id) return res.status(400).end();
+  if (!sessin?.user?.id) return res.status(400).end();
 
   if (req.method === "GET") {
-    const user = await db.get("users").where(session.user.id, userConverter);
+    const user = await db
+      .get("users")
+      .where("QhzSLoEBG9IIAmvQpjNJ", userConverter);
 
     if (!user)
       return res.status(204).json({

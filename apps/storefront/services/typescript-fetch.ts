@@ -4,10 +4,11 @@ import {
   UserApi,
   FriendsApi,
   FriendApi,
+  BASE_PATH,
 } from "idl/gen/typescript-fetch";
 
 const configuration = new Configuration({
-  basePath: `http://localhost:3000/api`,
+  basePath: BASE_PATH,
 });
 
 export const usersApi = new UsersApi(configuration);

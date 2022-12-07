@@ -1,5 +1,5 @@
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
-import AddFriendDialog from "./add-friend";
+import AddFriendDialog from "./AddFriend";
 
 describe("test add friend dialog", () => {
   test(`should be submitted and show '친구가 등록되었습니다.' snackbar,
