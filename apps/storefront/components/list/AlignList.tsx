@@ -15,7 +15,7 @@ import {
 } from "ui";
 import Link from "next/link";
 import { mutate } from "swr";
-import { deleteFriend } from "storefront/lib/api/useFriend";
+import { deleteFriend } from "storefront/services/useFriend";
 import { useRouter } from "next/navigation";
 
 // ----------------------------------------------------------------------

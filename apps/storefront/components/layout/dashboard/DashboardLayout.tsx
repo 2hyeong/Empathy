@@ -1,11 +1,13 @@
+"use client";
+import dynamic from "next/dynamic";
 import { ReactNode, useState } from "react";
 
 // ui
 import { styled } from "ui";
 
 // components
-import Header from "./header";
-import Nav from "./nav";
+const Header = dynamic(() => import("./header"));
+const Nav = dynamic(() => import("./nav"));
 
 // ----------------------------------------------------------------------
 

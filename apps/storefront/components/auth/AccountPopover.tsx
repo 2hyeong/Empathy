@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSession, signOut } from "next-auth/react";
 // ui
 import {
   alpha,
@@ -13,32 +14,22 @@ import {
 } from "ui";
 
 // mocks_
-import account from "storefront/lib/_mock/account";
-
-// ----------------------------------------------------------------------
-
-const MENU_OPTIONS = [
-  {
-    label: "Home",
-    icon: "eva:home-fill",
-  },
-  {
-    label: "Profile",
-    icon: "eva:person-fill",
-  },
-  {
-    label: "Settings",
-    icon: "eva:settings-2-fill",
-  },
-];
+import account from "storefront/mocks/_mock/account";
 
 // ----------------------------------------------------------------------
 
 export default function AccountPopover() {
+  const { data: session } = useSession();
+
   const [open, setOpen] = useState(null);
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
+  };
+
+  const handleLogout = () => {
+    signOut();
+    setOpen(null);
   };
 
   const handleClose = () => {
@@ -51,20 +42,22 @@ export default function AccountPopover() {
         onClick={handleOpen}
         sx={{
           p: 0,
-          ...(open && {
-            "&:before": {
-              zIndex: 1,
-              content: "''",
-              width: "100%",
-              height: "100%",
-              borderRadius: "50%",
-              position: "absolute",
-              bgcolor: (theme) => alpha(theme.palette.grey[900], 0.8),
-            },
-          }),
+          ...(open
+            ? {
+                "&:before": {
+                  zIndex: 1,
+                  content: "''",
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "50%",
+                  position: "absolute",
+                  bgcolor: (theme) => alpha(theme.palette.grey[900], 0.8),
+                },
+              }
+            : {}),
         }}
       >
-        <Avatar src={account.photoURL} alt="photoURL" />
+        <Avatar src={session?.user.image || account.photoURL} alt="photoURL" />
       </IconButton>
 
       <Popover
@@ -88,14 +81,14 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle2" noWrap>
-            {account.displayName}
+            {session?.user.name}
           </Typography>
           <Typography variant="body2" sx={{ color: "text.secondary" }} noWrap>
-            {account.email}
+            {session?.user.email}
           </Typography>
         </Box>
 
-        <Divider sx={{ borderStyle: "dashed" }} />
+        {/* <Divider sx={{ borderStyle: "dashed" }} />
 
         <Stack sx={{ p: 1 }}>
           {MENU_OPTIONS.map((option) => (
@@ -103,12 +96,12 @@ export default function AccountPopover() {
               {option.label}
             </MenuItem>
           ))}
-        </Stack>
+        </Stack> */}
 
         <Divider sx={{ borderStyle: "dashed" }} />
 
-        <MenuItem onClick={handleClose} sx={{ m: 1 }}>
-          Logout
+        <MenuItem onClick={handleLogout} sx={{ m: 1 }}>
+          로그아웃
         </MenuItem>
       </Popover>
     </>

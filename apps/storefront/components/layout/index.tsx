@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Box } from "ui";
-import Appbar from "storefront/components/layout/appbar";
-import Sidebar from "storefront/components/layout/sidebar";
+import Appbar from "storefront/components/layout/Appbar";
+import Sidebar from "storefront/components/layout/Sidebar";
 
 interface LayoutProps {
   children: ReactNode;

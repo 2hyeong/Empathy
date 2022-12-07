@@ -23,9 +23,6 @@ export default NextAuth({
   session: {
     strategy: "jwt",
   },
-  // user: User | AdapterUser
-  // profile: Profile | undefined
-  // account: Account | null
   callbacks: {
     async signIn({ user, account, profile }) {
       if (account?.provider === "kakao") {

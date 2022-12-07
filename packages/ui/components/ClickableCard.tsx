@@ -19,7 +19,7 @@ export default function ClickableCard({
       {...rest}
       sx={{
         ...sx,
-        opacity: isActive ? 1 : 0.75,
+        opacity: isActive ? 1 : 0.5,
       }}
     >
       <CardActionArea sx={{ height: "100%", padding: 2 }}>

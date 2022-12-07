@@ -24,12 +24,12 @@ import { ThumbUpAltIcon, ThumbUpOffAltIcon } from "ui/icons";
 import { operations } from "idl/gen";
 import { Friend } from "idl/gen/typescript-fetch";
 // hooks
-import { getFriend } from "storefront/lib/api/useFriend";
+import { getFriend } from "storefront/services/useFriend";
 import {
   ClickableCard,
   SvgColor,
 } from "storefront/../../packages/ui/components";
-import BingoItem from "./item";
+import BingoItem from "./Item";
 
 const StyledTitle = styled(Typography)({
   display: "flex",
@@ -97,7 +97,7 @@ export default function Bingo() {
         data-testid="bingo-grid-container"
       >
         {bingoList.map((bingo, key) => (
-          <Grid key={key} item xs={12} lg={3} data-testid="bingo-grid-item">
+          <Grid key={key} item xs={12} lg={4} data-testid="bingo-grid-item">
             <BingoItem content={bingo} />
           </Grid>
         ))}

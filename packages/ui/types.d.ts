@@ -1,9 +1,10 @@
 // ----------------------------------------------------------------------
-import type { DialogProps } from "@mui/material/Dialog";
-import type { ButtonProps } from "@mui/material/Button";
-import type { SxProps } from "@mui/material/styles";
-import type { Theme } from "../types";
-import type { SnackbarProps } from "@mui/material/Snackbar";
+export type { DialogProps } from "@mui/material/Dialog";
+export type { ButtonProps } from "@mui/material/Button";
+export type { SxProps } from "@mui/material/styles";
+export type { Theme } from "../types";
+export type { SnackbarProps } from "@mui/material/Snackbar";
+export type { CardProps } from "@mui/material/Card";
 
 import type {
   Theme as MUITheme,
@@ -18,5 +19,3 @@ declare module "@mui/material/styles" {
     customShadows?: { [key: string]: string };
   }
 }
-
-export { DialogProps, ButtonProps, SxProps, Theme, SnackbarProps };

@@ -17,7 +17,8 @@ export default function BingoItem({ content }: BingoItemProps) {
           {content}
           <span>
             <ThumbUpOffAltIcon
-              sx={{ pl: 1, verticalAlign: "middle" }}
+              fontSize="small"
+              sx={{ position: "absolute", bottom: "10px", right: "10px" }}
               color="info"
             />
           </span>

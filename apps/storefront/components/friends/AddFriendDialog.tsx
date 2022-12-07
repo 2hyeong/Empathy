@@ -24,9 +24,9 @@ import { AddIcon } from "ui/icons";
 // idl
 import { Friend } from "idl/gen/typescript-fetch";
 // api
-import { createFriend } from "storefront/lib/api/useFriend";
+import { createFriend } from "storefront/services/useFriend";
 // hooks
-import useSnackbar from "storefront/lib/hooks/useSnackbar";
+import useSnackbar from "storefront/hooks/useSnackbar";
 import {
   FieldValues,
   UseFormHandleSubmit,

@@ -4,7 +4,7 @@ import { OpenInNewIcon } from "ui/icons";
 // idl
 import { Friend } from "idl/gen/typescript-fetch";
 // mocks
-import account from "storefront/lib/_mock/account";
+import account from "storefront/mocks/_mock/account";
 
 export interface FriendItemProps {
   friend: Friend;
