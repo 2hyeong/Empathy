@@ -1,11 +1,13 @@
 import { headers } from "next/headers";
-// component
-import MyPersonality from "storefront/components/personality/my-info/MyPersonality";
-import AuthGuard from "storefront/features/auth/AuthGuard";
+import dynamic from "next/dynamic";
 // idl
 import { BASE_PATH } from "idl/gen/typescript-fetch";
 // lib
 import { defaultSsrOptions } from "storefront/lib/fetch";
+
+// component
+import MyPersonality from "storefront/components/personality/my-info/MyPersonality";
+import AuthGuard from "storefront/features/auth/AuthGuard";
 
 // ----------------------------------------------------------------------
 
@@ -25,11 +27,11 @@ const getPersonality = async () => {
 // ----------------------------------------------------------------------
 
 export default async function Page() {
-  const personality = await getPersonality();
+  const personality: string = await getPersonality();
 
   return (
     <AuthGuard>
-      <MyPersonality personality={personality || ""} />
+      <MyPersonality personality={personality} />
     </AuthGuard>
   );
 }
