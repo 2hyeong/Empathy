@@ -12,7 +12,7 @@ import {
   IconButton,
   InputAdornment,
 } from "..";
-import { bgBlur } from "../utils/css-styles";
+import { bgBlur } from "../utils/cssStyles";
 import { SearchIcon } from "../icons";
 
 // ----------------------------------------------------------------------

@@ -2,7 +2,7 @@
 
 // ui
 import { styled, Box, Stack, AppBar, Toolbar, IconButton } from "ui";
-import { bgBlur } from "ui/utils/css-styles";
+import { bgBlur } from "ui/utils/cssStyles";
 import { SearchInput } from "ui/components";
 import { MenuIcon } from "ui/icons";
 import { Theme } from "ui/types";

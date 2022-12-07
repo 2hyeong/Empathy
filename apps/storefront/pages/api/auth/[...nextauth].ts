@@ -1,12 +1,10 @@
-import NextAuth, { Account, Profile, Session, User } from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import NaverProvider from "next-auth/providers/naver";
 import KakaoProvider from "next-auth/providers/kakao";
 import { FirestoreAdapter } from "@next-auth/firebase-adapter";
 import { firebaseClientConfig, kakaoConfig, naverConfig } from "scripts";
-import { AdapterUser } from "next-auth/adapters";
-import { CredentialInput } from "next-auth/providers";
 
-export default NextAuth({
+export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
     NaverProvider(naverConfig),
@@ -50,4 +48,6 @@ export default NextAuth({
   },
   adapter: FirestoreAdapter(firebaseClientConfig),
   debug: process.env.NODE_ENV === "development",
-});
+};
+
+export default NextAuth(authOptions);

@@ -1,6 +1,6 @@
 import { ClickableCard } from "ui/components";
 import { Typography, CardContent, styled, Divider } from "ui";
-import type { Personality } from "./personality";
+import type { Personality } from "./types/personality";
 
 const StyledCardContent = styled(CardContent)(({ theme }) => ({
   margin: "auto",

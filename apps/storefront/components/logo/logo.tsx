@@ -14,7 +14,13 @@ const Link = styled(NextLink)(() => ({
 export default function Logo() {
   return (
     <Link href="/">
-      <Image src="/assets/logo.svg" width={40} height={40} alt="logo" />
+      <Image
+        src="/assets/logo.svg"
+        width={40}
+        height={40}
+        alt="logo"
+        priority
+      />
     </Link>
   );
 }

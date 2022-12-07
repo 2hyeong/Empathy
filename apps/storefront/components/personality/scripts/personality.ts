@@ -1,16 +1,5 @@
 import { replaceAt } from "scripts";
-
-export type PersonalityKey = "E" | "I" | "S" | "N" | "T" | "F" | "J" | "P";
-export type PersonalityType = "M" | "B" | "T" | "I";
-
-export interface Personality {
-  key: PersonalityKey;
-  title: string;
-  caption: string;
-  type: PersonalityType;
-  color: string;
-  selected: boolean;
-}
+import type { Personality, PersonalityKey } from "../types/personality";
 
 export const Personalities: Personality[] = [
   {

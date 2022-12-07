@@ -13,7 +13,7 @@ export default function Page() {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12} md={6} lg={8}>
-        <MyPersonality />
+        <MyPersonality personality="" />
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
         <FriendList other={{ sx: { position: "static" } }} />
