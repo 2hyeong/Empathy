@@ -1,18 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import useSWR, { mutate } from "swr";
-import dynamic from "next/dynamic";
+import { mutate } from "swr";
 // ui
 import { Box, Button, Card, styled, Typography } from "ui";
-// idl
-import { User } from "idl/gen/typescript-fetch";
 // component
-import {
-  GetMbtiByKey,
-  Personality,
-} from "storefront/components/personality/scripts/personality";
+import { GetMbtiByKey } from "storefront/components/personality/scripts/personality";
 import PersonalityCardList from "./PersonalityCardList";
+import type { Personality } from "../types/personality";
 // hooks
 import useSnackbar from "storefront/hooks/useSnackbar";
 // api
@@ -38,16 +33,14 @@ export default function MyPersonality({
     autoHideDuration: 3000,
   });
 
-  // const { data: me } = useSWR<User, Error>("api/me", getMe);
-  // const personality = me?.personality || "____";
   const activeDefaultClickableCard = (personality: string) => {
-    for (let p of personality.split("")) {
+    for (const p of personality) {
       setSelected(GetMbtiByKey(p as Personality["key"]));
     }
   };
 
   useEffect(() => {
-    activeDefaultClickableCard(personality);
+    if (personality?.length) activeDefaultClickableCard(personality);
   }, [personality]);
 
   const callback = (payload: Personality["key"]) => {

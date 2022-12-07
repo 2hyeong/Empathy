@@ -2,6 +2,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { db, userConverter } from "scripts";
 import type { operations } from "idl";
 import { getSession } from "next-auth/react";
+import { unstable_getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]";
+import { getToken } from "next-auth/jwt";
 
 export default async (
   req: NextApiRequest,
@@ -10,13 +13,11 @@ export default async (
     | operations["getUser"]["responses"]["default"]["content"]["application/json"]
   >
 ) => {
-  const session = await getSession({ req });
-  if (!sessin?.user?.id) return res.status(400).end();
+  const token = await getToken({ req });
+  if (!token) res.status(401); // not signed in
 
   if (req.method === "GET") {
-    const user = await db
-      .get("users")
-      .where("QhzSLoEBG9IIAmvQpjNJ", userConverter);
+    const user = await db.get("users").where(token?.user.id, userConverter);
 
     if (!user)
       return res.status(204).json({

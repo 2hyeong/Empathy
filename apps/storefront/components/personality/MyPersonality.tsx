@@ -1,18 +1,20 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import useSWR, { mutate } from "swr";
+// ui
 import { Box, Button, Card, Grid, Typography } from "ui";
 import {
-  GetSelectedPersonality,
+  GetMbtiByKey,
   Personalities,
-  Personality,
-} from "storefront/components/personality/personality";
-import { getMe, updateUser } from "storefront/lib/api/useUser";
-import useSWR, { mutate } from "swr";
-import useSnackbar from "storefront/lib/hooks/useSnackbar";
+} from "storefront/components/personality/scripts/personality";
+
+import { getMe, updateUser } from "storefront/services/useUser";
+import useSnackbar from "storefront/hooks/useSnackbar";
 import { useSession } from "next-auth/react";
 import { User } from "idl/gen/typescript-fetch";
-import PersonalityCard from "./personality-card";
+import PersonalityCard from "./PersonalityCard";
+import type { Personality } from "./types/personality";
 
 export default function MyPersonality() {
   const [selected, setSelected] = useState("____");
@@ -56,7 +58,7 @@ export default function MyPersonality() {
   };
 
   const handleClickableCardClicked = (personality: Personality) => {
-    setSelected(GetSelectedPersonality(personality.key));
+    setSelected(GetMbtiByKey(personality.key));
   };
 
   const handleClickSave = () => {
