@@ -1,4 +1,4 @@
-export interface TPersonalities16 {
+export interface IPersonalities16 {
   label: string;
   bingo: string[];
   relationship: {

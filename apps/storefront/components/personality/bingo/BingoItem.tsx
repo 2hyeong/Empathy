@@ -12,16 +12,14 @@ interface BingoItemProps {
 export default function BingoItem({ content }: BingoItemProps) {
   return (
     <ClickableCard sx={{ height: "100%" }} isActive={true}>
-      <CardContent>
-        <Typography color="inherit" variant="h5">
+      <CardContent sx={{ padding: 1 }}>
+        <Typography
+          color="inherit"
+          variant="h6"
+          sx={{ display: "flex", justifyContent: "space-between" }}
+        >
           {content}
-          <span>
-            <ThumbUpOffAltIcon
-              fontSize="small"
-              sx={{ position: "absolute", bottom: "10px", right: "10px" }}
-              color="info"
-            />
-          </span>
+          <ThumbUpOffAltIcon fontSize="small" color="info" />
         </Typography>
       </CardContent>
     </ClickableCard>

@@ -11,7 +11,10 @@ import type { Personality } from "../types/personality";
 // hooks
 import useSnackbar from "storefront/hooks/useSnackbar";
 // api
-import { getMe, updateUser } from "storefront/services/useUser";
+import { updateUser } from "storefront/services/useUser";
+import { useRecoilState } from "recoil";
+import { personalityAtom } from "storefront/features/personality/atom";
+import Bingo from "../bingo";
 
 // ----------------------------------------------------------------------
 
@@ -27,6 +30,8 @@ export default function MyPersonality({
   personality: string;
 }) {
   const [selected, setSelected] = useState("____");
+  const [personalityState, setPersonalityState] =
+    useRecoilState(personalityAtom);
   const { show: showSuccess, Snackbar: SuccessSnackbar } = useSnackbar({
     title: "저장되었습니다.",
     severity: "success",
@@ -40,7 +45,10 @@ export default function MyPersonality({
   };
 
   useEffect(() => {
-    if (personality?.length) activeDefaultClickableCard(personality);
+    if (personality?.length) {
+      setPersonalityState(personality);
+      activeDefaultClickableCard(personality);
+    }
   }, [personality]);
 
   const callback = (payload: Personality["key"]) => {
@@ -63,7 +71,12 @@ export default function MyPersonality({
     let updatedPersonality = validate(selected);
     if (updatedPersonality === "") return;
 
-    mutate("/api/me", updateUser({ personality: updatedPersonality }));
+    mutate(
+      "/api/me/personality",
+      updateUser({ personality: updatedPersonality })
+    );
+
+    setPersonalityState(updatedPersonality);
     showSuccess();
   };
 
@@ -83,6 +96,10 @@ export default function MyPersonality({
       </Header>
       <PersonalityCardList callback={callback} />
       <SuccessSnackbar />
+
+      <Box component="section" sx={{ pt: 4 }}>
+        <Bingo />
+      </Box>
     </Card>
   );
 }
