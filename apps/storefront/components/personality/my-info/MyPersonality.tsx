@@ -1,20 +1,25 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { mutate } from "swr";
+import { useRecoilState } from "recoil";
+import dynamic from "next/dynamic";
 // ui
 import { Box, Button, Card, styled, Typography } from "ui";
-// component
+// script
 import { GetMbtiByKey } from "storefront/components/personality/scripts/personality";
-import PersonalityCardList from "./PersonalityCardList";
+// component
+const PersonalityCardList = dynamic(() => import("./PersonalityCardList"), {
+  ssr: false,
+});
+const Bingo = dynamic(() => import("../bingo"), { ssr: false });
+// types
 import type { Personality } from "../types/personality";
 // hooks
 import useSnackbar from "storefront/hooks/useSnackbar";
 // api
 import { updateUser } from "storefront/services/useUser";
-import { useRecoilState } from "recoil";
+// state
 import { personalityAtom } from "storefront/features/personality/atom";
-import Bingo from "../bingo";
 
 // ----------------------------------------------------------------------
 

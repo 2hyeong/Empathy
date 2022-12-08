@@ -1,12 +1,16 @@
 "use client";
+import dynamic from "next/dynamic";
 // ui
 import { Grid } from "ui";
-// component
+// scripts
 import {
   GetMbtiByKey,
   Personalities,
 } from "storefront/components/personality/scripts/personality";
-import PersonalityCard from "./PersonalityCard";
+// component
+const PersonalityCard = dynamic(() => import("./PersonalityCard"), {
+  ssr: false,
+});
 // types
 import type { Personality } from "../types/personality";
 

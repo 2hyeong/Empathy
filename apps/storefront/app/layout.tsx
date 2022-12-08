@@ -1,5 +1,6 @@
 // mock
 import { startMock } from "storefront/mocks";
+// component
 import Meta from "storefront/components/layout/meta";
 import Providers from "./providers";
 

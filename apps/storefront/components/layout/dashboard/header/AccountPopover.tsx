@@ -13,7 +13,7 @@ import {
 } from "ui";
 
 // mocks_
-import account from "storefront/lib/_mock/account";
+import account from "storefront/mocks/_mock/account";
 
 // ----------------------------------------------------------------------
 

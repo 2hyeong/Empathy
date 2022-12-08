@@ -1,11 +1,19 @@
 "use client";
-// components
-import FriendList from "storefront/components/friends/FriendList";
+import dynamic from "next/dynamic";
 // ui
 import { Grid } from "ui";
 // component
-import Bingo from "storefront/components/personality/bingo";
-import MyPersonality from "storefront/components/personality/my-info/MyPersonality";
+const Bingo = dynamic(() => import("storefront/components/personality/bingo"), {
+  ssr: false,
+});
+const MyPersonality = dynamic(
+  () => import("storefront/components/personality/my-info/MyPersonality"),
+  { ssr: false }
+);
+const FriendList = dynamic(
+  () => import("storefront/components/friends/FriendList"),
+  { ssr: false }
+);
 
 // ----------------------------------------------------------------------
 
