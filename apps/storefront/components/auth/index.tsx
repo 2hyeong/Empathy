@@ -2,7 +2,7 @@ import { useSession } from "next-auth/react";
 
 // component
 import AccountPopover from "./AccountPopover";
-import SignIn from "storefront/components/auth/Signin";
+import SignIn from "./SignIn";
 
 // ----------------------------------------------------------------------
 

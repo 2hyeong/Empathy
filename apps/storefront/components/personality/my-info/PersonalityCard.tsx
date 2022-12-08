@@ -1,5 +1,9 @@
+"use client";
+// component
 import { ClickableCard } from "ui/components";
+// ui
 import { Typography, CardContent, styled, Divider } from "ui";
+// types
 import type { Personality } from "../types/personality";
 
 const StyledCardContent = styled(CardContent)(({ theme }) => ({

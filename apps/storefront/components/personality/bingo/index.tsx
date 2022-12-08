@@ -1,14 +1,13 @@
 "use client";
 import { useMemo } from "react";
 import { useRecoilState } from "recoil";
+import dynamic from "next/dynamic";
 // const
 import { personalities16 } from "storefront/constants/personality";
 // ui
-import { Card, Grid, Typography } from "ui";
+import { Grid } from "ui";
 // component
-import BingoItem from "./BingoItem";
-// type
-import type { Personality } from "../types/personality";
+const BingoItem = dynamic(() => import("./BingoItem"), { ssr: false });
 // state
 import { personalityAtom } from "storefront/features/personality/atom";
 
