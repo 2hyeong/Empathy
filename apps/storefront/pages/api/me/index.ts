@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { db, userConverter } from "scripts";
-import type { operations } from "idl";
 import { getToken } from "next-auth/jwt";
 
 export default async (
@@ -16,11 +15,7 @@ export default async (
   if (req.method === "GET") {
     const user = await db.get("users").where(token?.user.id, userConverter);
 
-    if (!user)
-      return res.status(204).json({
-        code: 204,
-        message: "User not found.",
-      });
+    if (!user) return res.status(204).end();
 
     return res.status(200).json(user);
   }

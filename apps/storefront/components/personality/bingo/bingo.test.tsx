@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import Bingo from ".";
 import { vi } from "vitest";
 import userEvent from "@testing-library/user-event";
-import { personalities16 } from "storefront/constants/personality";
+import { mbtiResults } from "storefront/constants/mbtiResults";
 import { mockfriends } from "storefront/mocks/handlers/friends";
 
 const { id, personality } = mockfriends[0];
@@ -14,7 +14,7 @@ vi.mock("next/navigation", () => ({
 }));
 
 describe("test bingo render", () => {
-  const mockedBingo = personalities16.filter((p) => p.label === personality)[0]
+  const mockedBingo = mbtiResults.filter((p) => p.label === personality)[0]
     .bingo;
   test("nine of personalities paper should be rendered", async () => {
     // ARRANGE

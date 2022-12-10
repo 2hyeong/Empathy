@@ -2,33 +2,32 @@
 import dynamic from "next/dynamic";
 // ui
 import { Grid } from "ui";
-// scripts
-import {
-  GetMbtiByKey,
-  Personalities,
-} from "storefront/components/personality/scripts/personality";
+// constant
+import { mbtiEl } from "storefront/constants/mbtiEl";
 // component
 const PersonalityCard = dynamic(() => import("./PersonalityCard"), {
   ssr: false,
 });
 // types
-import type { Personality } from "../types/personality";
+import type { IMbti } from "../types/personality";
+// model
+import { Mbti } from "storefront/features/personality/models/mbti";
 
 // ----------------------------------------------------------------------
 interface PersonalityCardListProps {
-  callback: (key: Personality["key"]) => void;
+  callback: (key: string) => void;
 }
 
 export default function PersonalityCardList({
   callback,
 }: PersonalityCardListProps) {
-  const handlClick = (key: Personality["key"]) => {
-    callback(GetMbtiByKey(key) as PersonalityKey);
+  const handlClick = (key: IMbti["key"]) => {
+    callback(new Mbti(key).getMbti());
   };
 
   return (
     <Grid container spacing={1} columns={8}>
-      {Personalities.map((personality) => (
+      {mbtiEl.map((personality) => (
         <Grid
           item
           xs={4}

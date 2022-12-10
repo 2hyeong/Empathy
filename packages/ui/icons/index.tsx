@@ -9,3 +9,5 @@ export { default as SearchIcon } from "@mui/icons-material/Search";
 export { default as OpenInNewIcon } from "@mui/icons-material/OpenInNew";
 export { default as ThumbUpAltIcon } from "@mui/icons-material/ThumbUpAlt";
 export { default as ThumbUpOffAltIcon } from "@mui/icons-material/ThumbUpOffAlt";
+export { default as TocIcon } from "@mui/icons-material/Toc";
+export { default as DeviceHubIcon } from "@mui/icons-material/DeviceHub";

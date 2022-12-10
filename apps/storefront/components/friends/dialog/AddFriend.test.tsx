@@ -36,7 +36,7 @@ describe("test add friend dialog", () => {
 
   test(`should not be submitted and not showing '친구가 등록되었습니다.' snackbar,
   if personality is submitted as 'XXXX' in the form
-  which is not in the personalities16 label`, async () => {
+  which is not in the mbtiResults label`, async () => {
     // ARRANGE
     render(<AddFriendDialog />);
 

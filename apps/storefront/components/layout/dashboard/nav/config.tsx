@@ -10,7 +10,7 @@ const icon = (name: string) => (
 const navConfig = [
   {
     title: "내 성격",
-    path: "/my",
+    path: "/me",
     icon: icon("ic_me.png"),
   },
   {

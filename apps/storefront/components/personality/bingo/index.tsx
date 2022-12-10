@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { useRecoilState } from "recoil";
 import dynamic from "next/dynamic";
 // const
-import { personalities16 } from "storefront/constants/personality";
+import { mbtiResults } from "storefront/constants/mbtiResults";
 // ui
 import { Grid } from "ui";
 // component
@@ -18,10 +18,7 @@ export default function Bingo() {
     useRecoilState(personalityAtom);
 
   const bingoList = useMemo(() => {
-    return (
-      personalities16.filter((p) => p.label === personalityState)[0]?.bingo ||
-      []
-    );
+    return mbtiResults.find((p) => p.label === personalityState)?.bingo || [];
   }, [personalityState]);
 
   return (
