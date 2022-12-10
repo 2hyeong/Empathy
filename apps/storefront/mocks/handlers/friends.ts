@@ -15,7 +15,7 @@ export const getFriends = (overrideData?: Friend[]) =>
 export const getFriend = () =>
   rest.get("/api/users/friends/:friendId", (req, res, ctx) => {
     const { friendId } = req.params;
-    const friend = mockfriends.filter((f) => f.id === friendId)[0];
+    const friend = mockfriends.find((f) => f.id === friendId);
     return res(ctx.status(200), ctx.json(friend));
   });
 

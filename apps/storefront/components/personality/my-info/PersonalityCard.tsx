@@ -4,7 +4,7 @@ import { ClickableCard } from "ui/components";
 // ui
 import { Typography, CardContent, styled, Divider } from "ui";
 // types
-import type { Personality } from "../types/personality";
+import type { IMbti } from "../types/personality";
 
 const StyledCardContent = styled(CardContent)(({ theme }) => ({
   margin: "auto",
@@ -18,7 +18,7 @@ const StyledCardContent = styled(CardContent)(({ theme }) => ({
 }));
 
 interface PersonalityCardProps {
-  personality: Personality;
+  personality: IMbti;
 }
 
 export default function PersonalityCard({ personality }: PersonalityCardProps) {

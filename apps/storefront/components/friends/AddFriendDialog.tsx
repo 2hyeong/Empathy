@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { mutate } from "swr";
 
 // const
-import { personalities16 } from "storefront/constants/personality";
+import { mbtiResults } from "storefront/constants/mbtiResults";
 
 // ui
 import {
@@ -54,7 +54,7 @@ export default function AddFriendDialog({
 
   const onSubmit = (data: any) => {
     const isInPersonality16 =
-      personalities16.filter((p) => p.label === data.personality).length !== 0;
+      mbtiResults.filter((p) => p.label === data.personality).length !== 0;
 
     if (data.name === "" || !isInPersonality16) return;
 
@@ -93,7 +93,7 @@ export default function AddFriendDialog({
                 sx={{ marginY: 1 }}
                 autoHighlight
                 autoComplete
-                options={personalities16}
+                options={mbtiResults}
                 data-testid="add-friend-personality"
                 renderInput={(params) => (
                   <TextField

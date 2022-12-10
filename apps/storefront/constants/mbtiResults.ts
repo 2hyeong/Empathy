@@ -1,16 +1,32 @@
-export interface IPersonalities16 {
-  label: string;
-  bingo: string[];
-  relationship: {
-    best: string[];
-    good: string[];
-    normal: string[];
-    bad: string[];
-    worst: string[];
-  };
-}
+import {
+  IMBTIRelationshipLabel,
+  IMbtiResult,
+} from "storefront/components/personality/types/personality";
 
-export const personalities16 = [
+export const MbtiRelationshipsLabel: IMBTIRelationshipLabel[] = [
+  {
+    key: "best",
+    label: "천생연분",
+  },
+  {
+    key: "good",
+    label: "좋음",
+  },
+  {
+    key: "normal",
+    label: "보통",
+  },
+  {
+    key: "bad",
+    label: "그닥",
+  },
+  {
+    key: "worst",
+    label: "파국",
+  },
+];
+
+export const mbtiResults: IMbtiResult[] = [
   {
     label: "ISTJ",
     bingo: [

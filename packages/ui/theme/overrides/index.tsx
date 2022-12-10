@@ -1,5 +1,5 @@
 //
-import Card from "./card.tsx";
+import Card from "./card";
 import Paper from "./paper";
 import Input from "./input";
 import Table from "./table";

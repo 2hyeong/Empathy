@@ -2,24 +2,21 @@
 import { useEffect, useState } from "react";
 import { mutate } from "swr";
 import { useRecoilState } from "recoil";
-import dynamic from "next/dynamic";
 // ui
 import { Box, Button, Card, styled, Typography } from "ui";
-// script
-import { GetMbtiByKey } from "storefront/components/personality/scripts/personality";
 // component
-const PersonalityCardList = dynamic(() => import("./PersonalityCardList"), {
-  ssr: false,
-});
-const Bingo = dynamic(() => import("../bingo"), { ssr: false });
+import PersonalityCardList from "./PersonalityCardList";
 // types
-import type { Personality } from "../types/personality";
+import { IMbti, TMbtiKey } from "../types/personality";
 // hooks
 import useSnackbar from "storefront/hooks/useSnackbar";
 // api
 import { updateUser } from "storefront/services/useUser";
 // state
 import { personalityAtom } from "storefront/features/personality/atom";
+import PersonalityTabs from "../tabs";
+// models
+import { Mbti } from "storefront/features/personality/models/mbti";
 
 // ----------------------------------------------------------------------
 
@@ -32,35 +29,37 @@ const Header = styled(Box)(() => ({
 export default function MyPersonality({
   personality,
 }: {
-  personality: string;
+  personality: TMbtiKey;
 }) {
   const [selected, setSelected] = useState("____");
   const [personalityState, setPersonalityState] =
     useRecoilState(personalityAtom);
+
   const { show: showSuccess, Snackbar: SuccessSnackbar } = useSnackbar({
     title: "저장되었습니다.",
     severity: "success",
     autoHideDuration: 3000,
   });
 
-  const activeDefaultClickableCard = (personality: string) => {
+  const activeDefaultClickableCard = (personality: TMbtiKey) => {
+    setPersonalityState(personality);
     for (const p of personality) {
-      setSelected(GetMbtiByKey(p as Personality["key"]));
+      const myPersonality = new Mbti(p);
+      setSelected(myPersonality.getMbti());
     }
   };
 
   useEffect(() => {
     if (personality?.length) {
-      setPersonalityState(personality);
       activeDefaultClickableCard(personality);
     }
   }, [personality]);
 
-  const callback = (payload: Personality["key"]) => {
+  const callback = (payload: IMbti["key"]): void => {
     setSelected(payload);
   };
 
-  const validate = (key: string) => {
+  const validate = (key: string): string => {
     key = selected.replace(/[^a-zA-Z]/g, "");
     const isFilled = key.length === 4;
 
@@ -72,15 +71,10 @@ export default function MyPersonality({
     return key;
   };
 
-  const handleClickSave = () => {
+  const handleClickSave = (): void => {
     let updatedPersonality = validate(selected);
     if (updatedPersonality === "") return;
-
-    mutate(
-      "/api/me/personality",
-      updateUser({ personality: updatedPersonality })
-    );
-
+    mutate(null, updateUser({ personality: updatedPersonality }));
     setPersonalityState(updatedPersonality);
     showSuccess();
   };
@@ -99,12 +93,11 @@ export default function MyPersonality({
           저장
         </Button>
       </Header>
-      <PersonalityCardList callback={callback} />
-      <SuccessSnackbar />
 
-      <Box component="section" sx={{ pt: 4 }}>
-        <Bingo />
-      </Box>
+      <PersonalityCardList callback={callback} />
+      <PersonalityTabs />
+
+      <SuccessSnackbar />
     </Card>
   );
 }

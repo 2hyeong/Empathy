@@ -1,7 +1,6 @@
-import { replaceAt } from "scripts";
-import type { Personality, PersonalityKey } from "../types/personality";
+import type { IMbti } from "../components/personality/types/personality";
 
-export const Personalities: Personality[] = [
+export const mbtiEl: IMbti[] = [
   {
     key: "E",
     title: "외향형",
@@ -67,35 +66,3 @@ export const Personalities: Personality[] = [
     selected: false,
   },
 ];
-
-export const GetMbtiByKey = (key: PersonalityKey) => {
-  const updateSelectProp = (arr: Personality[], curr: Personality) => {
-    arr.forEach((p) => {
-      if (p.type === curr.type) p.selected = false;
-    });
-    curr.selected = true;
-  };
-
-  const getUpdatedPersonality = (prev: string, curr: Personality) => {
-    const MBTI: { [key: number]: string } = "MBTI";
-
-    for (let mbti in MBTI) {
-      if (curr.type === MBTI[Number(mbti)]) {
-        return replaceAt(prev, Number(mbti), curr.key);
-      }
-    }
-    return prev;
-  };
-
-  return Personalities.reduce(
-    (prev: string, curr: Personality, _, arr: Personality[]) => {
-      const isSameKey = curr.key === key;
-
-      if (isSameKey) updateSelectProp(arr, curr);
-      if (curr.selected) return getUpdatedPersonality(prev, curr);
-
-      return prev;
-    },
-    "____"
-  );
-};
