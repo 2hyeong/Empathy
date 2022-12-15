@@ -1,23 +1,13 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Box, Card, ClickableCard, Typography } from "ui";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import ClickableCard from "ui/components/ClickableCard";
 
 export default {
-  title: "empathy/Card",
-  component: Card,
-} as ComponentMeta<typeof Card>;
-
-const Template: ComponentStory<typeof Card> = (args) => {
-  return (
-    <Box sx={{ padding: 2 }}>
-      <Card {...args} sx={{ width: 250, height: 150 }}>
-        <Box sx={{ width: "100%", height: "100%" }} />
-      </Card>
-    </Box>
-  );
-};
-
-export const Base = Template.bind({});
+  title: "ui/Card",
+  component: ClickableCard,
+} as ComponentMeta<typeof ClickableCard>;
 
 const ClickableCardTemplate: ComponentStory<typeof ClickableCard> = () => {
   const [isActive1, isSetActive1] = useState(true);
@@ -35,7 +25,9 @@ const ClickableCardTemplate: ComponentStory<typeof ClickableCard> = () => {
           sx={{ width: 250, height: 150, marginRight: 2 }}
           data-testid="selected"
         >
-          <Box sx={{ width: "100%", height: "100%" }}>Selected</Box>
+          <Box sx={{ width: "100%", height: "100%" }}>
+            Selected (opacity: 1)
+          </Box>
         </ClickableCard>
 
         <ClickableCard
@@ -43,7 +35,9 @@ const ClickableCardTemplate: ComponentStory<typeof ClickableCard> = () => {
           isActive={isActive2}
           onClick={() => isSetActive2(!isActive2)}
         >
-          <Box sx={{ width: "100%", height: "100%" }}>Unselected(Normal)</Box>
+          <Box sx={{ width: "100%", height: "100%" }}>
+            Normal (opacity: 0.5)
+          </Box>
         </ClickableCard>
       </Box>
     </Box>
