@@ -1,3 +1,5 @@
+import { Palette } from "@mui/material/styles";
+
 export type TMbtiKey = "E" | "I" | "S" | "N" | "T" | "F" | "J" | "P";
 export type TMbtiType = "M" | "B" | "T" | "I";
 
@@ -6,7 +8,7 @@ export interface IMbti {
   title: string;
   caption: string;
   type: TMbtiType;
-  color: string;
+  color: keyof Palette;
   selected: boolean;
 }
 

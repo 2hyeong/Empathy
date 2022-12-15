@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { db, userConverter } from "scripts";
 import { getToken } from "next-auth/jwt";
+import { operations } from "idl/gen";
 
 export default async (
   req: NextApiRequest,
