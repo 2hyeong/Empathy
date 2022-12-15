@@ -3,7 +3,10 @@ import { signIn } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 // ui
-import { Button, Dialog, DialogContent, DialogTitle, Typography } from "ui";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import Typography from "@mui/material/Typography";
 
 interface SignInModalProps {
   visible: boolean;
@@ -30,14 +33,16 @@ export default function SignInModal({
 
   return (
     <Dialog
+      data-testid="signin-modal"
       open={visible}
       onClose={close}
       aria-labelledby="로그인 모달"
       aria-describedby="소셜 로그인을 제공합니다"
     >
-      <DialogTitle>
-        <Typography variant="h6">소셜 로그인</Typography>
-      </DialogTitle>
+      <Typography variant="h6">소셜 로그인</Typography>
+      <Typography variant="caption">
+        로그인이 필요한 메뉴입니다. 로그인 후 이용해주세요.
+      </Typography>
       <DialogContent sx={{ display: "flex", flexDirection: "column" }}>
         <Button onClick={handleClickKakaoLogin}>
           <Image

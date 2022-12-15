@@ -1,8 +1,11 @@
 "use client";
 // component
-import { ClickableCard } from "ui/components";
+import ClickableCard from "ui/components/ClickableCard";
 // ui
-import { Typography, CardContent, styled, Divider } from "ui";
+import { styled } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
+import CardContent from "@mui/material/CardContent";
+import Divider from "@mui/material/Divider";
 // types
 import type { IMbti } from "../types/personality";
 
@@ -24,6 +27,7 @@ interface PersonalityCardProps {
 export default function PersonalityCard({ personality }: PersonalityCardProps) {
   return (
     <ClickableCard
+      data-testid={`personality-card-${personality.key}`}
       sx={{
         my: 2,
         "&:hover": {

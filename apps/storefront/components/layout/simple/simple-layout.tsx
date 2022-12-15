@@ -1,7 +1,8 @@
-// ui
 import { ReactNode } from "react";
+// ui
+import { styled } from "@mui/material/styles";
+// component
 import Logo from "storefront/components/logo";
-import { styled } from "ui";
 
 // components
 

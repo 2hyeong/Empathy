@@ -1,26 +1,24 @@
 "use client";
 import useSWR from "swr";
 // ui
-import {
-  Box,
-  Card,
-  CardHeader,
-  Divider,
-  IconButton,
-  Tooltip,
-  Stack,
-  Button,
-  Dialog,
-} from "ui";
-import { Scrollbar } from "ui/components";
-import { AddIcon } from "ui/icons";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
+import Tooltip from "@mui/material/Tooltip";
+import Scrollbar from "ui/components/scrollbar";
+import AddIcon from "@mui/icons-material/Add";
+// type
 import type { CardProps } from "ui/types";
-// hooks
+// hook
 import { getFriends } from "storefront/services/useFriend";
-import useModalForm from "storefront/hooks/useModalForm";
+import { useModal } from "storefront/hooks/useModal";
 // idl
 import { Friend } from "idl/gen/typescript-fetch";
-// components
+// component
 import FriendItem from "./FriendItem";
 import AddFriendDialog from "./AddFriendDialog";
 
@@ -31,7 +29,9 @@ interface FriendListProps {
 }
 
 export default function FriendList({ other }: FriendListProps) {
-  const { visible, show, close, register, handleSubmit } = useModalForm();
+  const { visible, show, close } = useModal({
+    defaultVisible: false,
+  });
   const { data: friends } = useSWR("/api/users/friends", getFriends);
 
   return (
@@ -41,12 +41,7 @@ export default function FriendList({ other }: FriendListProps) {
         subheader={`${friends?.length || 0}명의 친구가 있어요.`}
         action={
           <>
-            <AddFriendDialog
-              visible={visible}
-              close={close}
-              register={register}
-              handleSubmit={handleSubmit}
-            />
+            <AddFriendDialog visible={visible} close={close} />
             <Tooltip title="추가">
               <IconButton onClick={show}>
                 <AddIcon />

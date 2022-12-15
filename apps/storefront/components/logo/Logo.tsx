@@ -1,9 +1,8 @@
 // next
 import NextLink from "next/link";
 import Image from "next/image";
-
 // ui
-import { styled } from "ui";
+import { styled } from "@mui/material/styles";
 
 // ----------------------------------------------------------------------
 
@@ -18,7 +17,7 @@ export default function Logo() {
         src="/assets/logo.svg"
         width={40}
         height={40}
-        alt="logo"
+        alt="로고"
         priority
       />
     </Link>

@@ -1,12 +1,12 @@
 "use client";
-import { Fragment } from "react";
-import { SetterOrUpdater, useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 // ui
-import { Grid, Typography } from "ui";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 // state
-import { personalityAtom } from "storefront/features/personality/atom";
+import { mbtiResultAtom } from "storefront/features/personality/atom";
 // constant
-import { MbtiRelationshipsLabel } from "storefront/constants/mbtiResults";
+import { mbtiRelationshipsLabel } from "storefront/constants/mbtiResults";
 // model
 import { MbtiResult } from "storefront/features/personality/models/mbtiResult";
 // component
@@ -15,26 +15,15 @@ import RelationshipItem from "./Item";
 import type { IMBTIRelationshipLabel } from "../types/personality";
 
 export default function PersonalityRelationship() {
-  const [personalityState, setPersonalityState]: [
-    string,
-    SetterOrUpdater<string>
-  ] = useRecoilState(personalityAtom);
+  const mbtiResultState: string = useRecoilValue(mbtiResultAtom);
 
-  const personality16: MbtiResult = new MbtiResult(personalityState);
+  const personality16: MbtiResult = new MbtiResult(mbtiResultState);
   const relationships = personality16.getRelationships();
 
   return (
-    <Grid
-      container
-      spacing={1}
-      sx={{
-        borderRadius: "1.5rem",
-        border: "1px solid rgba(145, 158, 171, 0.24)",
-        padding: "2rem",
-      }}
-    >
+    <Grid container spacing={1}>
       <Grid item xs={12} lg={12}>
-        {MbtiRelationshipsLabel.map(
+        {mbtiRelationshipsLabel.map(
           (relationshipLabel: IMBTIRelationshipLabel) => (
             <>
               <Typography variant="h6" color="gray" sx={{ mb: 2 }}>

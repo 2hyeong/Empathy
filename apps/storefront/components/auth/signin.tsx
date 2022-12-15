@@ -1,7 +1,7 @@
 // hook
 import { useModal } from "storefront/hooks/useModal";
 // ui
-import { Button } from "ui";
+import Button from "@mui/material/Button";
 // component
 import SignInModal from "./SignInModal";
 

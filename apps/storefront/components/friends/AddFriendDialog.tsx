@@ -1,51 +1,35 @@
-import { useCallback, useState } from "react";
 import { mutate } from "swr";
-
 // const
 import { mbtiResults } from "storefront/constants/mbtiResults";
-
 // ui
-import {
-  Autocomplete,
-  Box,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Fab,
-  FormControl,
-  TextField,
-} from "ui";
-
-import { AddIcon } from "ui/icons";
-
+import Autocomplete from "@mui/material/Autocomplete";
+import Dialog from "@mui/material/Dialog";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import FormControl from "@mui/material/FormControl";
+import Button from "@mui/material/Button";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
 // idl
 import { Friend } from "idl/gen/typescript-fetch";
 // api
 import { createFriend } from "storefront/services/useFriend";
-// hooks
+// hook
 import useSnackbar from "storefront/hooks/useSnackbar";
-import {
-  FieldValues,
-  UseFormHandleSubmit,
-  UseFormRegister,
-} from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 interface AddFriendDialogProps {
   visible: boolean;
   close: () => void;
-  register: UseFormRegister<FieldValues>;
-  handleSubmit: UseFormHandleSubmit<FieldValues>;
 }
 
 export default function AddFriendDialog({
   visible,
   close,
-  register,
-  handleSubmit,
 }: AddFriendDialogProps) {
+  const { register, handleSubmit } = useForm();
   const { show: showSuccess, Snackbar: SuccessSnackbar } = useSnackbar({
     title: "친구가 등록되었습니다.",
     severity: "success",
@@ -53,8 +37,10 @@ export default function AddFriendDialog({
   });
 
   const onSubmit = (data: any) => {
-    const isInPersonality16 =
-      mbtiResults.filter((p) => p.label === data.personality).length !== 0;
+    const isInPersonality16: boolean = !!mbtiResults.find(
+      (p) => p.label === data.personality
+    );
+    console.log("hihi2", isInPersonality16);
 
     if (data.name === "" || !isInPersonality16) return;
 
@@ -84,17 +70,12 @@ export default function AddFriendDialog({
                 size="small"
                 label="이름"
                 {...register("name")}
-                inputProps={{
-                  "data-testid": "add-friend-name",
-                }}
               />
               <Autocomplete
-                id="personality"
                 sx={{ marginY: 1 }}
                 autoHighlight
                 autoComplete
                 options={mbtiResults}
-                data-testid="add-friend-personality"
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -108,14 +89,19 @@ export default function AddFriendDialog({
             </DialogContent>
 
             <DialogActions>
-              <Button variant="outlined" size="small" onClick={close}>
+              <Button
+                variant="outlined"
+                size="small"
+                onClick={close}
+                aria-label="취소"
+              >
                 취소
               </Button>
               <Button
                 type="submit"
                 size="small"
                 variant="contained"
-                data-testid="add-friend-submit-btn"
+                aria-label="친구추가"
               >
                 추가
               </Button>

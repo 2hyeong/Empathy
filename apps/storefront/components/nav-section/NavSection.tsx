@@ -1,6 +1,8 @@
 import Link from "next/link";
 // ui
-import { Box, List, ListItemText } from "ui";
+import Box from "@mui/material/Box";
+import List from "@mui/material/List";
+import ListItemText from "@mui/material/ListItemText";
 //
 import { StyledNavItem, StyledNavItemIcon } from "./styles";
 

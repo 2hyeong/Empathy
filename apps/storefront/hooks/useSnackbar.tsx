@@ -1,5 +1,7 @@
 import { useState, useCallback } from "react";
-import { Alert, Snackbar as MuiSnackbar } from "ui";
+// ui
+import Alert from "@mui/material/Alert";
+import MuiSnackbar from "@mui/material/Snackbar";
 
 // ----------------------------------------------------------------------
 
@@ -13,7 +15,9 @@ function useSnackbar(props: UseSnackbarProps) {
   const { title, severity, autoHideDuration, ...rest } = props;
   const [isOpen, setIsOpen] = useState(false);
 
-  const show = useCallback(() => setIsOpen(true), [setIsOpen]);
+  const show = useCallback(() => {
+    setIsOpen(true);
+  }, [setIsOpen]);
   const handleClose = useCallback(() => setIsOpen(false), [setIsOpen]);
 
   const Snackbar = () => (
@@ -32,6 +36,7 @@ function useSnackbar(props: UseSnackbarProps) {
 
   return {
     show,
+    isOpen,
     Snackbar,
   };
 }

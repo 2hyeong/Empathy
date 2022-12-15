@@ -3,15 +3,13 @@
 import { useState } from "react";
 
 // ui
-import {
-  styled,
-  Input,
-  Button,
-  ClickAwayListener,
-  Slide,
-  IconButton,
-  InputAdornment,
-} from "..";
+import Button from "@mui/material/Button";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import Slide from "@mui/material/Slide";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+import Input from "@mui/material/Input";
+import { styled } from "@mui/material/styles";
 import { bgBlur } from "../utils/cssStyles";
 import { SearchIcon } from "../icons";
 

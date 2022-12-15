@@ -1,6 +1,7 @@
 // ui
-import { styled, ListItemIcon, ListItemButton } from "ui";
-
+import { styled } from "@mui/material/styles";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemButton from "@mui/material/ListItemButton";
 // ----------------------------------------------------------------------
 
 export const StyledNavItem = styled((props) => (

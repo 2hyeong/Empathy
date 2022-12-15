@@ -18,8 +18,8 @@ export default function RootLayout({ children }: PageProps) {
       <head>
         <Meta
           props={{
-            title: "",
-            description: "",
+            title: "공감해",
+            description: "성격유형을 확인하고 저장해서 친구들과 공유해요",
             ogUrl: "",
             ogImage: "",
           }}

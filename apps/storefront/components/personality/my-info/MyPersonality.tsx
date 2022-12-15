@@ -1,22 +1,32 @@
 "use client";
-import { useEffect, useState } from "react";
-import { mutate } from "swr";
-import { useRecoilState } from "recoil";
-// ui
-import { Box, Button, Card, styled, Typography } from "ui";
+import { useEffect, useMemo } from "react";
+import useSWR, { mutate } from "swr";
 // component
-import PersonalityCardList from "./PersonalityCardList";
+import PersonalityCardList from "../card/PersonalityCardList";
+import PersonalityTabs from "../tabs";
 // types
-import { IMbti, TMbtiKey } from "../types/personality";
+import type { TMbtiKey } from "../types/personality";
 // hooks
 import useSnackbar from "storefront/hooks/useSnackbar";
 // api
-import { updateUser } from "storefront/services/useUser";
+import { getMe, updateUser } from "storefront/services/useUser";
 // state
-import { personalityAtom } from "storefront/features/personality/atom";
-import PersonalityTabs from "../tabs";
-// models
+import { useRecoilState, useSetRecoilState } from "recoil";
+import {
+  defaultMbtiList,
+  defaultMbtiResult,
+  mbtiListAtom,
+  mbtiResultAtom,
+} from "storefront/features/personality/atom";
+// utils
+import { filterAlphabet } from "storefront/utils/strings";
 import { Mbti } from "storefront/features/personality/models/mbti";
+// ui
+import { styled } from "@mui/material/styles";
+import Card from "@mui/material/Card";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 // ----------------------------------------------------------------------
 
@@ -26,56 +36,48 @@ const Header = styled(Box)(() => ({
   alignItems: "center",
 }));
 
-export default function MyPersonality({
-  personality,
-}: {
-  personality: TMbtiKey;
-}) {
-  const [selected, setSelected] = useState("____");
-  const [personalityState, setPersonalityState] =
-    useRecoilState(personalityAtom);
+export default function MyPersonality() {
+  const mbti = useMemo(() => new Mbti(defaultMbtiList, defaultMbtiResult), []);
+  const [mbtiResultState, setMbtiResultState] = useRecoilState(mbtiResultAtom);
+  const setMbtiListState = useSetRecoilState(mbtiListAtom);
+  const isValid: boolean = filterAlphabet(mbtiResultState).length === 4;
 
-  const { show: showSuccess, Snackbar: SuccessSnackbar } = useSnackbar({
+  const { data: me } = useSWR("api/me", getMe);
+
+  const activeDefaultClickableCard = (mbti: Mbti) => {
+    if (!me?.personality) return;
+    for (const p of me?.personality) {
+      mbti.set(p as TMbtiKey);
+      setMbtiResultState(mbti.result);
+      setMbtiListState(mbti.list);
+    }
+  };
+
+  useEffect(() => {
+    activeDefaultClickableCard(mbti);
+  }, [me?.personality]);
+
+  const {
+    show: showSuccess,
+    isOpen,
+    Snackbar: SuccessSnackbar,
+  } = useSnackbar({
     title: "저장되었습니다.",
     severity: "success",
     autoHideDuration: 3000,
   });
 
-  const activeDefaultClickableCard = (personality: TMbtiKey) => {
-    setPersonalityState(personality);
-    for (const p of personality) {
-      const myPersonality = new Mbti(p);
-      setSelected(myPersonality.getMbti());
-    }
-  };
-
-  useEffect(() => {
-    if (personality?.length) {
-      activeDefaultClickableCard(personality);
-    }
-  }, [personality]);
-
-  const callback = (payload: IMbti["key"]): void => {
-    setSelected(payload);
-  };
-
-  const validate = (key: string): string => {
-    key = selected.replace(/[^a-zA-Z]/g, "");
-    const isFilled = key.length === 4;
-
-    if (!isFilled) {
-      alert("성격유형을 모두 선택해주세요.");
-      return "";
-    }
-
-    return key;
-  };
+  const successSnackbar = useMemo(() => <SuccessSnackbar />, [!isOpen]);
 
   const handleClickSave = (): void => {
-    let updatedPersonality = validate(selected);
-    if (updatedPersonality === "") return;
-    mutate(null, updateUser({ personality: updatedPersonality }));
-    setPersonalityState(updatedPersonality);
+    const personality = filterAlphabet(mbtiResultState);
+
+    if (!isValid) {
+      alert("성격유형을 모두 선택해주세요.");
+      return;
+    }
+
+    mutate("/api/me", updateUser({ personality }));
     showSuccess();
   };
 
@@ -83,21 +85,27 @@ export default function MyPersonality({
     <Card sx={{ p: 4, position: "static" }}>
       <Header>
         <Typography
+          aria-label="성격유형을 선택해주세요"
           variant="h5"
           sx={{ letterSpacing: "1px", marginY: 4 }}
-          data-testid="personality-selected-typography"
         >
-          성격유형을 선택해주세요😀 {selected}
+          성격유형을 선택해주세요😀 {mbtiResultState}
         </Typography>
-        <Button variant="contained" size="small" onClick={handleClickSave}>
+        <Button
+          role="button"
+          aria-label="성격유형 저장 버튼"
+          variant="contained"
+          size="small"
+          onClick={handleClickSave}
+        >
           저장
         </Button>
       </Header>
 
-      <PersonalityCardList callback={callback} />
-      <PersonalityTabs />
+      <PersonalityCardList mbti={mbti} />
+      {isValid ? <PersonalityTabs /> : null}
 
-      <SuccessSnackbar />
+      {successSnackbar}
     </Card>
   );
 }

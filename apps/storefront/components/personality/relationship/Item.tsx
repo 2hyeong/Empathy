@@ -1,18 +1,16 @@
 "use client";
 
 // ui
-import {
-  Avatar,
-  Box,
-  CardContent,
-  Divider,
-  Typography,
-} from "storefront/../../packages/ui";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import CardContent from "@mui/material/CardContent";
+import Divider from "@mui/material/Divider";
+import Typography from "@mui/material/Typography";
 
 // mock
 import account from "storefront/mocks/_mock/account";
 
-interface RelationshipItem {
+interface RelationshipItemProps {
   item: string;
 }
 

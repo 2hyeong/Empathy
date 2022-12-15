@@ -1,13 +1,10 @@
 "use client";
-import dynamic from "next/dynamic";
 import { ReactNode, useState } from "react";
-
 // ui
-import { styled } from "ui";
-
-// components
-const Header = dynamic(() => import("./header"));
-const Nav = dynamic(() => import("./nav"));
+import { styled } from "@mui/material/styles";
+// component
+import Header from "./header";
+import Nav from "./nav";
 
 // ----------------------------------------------------------------------
 

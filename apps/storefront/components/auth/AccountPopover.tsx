@@ -1,38 +1,36 @@
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 import { useSession, signOut } from "next-auth/react";
 // ui
-import {
-  alpha,
-  Box,
-  Divider,
-  Typography,
-  Stack,
-  MenuItem,
-  Avatar,
-  IconButton,
-  Popover,
-} from "ui";
+import { alpha } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
+import Typography from "@mui/material/Typography";
+import MenuItem from "@mui/material/MenuItem";
+import Avatar from "@mui/material/Avatar";
+import IconButton from "@mui/material/IconButton";
+import Popover from "@mui/material/Popover";
 
 // mocks_
 import account from "storefront/mocks/_mock/account";
+import { ClickAwayListener } from "@mui/material";
 
 // ----------------------------------------------------------------------
 
 export default function AccountPopover() {
-  const { data: session } = useSession();
+  const { data: session } = useSession<boolean>();
 
-  const [open, setOpen] = useState(null);
+  const [open, setOpen] = useState<HTMLElement | null>(null);
 
-  const handleOpen = (event) => {
+  const handleOpen = (event: MouseEvent<HTMLElement>) => {
     setOpen(event.currentTarget);
   };
 
-  const handleLogout = () => {
+  const handleLogout = (): void => {
     signOut();
     setOpen(null);
   };
 
-  const handleClose = () => {
+  const handleClose = (): void => {
     setOpen(null);
   };
 
@@ -60,35 +58,36 @@ export default function AccountPopover() {
         <Avatar src={session?.user.image || account.photoURL} alt="photoURL" />
       </IconButton>
 
-      <Popover
-        open={Boolean(open)}
-        anchorEl={open}
-        onClose={handleClose}
-        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-        transformOrigin={{ vertical: "top", horizontal: "right" }}
-        PaperProps={{
-          sx: {
-            p: 0,
-            mt: 1.5,
-            ml: 0.75,
-            width: 180,
-            "& .MuiMenuItem-root": {
-              typography: "body2",
-              borderRadius: 0.75,
+      <ClickAwayListener onClickAway={handleClose}>
+        <Popover
+          open={Boolean(open)}
+          anchorEl={open}
+          onClose={handleClose}
+          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+          transformOrigin={{ vertical: "top", horizontal: "right" }}
+          PaperProps={{
+            sx: {
+              p: 0,
+              mt: 1.5,
+              ml: 0.75,
+              width: 180,
+              "& .MuiMenuItem-root": {
+                typography: "body2",
+                borderRadius: 0.75,
+              },
             },
-          },
-        }}
-      >
-        <Box sx={{ my: 1.5, px: 2.5 }}>
-          <Typography variant="subtitle2" noWrap>
-            {session?.user.name}
-          </Typography>
-          <Typography variant="body2" sx={{ color: "text.secondary" }} noWrap>
-            {session?.user.email}
-          </Typography>
-        </Box>
+          }}
+        >
+          <Box sx={{ my: 1.5, px: 2.5 }}>
+            <Typography variant="subtitle2" noWrap>
+              {session?.user.name}
+            </Typography>
+            <Typography variant="body2" sx={{ color: "text.secondary" }} noWrap>
+              {session?.user.email}
+            </Typography>
+          </Box>
 
-        {/* <Divider sx={{ borderStyle: "dashed" }} />
+          {/* <Divider sx={{ borderStyle: "dashed" }} />
 
         <Stack sx={{ p: 1 }}>
           {MENU_OPTIONS.map((option) => (
@@ -98,12 +97,13 @@ export default function AccountPopover() {
           ))}
         </Stack> */}
 
-        <Divider sx={{ borderStyle: "dashed" }} />
+          <Divider sx={{ borderStyle: "dashed" }} />
 
-        <MenuItem onClick={handleLogout} sx={{ m: 1 }}>
-          로그아웃
-        </MenuItem>
-      </Popover>
+          <MenuItem onClick={handleLogout} sx={{ m: 1 }}>
+            로그아웃
+          </MenuItem>
+        </Popover>
+      </ClickAwayListener>
     </>
   );
 }
