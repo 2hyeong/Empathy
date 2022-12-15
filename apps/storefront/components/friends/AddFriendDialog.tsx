@@ -19,6 +19,7 @@ import { createFriend } from "storefront/services/useFriend";
 // hook
 import useSnackbar from "storefront/hooks/useSnackbar";
 import { useForm } from "react-hook-form";
+import type { FieldValues, SubmitHandler } from "react-hook-form";
 
 interface AddFriendDialogProps {
   visible: boolean;
@@ -36,12 +37,10 @@ export default function AddFriendDialog({
     autoHideDuration: 3000,
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
     const isInPersonality16: boolean = !!mbtiResults.find(
       (p) => p.label === data.personality
     );
-    console.log("hihi2", isInPersonality16);
-
     if (data.name === "" || !isInPersonality16) return;
 
     mutate("/api/users/friends", () => createFriend(data as Friend));

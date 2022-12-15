@@ -8,8 +8,8 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import { bgBlur } from "ui/utils/cssStyles";
+import type { bgBlurProps } from "ui/utils/cssStyles";
 import SearchInput from "ui/components/SearchInput";
-import type { Theme } from "@mui/material/styles";
 // icon
 import MenuIcon from "@mui/icons-material/Menu";
 // components
@@ -23,8 +23,8 @@ const HEADER_MOBILE = 64;
 
 const HEADER_DESKTOP = 92;
 
-const StyledRoot = styled(AppBar)(({ theme }: Theme) => ({
-  ...bgBlur({ color: theme.palette.background.default }),
+const StyledRoot = styled(AppBar)(({ theme }) => ({
+  ...(bgBlur({ color: theme.palette.background.default }) as bgBlurProps),
   boxShadow: "none",
   [theme.breakpoints.up("lg")]: {
     width: `calc(100% - ${NAV_WIDTH + 1}px)`,

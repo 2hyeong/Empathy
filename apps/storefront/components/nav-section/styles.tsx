@@ -4,7 +4,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemButton from "@mui/material/ListItemButton";
 // ----------------------------------------------------------------------
 
-export const StyledNavItem = styled((props) => (
+export const StyledNavItem: any = styled((props) => (
   <ListItemButton disableGutters {...props} />
 ))(({ theme }) => ({
   ...theme.typography.body2,
@@ -15,7 +15,7 @@ export const StyledNavItem = styled((props) => (
   borderRadius: theme.shape.borderRadius,
 }));
 
-export const StyledNavItemIcon = styled(ListItemIcon)({
+export const StyledNavItemIcon: any = styled(ListItemIcon)({
   width: 22,
   height: 22,
   color: "inherit",

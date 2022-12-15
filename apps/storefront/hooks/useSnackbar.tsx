@@ -1,13 +1,14 @@
 import { useState, useCallback } from "react";
 // ui
 import Alert from "@mui/material/Alert";
+import type { AlertColor } from "@mui/material/Alert";
 import MuiSnackbar from "@mui/material/Snackbar";
 
 // ----------------------------------------------------------------------
 
 type UseSnackbarProps = {
   title: string;
-  severity?: any;
+  severity?: AlertColor;
   autoHideDuration?: number;
 };
 

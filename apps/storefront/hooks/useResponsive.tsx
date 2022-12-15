@@ -1,14 +1,17 @@
 // ui
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
+import { Breakpoint, useTheme } from "@mui/material/styles";
 
 // ----------------------------------------------------------------------
 
-export default function useResponsive(query?: string, start?: any, end?: any) {
+export default function useResponsive(
+  query: string,
+  start: Breakpoint,
+  end?: number | Breakpoint
+) {
   const theme = useTheme();
   const mediaUp = useMediaQuery(theme.breakpoints.up(start));
   const mediaDown = useMediaQuery(theme.breakpoints.down(start));
-  const mediaBetween = useMediaQuery(theme.breakpoints.between(start, end));
   const mediaOnly = useMediaQuery(theme.breakpoints.only(start));
 
   if (query === "up") {
@@ -19,8 +22,11 @@ export default function useResponsive(query?: string, start?: any, end?: any) {
     return mediaDown;
   }
 
-  if (query === "between") {
-    return mediaBetween;
+  if (end) {
+    const mediaBetween = useMediaQuery(theme.breakpoints.between(start, end));
+    if (query === "between") {
+      return mediaBetween;
+    }
   }
 
   return mediaOnly;
@@ -34,7 +40,7 @@ export function useWidth() {
   const keys = [...theme.breakpoints.keys].reverse();
 
   return (
-    keys.reduce((output, key) => {
+    keys.reduce((output: unknown, key: Breakpoint) => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const matches = useMediaQuery(theme.breakpoints.up(key));
 

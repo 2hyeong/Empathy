@@ -18,3 +18,9 @@ declare module "@mui/material/styles" {
     customShadows?: { [key: string]: string };
   }
 }
+
+declare module "@mui/material/styles/createPalette" {
+  interface TypeBackground {
+    neutral: string;
+  }
+}

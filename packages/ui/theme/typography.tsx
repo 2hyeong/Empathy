@@ -1,4 +1,4 @@
-import type { Typography } from "@mui/material/styles";
+import type { TypographyOptions } from "@mui/material/styles/createTypography";
 
 export function remToPx(value: string) {
   return Math.round(parseFloat(value) * 16);
@@ -35,7 +35,7 @@ export function responsiveFontSizes({
 const FONT_PRIMARY = "Public Sans, sans-serif"; // Google Font
 // const FONT_SECONDARY = 'CircularStd, sans-serif'; // Local Font
 
-const typography: Typography = {
+const typography: TypographyOptions = {
   fontFamily: FONT_PRIMARY,
   fontWeightRegular: 400,
   fontWeightMedium: 600,

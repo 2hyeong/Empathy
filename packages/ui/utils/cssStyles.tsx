@@ -3,12 +3,12 @@ import { alpha } from "@mui/material/styles";
 
 // ----------------------------------------------------------------------
 
-type bgBlurProps = {
+export interface bgBlurProps {
   color?: string;
   blur?: number;
   opacity?: number;
   imgUrl?: string;
-};
+}
 
 export function bgBlur({
   color = "#000000",

@@ -3,6 +3,7 @@
 import ClickableCard from "ui/components/ClickableCard";
 // ui
 import { styled } from "@mui/material/styles";
+import type { SimplePaletteColorOptions } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 import Divider from "@mui/material/Divider";
@@ -37,8 +38,18 @@ export default function PersonalityCard({ personality }: PersonalityCardProps) {
         },
         boxShadow: 0,
         textAlign: "center",
-        color: (theme) => theme?.palette[personality?.color]?.dark,
-        bgcolor: (theme) => theme?.palette[personality?.color]?.light,
+        color: (theme) => {
+          const color = theme?.palette[
+            personality?.color
+          ] as SimplePaletteColorOptions;
+          return color.dark;
+        },
+        bgcolor: (theme) => {
+          const color = theme?.palette[
+            personality?.color
+          ] as SimplePaletteColorOptions;
+          return color.light;
+        },
         height: "100%",
       }}
       isActive={personality.selected}
