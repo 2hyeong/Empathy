@@ -23,6 +23,6 @@ export interface IMBTIRelationshipLabel {
 }
 export interface IMbtiResult {
   label: string;
-  bingo?: string[];
-  relationship?: IMBTIRelationship;
+  bingo: string[];
+  relationship: IMBTIRelationship;
 }

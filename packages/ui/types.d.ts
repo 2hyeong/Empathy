@@ -2,7 +2,6 @@
 export type { DialogProps } from "@mui/material/Dialog";
 export type { ButtonProps } from "@mui/material/Button";
 export type { SxProps } from "@mui/material/styles";
-export type { Theme } from "../types";
 export type { SnackbarProps } from "@mui/material/Snackbar";
 export type { CardProps } from "@mui/material/Card";
 
