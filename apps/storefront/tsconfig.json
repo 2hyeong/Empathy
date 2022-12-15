@@ -9,6 +9,7 @@
   ],
   "exclude": ["node_modules"],
   "compilerOptions": {
+    "target": "ES2016",
     "baseUrl": ".",
     "paths": {
       "storefront/*": ["*"]

@@ -1,7 +1,7 @@
 import React from "react";
 
 import MuiCard, { CardProps as MuiCardProps } from "@mui/material/Card";
-import { CardActionArea } from "@mui/material";
+import CardActionArea from "@mui/material/CardActionArea";
 
 export type ClickableCardProps = {
   isActive?: boolean;
@@ -19,8 +19,12 @@ export default function ClickableCard({
       {...rest}
       sx={{
         ...sx,
-        opacity: isActive ? 1 : 0.5,
+        opacity: 0.5,
+        "&.isActive": {
+          opacity: 1,
+        },
       }}
+      className={isActive ? "isActive" : undefined}
     >
       <CardActionArea sx={{ height: "100%", padding: 2 }}>
         {children}

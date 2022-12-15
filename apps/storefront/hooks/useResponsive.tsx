@@ -1,5 +1,6 @@
 // ui
-import { useMediaQuery, useTheme } from "ui";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 
 // ----------------------------------------------------------------------
 

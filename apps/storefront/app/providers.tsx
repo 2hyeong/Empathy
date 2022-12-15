@@ -2,15 +2,11 @@
 import { ReactNode } from "react";
 import { RecoilRoot } from "recoil";
 import { SessionProvider } from "next-auth/react";
-import dynamic from "next/dynamic";
 // ui
 import ThemeProvider from "ui/theme";
-import { CssBaseline } from "ui";
+import CssBaseline from "@mui/material/CssBaseline";
 // component
-const DashboardLayout = dynamic(
-  () => import("storefront/components/layout/dashboard"),
-  { ssr: false }
-);
+import DashboardLayout from "storefront/components/layout/dashboard";
 
 export default function Providers({ children }: { children: ReactNode }) {
   return (

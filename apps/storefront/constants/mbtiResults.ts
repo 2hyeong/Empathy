@@ -3,7 +3,7 @@ import {
   IMbtiResult,
 } from "storefront/components/personality/types/personality";
 
-export const MbtiRelationshipsLabel: IMBTIRelationshipLabel[] = [
+export const mbtiRelationshipsLabel: IMBTIRelationshipLabel[] = [
   {
     key: "best",
     label: "천생연분",

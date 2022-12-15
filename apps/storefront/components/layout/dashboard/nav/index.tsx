@@ -3,17 +3,12 @@ import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 
 // ui
-import {
-  styled,
-  alpha,
-  Box,
-  Link,
-  Button,
-  Drawer,
-  Typography,
-  Avatar,
-  Stack,
-} from "ui";
+import { styled, alpha } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
+import Drawer from "@mui/material/Drawer";
+import Typography from "@mui/material/Typography";
+import Avatar from "@mui/material/Avatar";
 // hooks
 import useResponsive from "storefront/hooks/useResponsive";
 // components
@@ -21,7 +16,7 @@ import Scrollbar from "ui/components/scrollbar";
 import Logo from "storefront/components/logo";
 import NavSection from "storefront/components/nav-section";
 import navConfig from "./config";
-//mock
+// mock
 import account from "storefront/mocks/_mock/account";
 
 // ----------------------------------------------------------------------
@@ -44,7 +39,7 @@ interface NavProps {
 }
 
 export default function Nav({ openNav, onCloseNav }: NavProps) {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const pathname = usePathname();
 
   const isDesktop = useResponsive("up", "lg");

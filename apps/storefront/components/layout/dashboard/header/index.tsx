@@ -1,12 +1,17 @@
 "use client";
 
 // ui
-import { styled, Box, Stack, AppBar, Toolbar, IconButton } from "ui";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
 import { bgBlur } from "ui/utils/cssStyles";
-import { SearchInput } from "ui/components";
-import { MenuIcon } from "ui/icons";
-import { Theme } from "ui/types";
-
+import SearchInput from "ui/components/SearchInput";
+import type { Theme } from "@mui/material/styles";
+// icon
+import MenuIcon from "@mui/icons-material/Menu";
 // components
 import Auth from "storefront/components/auth";
 

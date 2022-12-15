@@ -1,7 +1,11 @@
+"use client";
+
 // ui
-import { CardContent, Typography } from "ui";
-import { ClickableCard } from "ui/components";
-import { ThumbUpOffAltIcon } from "ui/icons";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import ClickableCard from "ui/components/ClickableCard";
+// icon
+import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 
 interface BingoItemProps {
   content: string;
@@ -19,7 +23,9 @@ export default function BingoItem({ content }: BingoItemProps) {
           sx={{ display: "flex", justifyContent: "space-between" }}
         >
           {content}
-          <ThumbUpOffAltIcon fontSize="small" color="info" />
+          <span>
+            <ThumbUpOffAltIcon fontSize="small" color="info" />
+          </span>
         </Typography>
       </CardContent>
     </ClickableCard>

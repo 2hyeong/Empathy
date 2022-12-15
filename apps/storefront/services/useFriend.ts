@@ -1,6 +1,6 @@
 import { Friend, FriendToJSON } from "idl/gen/typescript-fetch";
 import { operations } from "idl/gen";
-import { friendApi, friendsApi } from "./typescript-fetch";
+import { friendApi, friendsApi } from "./typescriptFetch";
 
 export const getFriend = (
   friendId: operations["getFriend"]["parameters"]["path"]["friendId"]
