@@ -1,12 +1,13 @@
 import { SessionProvider } from "next-auth/react";
 import "./index.css";
 
-import { ThemeProvider, theme, CssBaseline } from "ui";
+import ThemeProvider from "ui/theme";
+import CssBaseline from "@mui/material/CssBaseline";
 
 const withThemeProvider = (Story, context) => {
   return (
     <SessionProvider>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider>
         <CssBaseline />
         <Story {...context} />
       </ThemeProvider>
