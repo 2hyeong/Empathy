@@ -33,12 +33,16 @@ export const db = {
   get: (field: string) => {
     return {
       where: async (doc: string, converter: FirestoreDataConverter<any>) => {
-        const document = await firestore
-          .collection(field)
-          .withConverter(converter)
-          .doc(doc)
-          .get();
-        return document.data();
+        try {
+          const document = await firestore
+            ?.collection(field)
+            ?.withConverter(converter)
+            ?.doc(doc)
+            .get();
+          return document.data();
+        } catch (error) {
+          return error;
+        }
       },
     };
   },
