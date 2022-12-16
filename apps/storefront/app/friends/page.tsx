@@ -7,7 +7,7 @@ import AuthGuard from "storefront/features/auth/AuthGuard";
 export default function Page() {
   return (
     <AuthGuard>
-      <FriendList />;
+      <FriendList />
     </AuthGuard>
   );
 }
