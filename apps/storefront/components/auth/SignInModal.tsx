@@ -38,6 +38,11 @@ export default function SignInModal({
       onClose={close}
       aria-labelledby="로그인 모달"
       aria-describedby="소셜 로그인을 제공합니다"
+      PaperProps={{
+        sx: {
+          padding: "1rem",
+        },
+      }}
     >
       <Typography variant="h6">소셜 로그인</Typography>
       <Typography variant="caption">

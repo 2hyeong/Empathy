@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 // mock
 import { startMock } from "storefront/mocks";
 // component
@@ -5,7 +6,7 @@ import Meta from "storefront/components/layout/meta";
 import Providers from "./providers";
 
 interface PageProps {
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {

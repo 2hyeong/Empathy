@@ -1,5 +1,6 @@
-import { useSession } from "next-auth/react";
-
+import useSWR from "swr";
+// hook
+import { getMe } from "storefront/services/useUser";
 // component
 import AccountPopover from "./AccountPopover";
 import SignIn from "./SignIn";
@@ -7,8 +8,8 @@ import SignIn from "./SignIn";
 // ----------------------------------------------------------------------
 
 export default function Auth() {
-  const { data: session } = useSession();
-  const hasSession = !!session?.user?.id;
+  const { data: me } = useSWR("api/me", getMe);
+  const isLogin: boolean = !!me?.name;
 
-  return <>{hasSession ? <AccountPopover /> : <SignIn />}</>;
+  return <>{isLogin ? <AccountPopover /> : <SignIn />}</>;
 }
