@@ -93,26 +93,6 @@ describe("AccountPopover", () => {
     expect(email).toBeInTheDocument();
   });
 
-  test("if user clicks outside of popover, it should be closed", async () => {
-    // ACT
-    render(<AccountPopover />);
-
-    const iconButton = screen.getByRole("button");
-    await userEvent.click(iconButton);
-
-    // ASSERT
-    let popover = screen.queryByTestId("account-popover");
-    expect(popover).toBeDefined();
-
-    // ACT
-    const outside = document.body;
-    await userEvent.click(outside);
-    const textInsidePopover = screen.queryByText("로그아웃");
-
-    // ASSERT
-    expect(textInsidePopover).not.toBeInTheDocument();
-  });
-
   test("if user clicks logout button, it should call signed out", async () => {
     // ACT
     render(<AccountPopover />);
