@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import ClickableCard from "ui/components/ClickableCard";
 
 export default {
-  title: "ui/Card",
+  title: "Ui/Card",
   component: ClickableCard,
 } as ComponentMeta<typeof ClickableCard>;
 
