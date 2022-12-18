@@ -6,7 +6,7 @@ module.exports = {
     "react/self-closing-comp": "warn",
     "no-var": "warn",
     "no-multiple-empty-lines": "warn",
-    "no-console": "warn",
+    "no-console": ["error", { allow: ["warn", "error"] }],
     eqeqeq: "warn",
     "no-unused-vars": "warn",
     "react/jsx-pascal-case": "warn",
@@ -15,6 +15,9 @@ module.exports = {
     "react/jsx-key": "warn",
     "react/jsx-curly-brace-presence": "warn",
     "turbo/no-undeclared-env-vars": "off",
-    "import/no-anonymous-default-export": [warn, { allowArrowFunction: true }],
+    "import/no-anonymous-default-export": [
+      "warn",
+      { allowArrowFunction: true },
+    ],
   },
 };

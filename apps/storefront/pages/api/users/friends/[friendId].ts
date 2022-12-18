@@ -62,6 +62,7 @@ export default async (
         .delete();
     } catch (e) {
       console.error(e);
+      throw e;
     }
     return res.status(200).json({ ok: true });
   }

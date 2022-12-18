@@ -1,5 +1,5 @@
 "use client";
-import { ReactNode, useState } from "react";
+import { ReactNode, useCallback, useState } from "react";
 // ui
 import { styled } from "@mui/material/styles";
 // component
@@ -35,11 +35,14 @@ const Main = styled("div")(({ theme }) => ({
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
 
+  const handleOpenNav = useCallback(() => setOpen(true), [setOpen]);
+  const handleCloseNav = useCallback(() => setOpen(false), [setOpen]);
+
   return (
     <StyledRoot>
-      <Header onOpenNav={() => setOpen(true)} />
+      <Header onOpenNav={handleOpenNav} />
 
-      <Nav openNav={open} onCloseNav={() => setOpen(false)} />
+      <Nav openNav={open} onCloseNav={handleCloseNav} />
 
       <Main>{children}</Main>
     </StyledRoot>

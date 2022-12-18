@@ -49,6 +49,7 @@ export default async (
         .add(body);
     } catch (e) {
       console.error(e);
+      throw e;
     }
     return res.status(200).json({ ok: true });
   }

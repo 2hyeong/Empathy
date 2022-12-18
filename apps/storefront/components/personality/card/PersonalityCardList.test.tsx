@@ -1,11 +1,11 @@
-import { render, screen, within } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { RecoilRoot } from "recoil";
 import {
   defaultMbtiList,
   defaultMbtiResult,
 } from "storefront/features/personality/atom";
 import { Mbti } from "storefront/features/personality/models/mbti";
-import { describe, vi } from "vitest";
+import { describe } from "vitest";
 import userEvent from "@testing-library/user-event";
 import PersonalityCardList from "./PersonalityCardList";
 

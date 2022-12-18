@@ -15,7 +15,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import dynamic from "next/dynamic";
 // components
 const Auth = dynamic(() => import("storefront/components/auth"), {
-  ssr: false,
+  ssr: true,
 });
 
 // ----------------------------------------------------------------------

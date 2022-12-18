@@ -28,6 +28,7 @@ export default function PersonalityCardList({ mbti }: { mbti: Mbti }) {
       setMbtiListState(mbti.list);
       setMbtiResultState(mbti.result);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handlClick = (key: TMbtiKey) => {

@@ -31,7 +31,7 @@ export default function PersonalityRelationship() {
               </Typography>
               {relationships && relationships[relationshipLabel.key]?.length
                 ? relationships[relationshipLabel.key].map((item: string) => (
-                    <RelationshipItem item={item} />
+                    <RelationshipItem key={item} item={item} />
                   ))
                 : null}
             </>

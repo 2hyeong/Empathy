@@ -25,6 +25,7 @@ export default async (
       await db.update("users", JSON.parse(req.body)).where(session?.user?.id);
     } catch (e) {
       console.error(e);
+      throw e;
     }
     return res.status(200).json({ ok: true });
   }
