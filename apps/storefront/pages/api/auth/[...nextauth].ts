@@ -30,12 +30,12 @@ export const authOptions: NextAuthOptions = {
       }
       return true;
     },
-    async jwt({ token, user, account, profile, isNewUser }) {
+    async jwt({ token, user, account }) {
       account && (token.account = account);
       user && (token.user = user);
       return token;
     },
-    async session({ session, user, token }) {
+    async session({ session, token }) {
       session = {
         ...session,
         user: {

@@ -14,11 +14,7 @@ interface SignInModalProps {
   close: () => void;
 }
 
-export default function SignInModal({
-  visible,
-  show,
-  close,
-}: SignInModalProps) {
+export default function SignInModal({ visible, close }: SignInModalProps) {
   const router = useRouter();
 
   const handleClickKakaoLogin = () => {

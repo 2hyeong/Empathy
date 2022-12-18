@@ -37,12 +37,13 @@ const Header = styled(Box)(() => ({
 }));
 
 export default function MyPersonality() {
-  const mbti = useMemo(() => new Mbti(defaultMbtiList, defaultMbtiResult), []);
   const [mbtiResultState, setMbtiResultState] = useRecoilState(mbtiResultAtom);
   const setMbtiListState = useSetRecoilState(mbtiListAtom);
   const isValid: boolean = filterAlphabet(mbtiResultState).length === 4;
 
   const { data: me } = useSWR("api/me", getMe);
+
+  const mbti = new Mbti(defaultMbtiList, defaultMbtiResult);
 
   const activeDefaultClickableCard = (mbti: Mbti) => {
     if (!me?.personality) return;
@@ -55,6 +56,7 @@ export default function MyPersonality() {
 
   useEffect(() => {
     activeDefaultClickableCard(mbti);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [me?.personality]);
 
   const {
@@ -67,16 +69,15 @@ export default function MyPersonality() {
     autoHideDuration: 3000,
   });
 
-  const successSnackbar = useMemo(() => <SuccessSnackbar />, [!isOpen]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const successSnackbar = useMemo(() => <SuccessSnackbar />, [isOpen]);
 
   const handleClickSave = (): void => {
     const personality = filterAlphabet(mbtiResultState);
-
     if (!isValid) {
       alert("성격유형을 모두 선택해주세요.");
       return;
     }
-
     mutate("/api/me", updateUser({ personality }));
     showSuccess();
   };

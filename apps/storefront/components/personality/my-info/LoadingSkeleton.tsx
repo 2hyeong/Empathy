@@ -2,5 +2,5 @@
 import Skeleton from "@mui/material/Skeleton";
 
 export default function MyInfoLoadingSkeleton() {
-  return <Skeleton variant="rectangular"></Skeleton>;
+  return <Skeleton variant="rectangular" />;
 }

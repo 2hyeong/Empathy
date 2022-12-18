@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, Mock, vi } from "vitest";
+import { describe, Mock, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
