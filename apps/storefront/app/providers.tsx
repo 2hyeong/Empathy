@@ -11,15 +11,15 @@ import EmotionProvider from "./emotion";
 
 export default function Providers({ children }: { children: ReactNode }) {
   return (
-    <EmotionProvider>
-      <ThemeProvider>
-        <SessionProvider refetchInterval={5 * 60}>
-          <RecoilRoot>
+    <SessionProvider refetchInterval={5 * 60}>
+      <RecoilRoot>
+        <ThemeProvider>
+          <EmotionProvider>
             <CssBaseline />
             <DashboardLayout>{children}</DashboardLayout>
-          </RecoilRoot>
-        </SessionProvider>
-      </ThemeProvider>
-    </EmotionProvider>
+          </EmotionProvider>
+        </ThemeProvider>
+      </RecoilRoot>
+    </SessionProvider>
   );
 }

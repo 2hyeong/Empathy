@@ -2,10 +2,10 @@
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import { useServerInsertedHTML } from "next/navigation";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 
 type EmotionProviderProps = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 const isBrowser = typeof document !== "undefined";

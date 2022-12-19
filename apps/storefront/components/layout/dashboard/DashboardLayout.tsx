@@ -17,7 +17,7 @@ const StyledRoot = styled("div")({
   overflow: "hidden",
 });
 
-const Main = styled("div")(({ theme }) => ({
+const Main = styled("main")(({ theme }) => ({
   flexGrow: 1,
   overflow: "auto",
   minHeight: "100%",
