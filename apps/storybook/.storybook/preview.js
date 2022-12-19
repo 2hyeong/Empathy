@@ -1,21 +1,19 @@
-import { SessionProvider } from "next-auth/react";
 import "./index.css";
 
-import ThemeProvider from "ui/theme";
-import CssBaseline from "@mui/material/CssBaseline";
+import Providers from "storefront/app/providers";
+import Container from "@mui/material/Container";
 
-const withThemeProvider = (Story, context) => {
+const withProvider = (Story, context) => {
   return (
-    <SessionProvider>
-      <ThemeProvider>
-        <CssBaseline />
+    <Providers>
+      <Container sx={{ pt: 4 }}>
         <Story {...context} />
-      </ThemeProvider>
-    </SessionProvider>
+      </Container>
+    </Providers>
   );
 };
 
-export const decorators = [withThemeProvider];
+export const decorators = [withProvider];
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {

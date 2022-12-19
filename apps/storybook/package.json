@@ -10,11 +10,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "idl": "workspace:*",
     "next": "12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "ui": "workspace:*",
-    "idl": "workspace:*"
+    "storefront": "workspace:*",
+    "ui": "workspace:*"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -23,6 +24,7 @@
     "@storybook/addon-interactions": "^6.5.12",
     "@storybook/addon-links": "^6.5.12",
     "@storybook/builder-webpack5": "^6.5.12",
+    "@storybook/client-api": "^6.5.14",
     "@storybook/manager-webpack5": "^6.5.12",
     "@storybook/react": "^6.5.12",
     "@storybook/testing-library": "^0.0.13",

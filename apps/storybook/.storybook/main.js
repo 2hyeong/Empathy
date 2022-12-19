@@ -20,6 +20,12 @@ module.exports = {
       ...config.resolve.alias,
       storefront: path.resolve(__dirname, "../../storefront"),
     };
+
+    // mock next/navigation
+    config.resolve.alias["next/navigation"] = require.resolve(
+      "../__mocks__/next/router.ts"
+    );
+
     return config;
   },
 };

@@ -4,7 +4,7 @@ import MuiCard, { CardProps as MuiCardProps } from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
 
 export type ClickableCardProps = {
-  isActive?: boolean;
+  isActive: boolean;
   children: React.ReactNode;
 } & MuiCardProps;
 
