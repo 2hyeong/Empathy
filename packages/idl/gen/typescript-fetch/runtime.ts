@@ -13,7 +13,7 @@
  */
 
 
-export const BASE_PATH = "http://localhost:3000/api".replace(/\/+$/, "");
+export const BASE_PATH = "https://empahty.vercel.app/api".replace(/\/+$/, "");
 
 export interface ConfigurationParameters {
     basePath?: string; // override base path

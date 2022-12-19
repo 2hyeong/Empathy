@@ -3,7 +3,10 @@ info:
   title: Empathy
   version: "1.0"
 servers:
-- url: http://localhost:3000/api
+- description: Production server (uses live data)
+  url: https://empahty.vercel.app/api
+- description: localhost
+  url: http://localhost:3000/api
 tags:
 - name: users
 - name: friends
