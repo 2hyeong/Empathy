@@ -12,11 +12,8 @@ import type { bgBlurProps } from "ui/utils/cssStyles";
 import SearchInput from "ui/components/SearchInput";
 // icon
 import MenuIcon from "@mui/icons-material/Menu";
-import dynamic from "next/dynamic";
 // components
-const Auth = dynamic(() => import("storefront/components/auth"), {
-  ssr: true,
-});
+import Auth from "storefront/components/auth";
 
 // ----------------------------------------------------------------------
 

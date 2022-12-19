@@ -1,9 +1,10 @@
 import { ReactNode } from "react";
+import dynamic from "next/dynamic";
 // mock
 import { startMock } from "storefront/mocks";
 // component
 import Meta from "storefront/components/layout/meta";
-import Providers from "./providers";
+const Providers = dynamic(() => import("./providers"), { ssr: false });
 
 interface PageProps {
   children?: ReactNode;

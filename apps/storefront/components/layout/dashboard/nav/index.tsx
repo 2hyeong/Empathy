@@ -1,7 +1,6 @@
 import { useEffect } from "react";
-import { useSession } from "next-auth/react";
+import useSWR from "swr";
 import { usePathname } from "next/navigation";
-
 // ui
 import { styled, alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -9,9 +8,11 @@ import Link from "@mui/material/Link";
 import Drawer from "@mui/material/Drawer";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
-// hooks
+import NoSsr from "@mui/material/NoSsr";
+// hook
 import useResponsive from "storefront/hooks/useResponsive";
-// components
+import { getMe } from "storefront/services/useUser";
+// component
 import Scrollbar from "ui/components/scrollbar";
 import Logo from "storefront/components/logo";
 import NavSection from "storefront/components/nav-section";
@@ -39,9 +40,8 @@ interface NavProps {
 }
 
 export default function Nav({ openNav, onCloseNav }: NavProps) {
-  const { data: session } = useSession();
+  const { data: me } = useSWR("api/me", getMe);
   const pathname = usePathname();
-
   const isDesktop = useResponsive("up", "lg");
 
   useEffect(() => {
@@ -69,14 +69,11 @@ export default function Nav({ openNav, onCloseNav }: NavProps) {
       <Box sx={{ mb: 5, mx: 2.5 }}>
         <Link underline="none">
           <StyledAccount>
-            <Avatar
-              src={session?.user.image || account.photoURL}
-              alt="photoURL"
-            />
+            <Avatar src={me?.image || account.photoURL} alt="photoURL" />
 
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" sx={{ color: "text.primary" }}>
-                {session?.user.name}
+                {me?.name}
               </Typography>
             </Box>
           </StyledAccount>
@@ -96,19 +93,21 @@ export default function Nav({ openNav, onCloseNav }: NavProps) {
       }}
     >
       {isDesktop ? (
-        <Drawer
-          open
-          variant="permanent"
-          PaperProps={{
-            sx: {
-              width: NAV_WIDTH,
-              bgcolor: "background.default",
-              borderRightStyle: "dashed",
-            },
-          }}
-        >
-          {renderContent}
-        </Drawer>
+        <NoSsr>
+          <Drawer
+            open
+            variant="permanent"
+            PaperProps={{
+              sx: {
+                width: NAV_WIDTH,
+                bgcolor: "background.default",
+                borderRightStyle: "dashed",
+              },
+            }}
+          >
+            {renderContent}
+          </Drawer>
+        </NoSsr>
       ) : (
         <Drawer
           open={openNav}
