@@ -4,7 +4,10 @@ info:
   version: "1.0"
 
 servers:
+  - url: https://empahty.vercel.app/api
+    description: Production server (uses live data)
   - url: http://localhost:3000/api
+    description: localhost
 
 tags:
   - name: users
