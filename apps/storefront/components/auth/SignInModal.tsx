@@ -31,7 +31,7 @@ export default function SignInModal({ visible, close }: SignInModalProps) {
     <Dialog
       data-testid="signin-modal"
       open={visible}
-      onClose={close}
+      disableEscapeKeyDown={true}
       aria-labelledby="로그인 모달"
       aria-describedby="소셜 로그인을 제공합니다"
       PaperProps={{
