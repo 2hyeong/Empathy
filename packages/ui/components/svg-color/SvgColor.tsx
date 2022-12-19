@@ -7,10 +7,12 @@ import type { SxProps, Theme } from "@mui/material/styles";
 // ----------------------------------------------------------------------
 type SvgColorProps = {
   src: string;
-  sx: SxProps<Theme>;
+  sx?: SxProps<Theme>;
 };
 
-const SvgColor = forwardRef(({ src, sx, ...other }: SvgColorProps, ref) => (
+const SvgColor: React.ForwardRefExoticComponent<
+  SvgColorProps & React.RefAttributes<unknown>
+> = forwardRef(({ src, sx, ...other }: SvgColorProps, ref) => (
   <Box
     component="span"
     className="svg-color"
@@ -27,5 +29,6 @@ const SvgColor = forwardRef(({ src, sx, ...other }: SvgColorProps, ref) => (
     {...other}
   />
 ));
+SvgColor.displayName = "SvgColor";
 
 export default SvgColor;

@@ -13,6 +13,7 @@ import { MbtiResult } from "storefront/features/personality/models/mbtiResult";
 import RelationshipItem from "./Item";
 // type
 import type { IMBTIRelationshipLabel } from "../types/personality";
+import { Fragment } from "react";
 
 export default function PersonalityRelationship() {
   const mbtiResultState: string = useRecoilValue(mbtiResultAtom);
@@ -25,7 +26,7 @@ export default function PersonalityRelationship() {
       <Grid item xs={12} lg={12}>
         {mbtiRelationshipsLabel.map(
           (relationshipLabel: IMBTIRelationshipLabel) => (
-            <>
+            <Fragment key={relationshipLabel.key}>
               <Typography variant="h6" color="gray" sx={{ mb: 2 }}>
                 {relationshipLabel.label}
               </Typography>
@@ -34,7 +35,7 @@ export default function PersonalityRelationship() {
                     <RelationshipItem key={item} item={item} />
                   ))
                 : null}
-            </>
+            </Fragment>
           )
         )}
       </Grid>

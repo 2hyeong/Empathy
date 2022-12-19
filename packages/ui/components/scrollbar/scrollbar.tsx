@@ -12,7 +12,7 @@ type ScrollbarProps = {
   children: ReactNode;
 };
 
-function Scrollbar({ children, sx, ...other }: ScrollbarProps) {
+export function Scrollbar({ children, sx, ...other }: ScrollbarProps) {
   const userAgent =
     typeof navigator === "undefined" ? "SSR" : navigator.userAgent;
 
