@@ -6,6 +6,10 @@ import { useSession } from "next-auth/react";
 vi.mock("next-auth/react");
 const useMockSession = vi.mocked(useSession) as Mock;
 
+vi.mock("next/navigation", () => ({
+  useRouter: vi.fn(),
+}));
+
 describe("AuthGuard", () => {
   test("if session status is 'authenticated', SignInModal should not be rendered", () => {
     // Arrange

@@ -6,12 +6,15 @@ import type {
 } from "storefront/components/personality/types/personality";
 
 export class Mbti {
+  static #instance: Mbti;
   #list: IMbti[];
   #result: string;
 
   constructor(list: IMbti[], result: string) {
     this.#result = result;
     this.#list = list;
+    if (Mbti.#instance) return Mbti.#instance;
+    return (Mbti.#instance = this);
   }
 
   get result() {

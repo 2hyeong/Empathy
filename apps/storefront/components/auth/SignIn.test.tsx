@@ -1,7 +1,11 @@
 import { render, screen } from "@testing-library/react";
-import { describe, test } from "vitest";
+import { describe, test, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import SignIn from "./SignIn";
+
+vi.mock("next/navigation", () => ({
+  useRouter: vi.fn(),
+}));
 
 describe("SignIn", () => {
   test("if SignIn component is rendered, SignInModal should not be in the document", () => {
